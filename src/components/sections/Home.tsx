@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Container, rgbToHex, hexToRgb, Paper } from '@material-ui/core';
+import placeholder from '../../assets/images/placeholder.jpg';
 
 const useStyles = makeStyles({
   root: {
@@ -8,7 +9,7 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     minHeight: '100vh',
-    backgroundColor: 'red'
+    backgroundImage: 'url(' + placeholder + ')'
   }
 });
 export const Home: React.FC = () => {
@@ -17,7 +18,7 @@ export const Home: React.FC = () => {
   return (
     <Paper id='home' style={{ flexGrow: 1 }}>
       <Grid justify='center' alignItems='center' className={classes.root}>
-        <h1>Hello</h1>
+        <h1 style={{ color: 'white' }}>Hello</h1>
       </Grid>
     </Paper>
   );
