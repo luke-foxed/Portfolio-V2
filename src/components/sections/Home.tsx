@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     backgroundImage:
       'url(' +
       cover +
-      '), linear-gradient(90deg, rgba(17,88,176,0.5) 0%, rgba(88,153,235,0.5) 50%,rgba(177,195,218,0.2) 100%)',
+      '), linear-gradient(90deg, rgba(27,163,251,0.6) 0%, rgba(88,153,235,0.6) 50%,rgba(177,195,218,0.5) 100%)',
     backgroundBlendMode: 'overlay',
     backgroundSize: 'cover'
   },
