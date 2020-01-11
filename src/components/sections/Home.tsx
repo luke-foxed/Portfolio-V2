@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Typography, IconButton } from '@material-ui/core';
 import placeholder from '../../assets/images/placeholder4.png';
-import avater from '../../assets/images/avatar.png';
+import avatar from '../../assets/images/avatar.png';
 import { ExpandMore } from '@material-ui/icons';
 import { scroller } from 'react-scroll';
 import Particles from 'react-particles-js';
@@ -69,7 +69,7 @@ export const Home: React.FC = () => {
             }
           }}
         />
-        <img src={avater} alt='avatar' width={250} height={250}></img>
+        <img src={avatar} alt='avatar' width={250} height={250}></img>
         <Typography variant='h2' className={classes.header}>
           Luke Fox
         </Typography>
