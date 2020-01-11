@@ -5,6 +5,7 @@ import placeholder from '../../assets/images/placeholder4.png';
 import avater from '../../assets/images/avatar.png';
 import { ExpandMore } from '@material-ui/icons';
 import { scroller } from 'react-scroll';
+import Particles from 'react-particles-js';
 
 const useStyles = makeStyles({
   root: {
@@ -19,6 +20,12 @@ const useStyles = makeStyles({
     backgroundBlendMode: 'overlay',
     backgroundSize: 'cover'
   },
+  particles: {
+    position: 'absolute',
+    width: '100%',
+    height: '90%',
+    zIndex: 1
+  },
   header: {
     fontFamily: 'Raleway',
     color: 'white',
@@ -31,7 +38,8 @@ const useStyles = makeStyles({
   },
   expandButton: {
     marginTop: '20px',
-    color: 'white'
+    color: 'white',
+    zIndex: 2
   }
 });
 export const Home: React.FC = () => {
@@ -48,6 +56,19 @@ export const Home: React.FC = () => {
   return (
     <Paper id='home'>
       <Grid justify='center' alignItems='center' className={classes.root}>
+        <Particles
+          className={classes.particles}
+          params={{
+            particles: {
+              number: {
+                value: 50
+              },
+              size: {
+                value: 3
+              }
+            }
+          }}
+        />
         <img src={avater} alt='avatar' width={250} height={250}></img>
         <Typography variant='h2' className={classes.header}>
           Luke Fox

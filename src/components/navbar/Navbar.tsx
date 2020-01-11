@@ -49,6 +49,7 @@ export const Navbar: React.FC = () => {
   return (
     <Paper className={classes.root}>
       <AppBar
+        elevation={active ? 0 : 5}
         className={classes.navBar}
         style={
           active
