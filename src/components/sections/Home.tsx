@@ -1,11 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Typography, IconButton } from '@material-ui/core';
-import placeholder from '../../assets/images/placeholder4.png';
-import avatar from '../../assets/images/avatar.png';
 import { ExpandMore } from '@material-ui/icons';
 import { scroller } from 'react-scroll';
 import Particles from 'react-particles-js';
+import cover from '../../assets/images/cover.png';
+import avatar from '../../assets/images/avatar.png';
 
 const useStyles = makeStyles({
   root: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     minHeight: '100vh',
     backgroundImage:
       'url(' +
-      placeholder +
+      cover +
       '), linear-gradient(90deg, rgba(17,88,176,0.5) 0%, rgba(88,153,235,0.5) 50%,rgba(177,195,218,0.2) 100%)',
     backgroundBlendMode: 'overlay',
     backgroundSize: 'cover'

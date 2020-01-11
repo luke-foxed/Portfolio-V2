@@ -46,7 +46,7 @@ export const About: React.FC = () => {
           </Grid>
           <Grid item sm={4}>
             <Typography
-              variant='h4'
+              variant='h3'
               className={classes.header}
               style={{ color: 'white' }}>
               About Me

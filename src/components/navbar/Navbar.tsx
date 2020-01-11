@@ -29,7 +29,7 @@ const useStyles = makeStyles({
     textTransform: 'uppercase'
   },
   navActiveItem: {
-    color: 'pink',
+    color: 'violet',
     borderRadius: 25
   }
 });
