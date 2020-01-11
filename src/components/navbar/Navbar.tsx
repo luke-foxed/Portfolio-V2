@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import {
   AppBar,
-  Button,
   Toolbar,
   List,
   ListItem,
@@ -17,19 +16,21 @@ const useStyles = makeStyles({
   },
   navBar: {
     display: 'flex',
-    height: '8vh',
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'fixed'
+    position: 'fixed',
+    transition: 'background-color 0.5s ease-out'
   },
   navItems: {
     color: 'white',
     display: 'flex',
     flexDirection: 'row',
-    padding: 0
+    paddingLeft: '30px',
+    textTransform: 'uppercase'
   },
   navActiveItem: {
-    color: 'orange'
+    color: 'orange',
+    borderRadius: 25
   }
 });
 
@@ -52,7 +53,7 @@ export const Navbar: React.FC = () => {
         style={
           active
             ? { backgroundColor: 'transparent' }
-            : { backgroundColor: 'darkGrey' }
+            : { backgroundColor: '#5E5E5E' }
         }>
         <Toolbar>
           <List className={classes.navItems} component='nav'>
@@ -62,9 +63,8 @@ export const Navbar: React.FC = () => {
               to='home'
               spy={true}
               smooth={true}
-              offset={-70}
               duration={500}>
-              <ListItem button>
+              <ListItem button style={{ borderRadius: 25 }}>
                 <ListItemText primary='Home' />
               </ListItem>
             </Link>
@@ -75,9 +75,8 @@ export const Navbar: React.FC = () => {
               to='about'
               spy={true}
               smooth={true}
-              offset={-70}
               duration={500}>
-              <ListItem button>
+              <ListItem button style={{ borderRadius: 25 }}>
                 <ListItemText primary='About' />
               </ListItem>
             </Link>
@@ -88,9 +87,8 @@ export const Navbar: React.FC = () => {
               to='skills'
               spy={true}
               smooth={true}
-              offset={-70}
               duration={500}>
-              <ListItem button>
+              <ListItem button style={{ borderRadius: 25 }}>
                 <ListItemText primary='Skills' />
               </ListItem>
             </Link>
@@ -101,9 +99,8 @@ export const Navbar: React.FC = () => {
               to='contact'
               spy={true}
               smooth={true}
-              offset={-70}
               duration={500}>
-              <ListItem button>
+              <ListItem button style={{ borderRadius: 25 }}>
                 <ListItemText primary='Contact' />
               </ListItem>
             </Link>
