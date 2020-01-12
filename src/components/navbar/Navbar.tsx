@@ -18,18 +18,17 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'fixed',
-    transition: 'background-color 0.5s ease-out'
+    transition: 'background-color 0.5s ease-out',
+    height: '5%'
   },
   navItems: {
-    color: 'white',
     display: 'flex',
     flexDirection: 'row',
     paddingLeft: '30px',
     textTransform: 'uppercase'
   },
   navActiveItem: {
-    color: 'violet',
+    color: 'rgb(27,163,251)',
     borderRadius: 25
   }
 });
@@ -54,10 +53,13 @@ export const Navbar: React.FC = () => {
         style={
           active
             ? { backgroundColor: 'transparent' }
-            : { backgroundColor: '#5E5E5E' }
+            : { backgroundColor: '#e3e3e3' }
         }>
         <Toolbar>
-          <List className={classes.navItems} component='nav'>
+          <List
+            className={classes.navItems}
+            component='nav'
+            style={active ? { color: 'white' } : { color: '#575757' }}>
             <Link
               activeClass={classes.navActiveItem}
               onSetActive={handleState}
@@ -69,7 +71,6 @@ export const Navbar: React.FC = () => {
                 <ListItemText primary='Home' />
               </ListItem>
             </Link>
-
             <Link
               activeClass={classes.navActiveItem}
               onSetActive={handleState}
@@ -81,7 +82,6 @@ export const Navbar: React.FC = () => {
                 <ListItemText primary='About' />
               </ListItem>
             </Link>
-
             <Link
               activeClass={classes.navActiveItem}
               onSetActive={handleState}
@@ -93,7 +93,6 @@ export const Navbar: React.FC = () => {
                 <ListItemText primary='Skills' />
               </ListItem>
             </Link>
-
             <Link
               activeClass={classes.navActiveItem}
               onSetActive={handleState}

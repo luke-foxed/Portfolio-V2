@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexWrap: 'wrap',
     minHeight: '100vh',
-    backgroundColor: '#424240'
+    backgroundColor: '#5c5c5c'
   },
   header: {
     fontFamily: 'Raleway',

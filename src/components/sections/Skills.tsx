@@ -1,24 +1,23 @@
-import React from 'react';
+import React, { useState, ReactHTMLElement } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Grid,
-  Typography,
-  List,
-  ListItem,
-  ListItemAvatar,
-  Avatar,
-  ListItemText
-} from '@material-ui/core';
-import { Star } from '@material-ui/icons';
+import { Grid, Typography, ListItemText, GridList } from '@material-ui/core';
 import gradient from '../../assets/images/gradient.png';
 
-// Import images
-import javascript from '../../assets/images/languages/javascript.png';
+// Icons
 import typescript from '../../assets/images/languages/typescript.png';
-import java from '../../assets/images/languages/java.png';
-import html from '../../assets/images/languages/html.png';
+import javascript from '../../assets/images/languages/javascript.png';
 import python from '../../assets/images/languages/python.png';
-import css from '../../assets/images/languages/css.png';
+import html from '../../assets/images/languages/html.png';
+
+const row1 = [
+  { image: typescript, color: '#1076c6', language: 'TypeScript' },
+  { image: javascript, color: '#c6105d', language: 'JavaScript' },
+  { image: python, color: '#ffd242', language: 'Python' },
+  { image: html, color: '#f16529', language: 'HTML' },
+  { image: typescript, color: '#1076c6', language: 'TypeScript' },
+  { image: javascript, color: '#c6105d', language: 'JavaScript' },
+  { image: python, color: '#ffd242', language: 'Python' }
+];
 
 const useStyles = makeStyles({
   root: {
@@ -31,34 +30,98 @@ const useStyles = makeStyles({
   header: {
     fontFamily: 'Raleway',
     textTransform: 'uppercase',
-    paddingBottom: '10px',
-    color: 'white',
-    marginTop: '100px'
+    paddingBottom: '20px',
+    marginTop: '80px',
+    color: '#5b5b5b'
   },
-  listItem: {
+  gridList: {
+    padding: '15px',
+    borderRadius: 30,
+    backgroundColor: 'rgb(27,163,251)',
+    display: 'flex',
+    flexWrap: 'nowrap',
+    justifyContent: 'space-around'
+  },
+  gridImage: {
     transition: 'all .2s ease-in-out',
+    backgroundColor: 'grey',
     '&:hover': {
-      transform: 'scale(1.05)'
+      transform: 'scale(1.2)'
     }
   }
 });
 export const Skills: React.FC = () => {
   const classes = useStyles();
 
+  const handleMouseOver = (e: any, color: String) => {
+    const currentImage = e.target;
+    currentImage.style.backgroundColor = color;
+  };
+
+  const handleMouseOut = (e: any) => {
+    e.target.style.backgroundColor = 'grey';
+  };
+
   return (
     <div id='skills' className={classes.root}>
       <Grid container direction='column' item xs={6} alignItems='center'>
-        <Typography variant='h3' className={classes.header}>
-          <Star fontSize='large' />
+        <Typography
+          variant='h3'
+          className={classes.header}
+          style={{ color: 'white' }}>
           Skills
         </Typography>
-        <Typography
-          variant='body1'
-          style={{ color: 'white', fontSize: '22px' }}>
-          Here are some of the languages & frameworks I have some experience
-          with!
-        </Typography>
       </Grid>
+
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        <Typography variant='h4' className={classes.header}>
+          Languages
+        </Typography>
+
+        <GridList className={classes.gridList} cols={7} spacing={15}>
+          {row1.map(tile => (
+            <Grid item>
+              <img
+                width={110}
+                height={110}
+                src={tile.image}
+                className={classes.gridImage}
+                onMouseOver={event => handleMouseOver(event, tile.color)}
+                onMouseOut={event => handleMouseOut(event)}
+                alt={'image' + row1.indexOf(tile)}
+              />
+              <ListItemText style={{ color: 'white', paddingTop: '10px' }}>
+                {tile.language}
+              </ListItemText>
+            </Grid>
+          ))}
+        </GridList>
+      </div>
+
+      <div style={{ textAlign: 'center' }}>
+        <Typography variant='h4' className={classes.header}>
+          Technologies
+        </Typography>
+
+        <GridList className={classes.gridList} cols={7} spacing={15}>
+          {row1.map(tile => (
+            <Grid item>
+              <img
+                width={110}
+                height={110}
+                src={tile.image}
+                className={classes.gridImage}
+                onMouseOver={event => handleMouseOver(event, tile.color)}
+                onMouseOut={event => handleMouseOut(event)}
+                alt={'image' + row1.indexOf(tile)}
+              />
+              <ListItemText style={{ color: 'white', paddingTop: '10px' }}>
+                {tile.language}
+              </ListItemText>
+            </Grid>
+          ))}
+        </GridList>
+      </div>
     </div>
   );
 };

@@ -11,12 +11,8 @@ const useStyles = makeStyles({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
     minHeight: '100vh',
-    backgroundImage:
-      'url(' +
-      cover +
-      '), linear-gradient(90deg, rgba(27,163,251,0.6) 0%, rgba(88,153,235,0.6) 50%,rgba(177,195,218,0.5) 100%)',
+    backgroundImage: 'url(' + cover + ')',
     backgroundBlendMode: 'overlay',
     backgroundSize: 'cover'
   },
@@ -54,7 +50,7 @@ export const Home: React.FC = () => {
   };
 
   return (
-    <Paper id='home'>
+    <div id='home'>
       <Grid justify='center' alignItems='center' className={classes.root}>
         <Particles
           className={classes.particles}
@@ -79,9 +75,9 @@ export const Home: React.FC = () => {
         <IconButton
           className={classes.expandButton}
           onClick={handleExpandClick}>
-          <ExpandMore />
+          <ExpandMore fontSize='large' />
         </IconButton>
       </Grid>
-    </Paper>
+    </div>
   );
 };
