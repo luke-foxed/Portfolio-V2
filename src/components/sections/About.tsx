@@ -32,13 +32,13 @@ export const About: React.FC = () => {
           display: 'flex'
         }}>
         {/* GRID 1 */}
-        <Grid container spacing={1} alignContent='center' alignItems='center'>
-          <Grid item sm={3} />
+        <Grid container spacing={0} alignContent='center' alignItems='center'>
+          <Grid item xs={12} sm={3} />
 
           <Grid item sm={2}>
             <img src={me} alt='me' width={150} height={150} />
           </Grid>
-          <Grid item sm={4}>
+          <Grid item xs={12} sm={4}>
             <Typography
               variant='h3'
               className={classes.header}
@@ -59,10 +59,10 @@ export const About: React.FC = () => {
 
       {/* GRID 2 */}
 
-      <Grid container spacing={1} alignContent='center' alignItems='center'>
-        <Grid item sm={3} />
+      <Grid container spacing={0} alignContent='center' alignItems='center'>
+        <Grid item xs={12} sm={3} />
 
-        <Grid item sm={2}>
+        <Grid item xs={12} sm={2}>
           <Fade bottom>
             <Typography variant='h4' className={classes.header}>
               <School
@@ -74,7 +74,7 @@ export const About: React.FC = () => {
           </Fade>
         </Grid>
 
-        <Grid item sm={4}>
+        <Grid item sm={4} xs={12}>
           <Fade bottom>
             <Typography variant='h5' className={classes.header}>
               Applied Computing, WIT - 2016 to 2020
@@ -92,10 +92,10 @@ export const About: React.FC = () => {
       </Grid>
 
       {/* GRID 3 */}
-      <Grid container spacing={1} alignContent='center' alignItems='center'>
+      <Grid container spacing={0} alignContent='center' alignItems='center'>
         <Grid item sm={3} />
 
-        <Grid item sm={2}>
+        <Grid item xs={12} sm={2} spacing={10}>
           <Fade bottom>
             <Typography
               variant='h4'
@@ -109,7 +109,7 @@ export const About: React.FC = () => {
             </Typography>
           </Fade>
         </Grid>
-        <Grid item sm={4}>
+        <Grid item sm={4} xs={12}>
           <Fade bottom>
             <Typography variant='h5' className={classes.header}>
               Distilled SCH - Quality Assurance Engineer

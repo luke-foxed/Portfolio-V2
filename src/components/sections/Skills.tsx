@@ -3,33 +3,85 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, ListItemText, GridList } from '@material-ui/core';
 import gradient from '../../assets/images/gradient.png';
 
-// Icons
-import typescript from '../../assets/images/languages/typescript.png';
-import javascript from '../../assets/images/languages/javascript.png';
-import python from '../../assets/images/languages/python.png';
-import html from '../../assets/images/languages/html.png';
-import java from '../../assets/images/languages/java.png';
-import kotlin from '../../assets/images/languages/kotlin.png';
-import css from '../../assets/images/languages/css.png';
-
 const languages = [
-  { image: typescript, color: '#1076c6', language: 'TypeScript' },
-  { image: javascript, color: '#dc35ce', language: 'JavaScript' },
-  { image: python, color: '#ffd242', language: 'Python' },
-  { image: html, color: '#f16529', language: 'HTML' },
-  { image: java, color: '#dc3535', language: 'Java' },
-  { image: css, color: '#55b773', language: 'CSS' },
-  { image: kotlin, color: '#7c66f3', language: 'Kotlin' }
+  {
+    image: require('../../assets/images/languages/typescript.png'),
+    color: '#1076c6',
+    language: 'TypeScript'
+  },
+  {
+    image: require('../../assets/images/languages/javascript.png'),
+    color: '#dc35ce',
+    language: 'JavaScript'
+  },
+  {
+    image: require('../../assets/images/languages/python.png'),
+    color: '#ffd242',
+    language: 'Python'
+  },
+  {
+    image: require('../../assets/images/languages/html.png'),
+    color: '#f16529',
+    language: 'HTML'
+  },
+  {
+    image: require('../../assets/images/languages/java.png'),
+    color: '#dc3535',
+    language: 'Java'
+  },
+  {
+    image: require('../../assets/images/languages/css.png'),
+    color: '#55b773',
+    language: 'CSS'
+  },
+  {
+    image: require('../../assets/images/languages/kotlin.png'),
+    color: '#7c66f3',
+    language: 'Kotlin'
+  }
 ];
 
 const technologies = [
-  { image: typescript, color: '#1076c6', language: 'TypeScript' },
-  { image: javascript, color: '#c6105d', language: 'JavaScript' },
-  { image: python, color: '#ffd242', language: 'Python' },
-  { image: html, color: '#f16529', language: 'HTML' },
-  { image: typescript, color: '#1076c6', language: 'TypeScript' },
-  { image: javascript, color: '#55b773', language: 'JavaScript' },
-  { image: python, color: '#ffd242', language: 'Python' }
+  {
+    image: require('../../assets/images/technologies/node.png'),
+    color: '#83cd29',
+    language: 'Node'
+  },
+  {
+    image: require('../../assets/images/technologies/docker.png'),
+    color: '#0b92d1',
+    language: 'Docker'
+  },
+  {
+    image: require('../../assets/images/technologies/express.png'),
+    color: '#444444',
+    language: 'Express'
+  },
+  {
+    image: require('../../assets/images/technologies/tensorflow.png'),
+    color: '#ff8600',
+    language: 'Tensorflow'
+  },
+  {
+    image: require('../../assets/images/technologies/react.png'),
+    color: '#53c1de',
+    language: 'React'
+  },
+  {
+    image: require('../../assets/images/technologies/webdriverio.png'),
+    color: '#ea5906',
+    language: 'WebdriverIO'
+  },
+  {
+    image: require('../../assets/images/technologies/flask.png'),
+    color: '#000',
+    language: 'Flask'
+  },
+  {
+    image: require('../../assets/images/technologies/git.png'),
+    color: '#f05033',
+    language: 'Git'
+  }
 ];
 
 const useStyles = makeStyles({
@@ -38,13 +90,15 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     minHeight: '100vh',
-    backgroundImage: 'url(' + gradient + ')'
+    backgroundImage: 'url(' + gradient + ')',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor: 'rgb(232, 232, 232)'
   },
   header: {
     fontFamily: 'Raleway',
     textTransform: 'uppercase',
     paddingBottom: '20px',
-    marginTop: '70px',
+    marginTop: '60px',
     color: '#5b5b5b'
   },
   gridList: {
@@ -132,21 +186,36 @@ export const Skills: React.FC = () => {
             Technologies
           </Typography>
 
-          <Grid container className={classes.gridList} spacing={0}>
+          <Grid
+            container
+            className={classes.gridList}
+            spacing={0}
+            justify='center'>
             {technologies.map(item => (
-              <Grid item xs={12} sm={6} md={4} lg={4} xl={1}>
+              <Grid
+                item
+                style={{ padding: '10px' }}
+                xs={'auto'}
+                sm={6}
+                md={4}
+                lg={4}
+                xl={'auto'}>
                 <img
-                  width={110}
-                  height={110}
+                  width={120}
+                  height={120}
                   src={item.image}
                   className={classes.gridImage}
                   onMouseOver={event => handleMouseOver(event, item.color)}
                   onMouseOut={event => handleMouseOut(event)}
-                  alt={'image' + technologies.indexOf(item)}
+                  alt={'image' + languages.indexOf(item)}
                 />
-                <ListItemText style={{ color: 'white', paddingTop: '10px' }}>
+                <Typography
+                  style={{
+                    color: 'white',
+                    paddingTop: '10px'
+                  }}>
                   {item.language}
-                </ListItemText>
+                </Typography>
               </Grid>
             ))}
           </Grid>
