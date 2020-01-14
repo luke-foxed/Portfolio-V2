@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, ListItemText, GridList } from '@material-ui/core';
 import gradient from '../../assets/images/gradient.png';
 
+const Fade = require('react-reveal/Fade');
+
 const languages = [
   {
     image: require('../../assets/images/languages/typescript.png'),
@@ -98,14 +100,14 @@ const useStyles = makeStyles({
     fontFamily: 'Raleway',
     textTransform: 'uppercase',
     paddingBottom: '20px',
-    marginTop: '60px',
+    marginTop: '80px',
     color: '#5b5b5b'
   },
   gridList: {
     padding: '15px',
     marginTop: '10px',
-    borderRadius: 30,
-    backgroundColor: 'rgb(27,163,251)',
+    borderRadius: 50,
+    backgroundColor: 'rgba(0,0,0, 0.2)',
     width: '60vw'
   },
   gridImage: {
@@ -115,7 +117,7 @@ const useStyles = makeStyles({
     borderColor: 'transparent',
     backgroundColor: 'grey',
     '&:hover': {
-      transform: 'scale(1.18)'
+      transform: 'scale(1.2)'
     }
   }
 });
@@ -135,7 +137,7 @@ export const Skills: React.FC = () => {
     <div id='skills' className={classes.root}>
       <Grid container direction='column' item xs={6} alignItems='center'>
         <Typography
-          variant='h3'
+          variant='h4'
           className={classes.header}
           style={{ color: 'white' }}>
           Skills
@@ -161,22 +163,24 @@ export const Skills: React.FC = () => {
               md={4}
               lg={4}
               xl={'auto'}>
-              <img
-                width={120}
-                height={120}
-                src={item.image}
-                className={classes.gridImage}
-                onMouseOver={event => handleMouseOver(event, item.color)}
-                onMouseOut={event => handleMouseOut(event)}
-                alt={'image' + languages.indexOf(item)}
-              />
-              <Typography
-                style={{
-                  color: 'white',
-                  paddingTop: '10px'
-                }}>
-                {item.language}
-              </Typography>
+              <Fade bottom>
+                <img
+                  width={100}
+                  height={100}
+                  src={item.image}
+                  className={classes.gridImage}
+                  onMouseOver={event => handleMouseOver(event, item.color)}
+                  onMouseOut={event => handleMouseOut(event)}
+                  alt={'image' + languages.indexOf(item)}
+                />
+                <Typography
+                  style={{
+                    color: 'white',
+                    paddingTop: '10px'
+                  }}>
+                  {item.language}
+                </Typography>
+              </Fade>
             </Grid>
           ))}
         </Grid>
@@ -200,22 +204,24 @@ export const Skills: React.FC = () => {
                 md={4}
                 lg={4}
                 xl={'auto'}>
-                <img
-                  width={120}
-                  height={120}
-                  src={item.image}
-                  className={classes.gridImage}
-                  onMouseOver={event => handleMouseOver(event, item.color)}
-                  onMouseOut={event => handleMouseOut(event)}
-                  alt={'image' + languages.indexOf(item)}
-                />
-                <Typography
-                  style={{
-                    color: 'white',
-                    paddingTop: '10px'
-                  }}>
-                  {item.language}
-                </Typography>
+                <Fade bottom>
+                  <img
+                    width={100}
+                    height={100}
+                    src={item.image}
+                    className={classes.gridImage}
+                    onMouseOver={event => handleMouseOver(event, item.color)}
+                    onMouseOut={event => handleMouseOut(event)}
+                    alt={'image' + languages.indexOf(item)}
+                  />
+                  <Typography
+                    style={{
+                      color: 'white',
+                      paddingTop: '10px'
+                    }}>
+                    {item.language}
+                  </Typography>
+                </Fade>
               </Grid>
             ))}
           </Grid>

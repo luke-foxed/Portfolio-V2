@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Divider } from '@material-ui/core';
 import { School, Work } from '@material-ui/icons';
 import pattern from '../../assets/images/pattern.png';
 import me from '../../assets/images/me.png';
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexWrap: 'wrap',
     minHeight: '100vh',
-    backgroundColor: '#5c5c5c'
+    backgroundColor: '#525252'
   },
   header: {
     fontFamily: 'Raleway',
@@ -40,9 +40,11 @@ export const About: React.FC = () => {
           </Grid>
           <Grid item xs={12} sm={4}>
             <Typography
-              variant='h3'
+              variant='h4'
               className={classes.header}
-              style={{ color: 'white' }}>
+              style={{
+                color: 'white'
+              }}>
               About Me
             </Typography>
             <Typography style={{ color: '#d0d0d0', fontSize: '18px' }}>
@@ -67,7 +69,10 @@ export const About: React.FC = () => {
             <Typography variant='h4' className={classes.header}>
               <School
                 fontSize='large'
-                style={{ paddingRight: '10px', color: '#03a3ff' }}
+                style={{
+                  paddingRight: '10px',
+                  color: '#03a3ff'
+                }}
               />
               Education
             </Typography>

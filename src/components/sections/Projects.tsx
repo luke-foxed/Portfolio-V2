@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Paper } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -8,16 +8,16 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     minHeight: '100vh',
-    backgroundColor: 'orange'
+    backgroundColor: 'violet'
   }
 });
-export const Contact: React.FC = () => {
+export const Projects: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <div id='contact' style={{ flexGrow: 1 }}>
+    <div id='projects' style={{ flexGrow: 1 }}>
       <Grid justify='center' alignItems='center' className={classes.root}>
-        <h1>Contact</h1>
+        <h1>Projects</h1>
       </Grid>
     </div>
   );

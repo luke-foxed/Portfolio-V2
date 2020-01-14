@@ -96,6 +96,17 @@ export const Navbar: React.FC = () => {
             <Link
               activeClass={classes.navActiveItem}
               onSetActive={handleState}
+              to='projects'
+              spy={true}
+              smooth={true}
+              duration={500}>
+              <ListItem button style={{ borderRadius: 25 }}>
+                <ListItemText primary='Projects' />
+              </ListItem>
+            </Link>
+            <Link
+              activeClass={classes.navActiveItem}
+              onSetActive={handleState}
               to='contact'
               spy={true}
               smooth={true}
