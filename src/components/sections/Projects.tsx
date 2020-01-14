@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
@@ -13,14 +13,7 @@ import {
 } from '@material-ui/core';
 import pattern from '../../assets/images/skills_pattern.png';
 import { Language, DeveloperBoard, GitHub, Star } from '@material-ui/icons';
-import { getRepos } from '../../Actions';
-
-interface Irepo {
-  name: string;
-  commits_url: string;
-  stargazers_count: string;
-  link: string;
-}
+import { getRepos, Irepo } from '../../Actions';
 
 const projects = [
   {
@@ -100,6 +93,7 @@ export const Projects: React.FC = () => {
     }
   }, [repos]);
 
+  console.log('Render');
   console.log(repos);
 
   return (
@@ -192,7 +186,7 @@ export const Projects: React.FC = () => {
                     alignItems: 'center'
                   }}>
                   <GitHub fontSize='small' style={{ paddingRight: '10px' }} />
-                  Commits: {repo.commits_url.length}
+                  Commits: {repo.commits}
                 </Typography>
 
                 <Typography
