@@ -12,7 +12,13 @@ import {
   Divider
 } from '@material-ui/core';
 import pattern from '../../assets/images/skills_pattern.png';
-import { Language, DeveloperBoard, GitHub, Star } from '@material-ui/icons';
+import {
+  Language,
+  DeveloperBoard,
+  GitHub,
+  Star,
+  Publish
+} from '@material-ui/icons';
 import { getRepos, Irepo } from '../../Actions';
 
 const projects = [
@@ -46,7 +52,7 @@ const useStyles = makeStyles({
     fontFamily: 'Raleway',
     textTransform: 'uppercase',
     paddingBottom: '20px',
-    marginTop: '60px',
+    marginTop: '30px',
     color: '#5b5b5b'
   },
   gridList: {
@@ -74,9 +80,15 @@ const useStyles = makeStyles({
   githubCard: {
     marginRight: '10px',
     marginLeft: '10px',
+    width: '350px',
+    transition: 'all .5s ease-in-out',
     '& h6': {
       fontFamily: 'Raleway',
       textTransform: 'uppercase'
+    },
+    '&:hover': {
+      backgroundColor: '#03a3ff',
+      color: 'white'
     }
   }
 });
@@ -127,10 +139,7 @@ export const Projects: React.FC = () => {
       <Grid container direction={'row'} justify='center' spacing={4} xs={12}>
         {projects.map(project => (
           <Grid item xs={'auto'} sm={6} md={4} lg={4} xl={'auto'}>
-            <Card
-              raised={true}
-              style={{ width: '300px', textAlign: 'center' }}
-              onClick={getRepos}>
+            <Card raised={true} style={{ width: '300px', textAlign: 'center' }}>
               <CardActionArea>
                 <CardMedia
                   component='img'
@@ -163,46 +172,64 @@ export const Projects: React.FC = () => {
         ))}
       </Grid>
 
-      <Grid
-        container
-        xs={12}
-        alignItems='center'
-        justify='center'
+      <div
         style={{
           backgroundColor: '#dedede',
           marginTop: '40px',
           width: '100%',
-          flexGrow: 1
+          flexGrow: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
         }}>
-        {repos!.map(repo => (
-          <Card className={classes.githubCard}>
-            <CardActionArea>
-              <CardContent>
-                <Typography variant='h6'>{repo.name}</Typography>
-                <Typography
-                  style={{
-                    color: 'black',
-                    display: 'flex',
-                    alignItems: 'center'
-                  }}>
-                  <GitHub fontSize='small' style={{ paddingRight: '10px' }} />
-                  Commits: {repo.commits}
-                </Typography>
+        <Typography
+          variant='h5'
+          className={classes.header}
+          style={{ display: 'flex' }}>
+          <GitHub
+            fontSize='large'
+            style={{
+              color: '#03a3ff',
+              paddingRight: '10px'
+            }}
+          />
+          Active GitHub Repos
+        </Typography>
 
-                <Typography
-                  style={{
-                    color: 'black',
-                    display: 'flex',
-                    alignItems: 'center'
-                  }}>
-                  <Star fontSize='small' style={{ paddingRight: '10px' }} />
-                  Stars: {repo.stargazers_count}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        ))}
-      </Grid>
+        <Grid container direction={'row'} justify='center' xs={12}>
+          {repos.map(repo => (
+            <a href={repo.url} style={{ textDecoration: 'none' }}>
+              <Card className={classes.githubCard}>
+                <CardActionArea>
+                  <CardContent>
+                    <Typography variant='h6'>{repo.name}</Typography>
+                    <Typography
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}>
+                      <Publish
+                        fontSize='small'
+                        style={{ paddingRight: '10px' }}
+                      />
+                      Commits: {repo.commits}
+                    </Typography>
+
+                    <Typography
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}>
+                      <Star fontSize='small' style={{ paddingRight: '10px' }} />
+                      Stars: {repo.stargazers_count}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </a>
+          ))}
+        </Grid>
+      </div>
     </div>
   );
 };
