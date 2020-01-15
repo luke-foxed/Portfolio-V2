@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    transition: 'background-color 0.5s ease-out',
+    transition: 'background-color 0.5s ease-in-out',
     height: '5%'
   },
   navItems: {
