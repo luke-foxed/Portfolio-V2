@@ -1,13 +1,11 @@
-///
-
-import axios from 'axios';
+const axios = require('axios');
 const keys = require('../src/default.json');
 
 export interface Irepo {
   name: string;
   stargazers_count: string;
-  commits: string;
-  url: string;
+  commits_url: string;
+  html_url: string;
 }
 
 export const getRepos = async () => {
@@ -17,27 +15,25 @@ export const getRepos = async () => {
   &client_secret=${keys.githubSecret}`
   );
 
-  data.forEach((repo: Irepo) => {
+  data.forEach(async (repo: Irepo) => {
+    // not working?
+    // let { data } = await axios.get(
+    //   `https://api.github.com/repos/Foxyf76/${repo.name}/stats/contributors`
+    // );
+
+    if (repo.name.length > 20) {
+      repo.name = repo.name.substring(0, 15) + '...';
+    }
     results.push({
       name: repo.name,
       stargazers_count: repo.stargazers_count,
-      commits: '',
-      url: repo.url
+      // commits_url: data[0].total,
+      commits_url: '0',
+      html_url: repo.html_url
     });
   });
 
-  results = (await (getCommits(results) as unknown)) as Irepo[];
+  console.log(results);
+
   return results;
-};
-
-const getCommits = async (repos: Irepo[]) => {
-  repos.forEach(async repo => {
-    let { data } = await axios.get(
-      `https://api.github.com/repos/Foxyf76/${repo.name}/stats/contributors`
-    );
-
-    repo.commits = data[0].total;
-  });
-
-  return repos;
 };

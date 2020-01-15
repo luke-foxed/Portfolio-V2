@@ -1,8 +1,8 @@
-import React, { useState, ReactHTMLElement } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography, ListItemText, GridList } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import gradient from '../../assets/images/gradient.png';
-import { Work, Language, Code } from '@material-ui/icons';
+import { Language, Code } from '@material-ui/icons';
 
 const Fade = require('react-reveal/Fade');
 
@@ -101,7 +101,7 @@ const useStyles = makeStyles({
     fontFamily: 'Raleway',
     textTransform: 'uppercase',
     paddingBottom: '20px',
-    marginTop: '80px',
+    marginTop: '50px',
     color: '#5b5b5b'
   },
   gridList: {
