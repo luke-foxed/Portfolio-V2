@@ -50,7 +50,6 @@ const useStyles = makeStyles({
       color: 'white',
       fontFamily: 'Raleway',
       textTransform: 'uppercase',
-      paddingBottom: '20px',
       marginTop: '50px'
     },
     '& h5': {
@@ -181,6 +180,11 @@ export const Projects: React.FC = () => {
           flexDirection: 'column',
           alignItems: 'center'
         }}>
+        <hr
+          className={classes.divider}
+          style={{ borderTop: '2px solid #4a4a4a' }}
+        />
+
         <Typography variant='h5' style={{ display: 'flex', color: '#4a4a4a' }}>
           <GitHub
             fontSize='large'

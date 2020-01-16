@@ -95,14 +95,17 @@ const useStyles = makeStyles({
     minHeight: '100vh',
     backgroundImage: 'url(' + gradient + ')',
     backgroundRepeat: 'no-repeat',
-    backgroundColor: 'rgb(232, 232, 232)'
-  },
-  header: {
-    fontFamily: 'Raleway',
-    textTransform: 'uppercase',
-    paddingBottom: '20px',
-    marginTop: '50px',
-    color: '#5b5b5b'
+    backgroundColor: 'rgb(232, 232, 232)',
+    '& h4': {
+      fontFamily: 'Raleway',
+      textTransform: 'uppercase',
+      marginTop: '50px'
+    },
+    '& h5': {
+      fontFamily: 'Raleway',
+      textTransform: 'uppercase',
+      padding: '10px'
+    }
   },
   gridList: {
     padding: '15px',
@@ -142,10 +145,7 @@ export const Skills: React.FC = () => {
   return (
     <div id='skills' className={classes.root}>
       <Grid container direction='column' xs={12} alignItems='center'>
-        <Typography
-          variant='h4'
-          className={classes.header}
-          style={{ color: 'white' }}>
+        <Typography variant='h4' style={{ color: 'white' }}>
           Skills
         </Typography>
 
@@ -156,8 +156,7 @@ export const Skills: React.FC = () => {
         <br></br>
         <Typography
           variant='h5'
-          className={classes.header}
-          style={{ color: '#4a4a4a', display: 'flex' }}>
+          style={{ color: '#4a4a4a', display: 'flex', marginTop: '140px' }}>
           <Language
             fontSize='large'
             style={{
@@ -204,10 +203,7 @@ export const Skills: React.FC = () => {
           ))}
         </Grid>
       </Grid>
-      <Typography
-        variant='h5'
-        className={classes.header}
-        style={{ color: '#4a4a4a', display: 'flex' }}>
+      <Typography variant='h5' style={{ color: '#4a4a4a', display: 'flex' }}>
         <Code
           fontSize='large'
           style={{

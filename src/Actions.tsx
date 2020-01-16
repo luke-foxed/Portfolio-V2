@@ -1,5 +1,4 @@
 const axios = require('axios');
-const keys = require('../src/default.json');
 
 export interface Irepo {
   name: string;
@@ -11,8 +10,7 @@ export interface Irepo {
 export const getRepos = async () => {
   let results: Irepo[] = [];
   let { data } = await axios.get(
-    `https://api.github.com/users/Foxyf76/repos?per_page=5&sort=created:asc&client_id=${keys.githubClientID}
-  &client_secret=${keys.githubSecret}`
+    `https://api.github.com/users/Foxyf76/repos?per_page=5&sort=created:asc`
   );
 
   data.forEach(async (repo: Irepo) => {
