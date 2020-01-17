@@ -1,7 +1,8 @@
-import React, { useState, ReactHTMLElement } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography, ListItemText, GridList } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import gradient from '../../assets/images/gradient.png';
+import { Language, Code } from '@material-ui/icons';
 
 const Fade = require('react-reveal/Fade');
 
@@ -94,21 +95,25 @@ const useStyles = makeStyles({
     minHeight: '100vh',
     backgroundImage: 'url(' + gradient + ')',
     backgroundRepeat: 'no-repeat',
-    backgroundColor: 'rgb(232, 232, 232)'
-  },
-  header: {
-    fontFamily: 'Raleway',
-    textTransform: 'uppercase',
-    paddingBottom: '20px',
-    marginTop: '80px',
-    color: '#5b5b5b'
+    backgroundColor: 'rgb(232, 232, 232)',
+    '& h4': {
+      fontFamily: 'Raleway',
+      textTransform: 'uppercase',
+      marginTop: '50px'
+    },
+    '& h5': {
+      fontFamily: 'Raleway',
+      textTransform: 'uppercase',
+      padding: '10px'
+    }
   },
   gridList: {
     padding: '15px',
     marginTop: '10px',
     borderRadius: 50,
-    backgroundColor: 'rgba(0,0,0, 0.2)',
-    width: '60vw'
+    backgroundColor: '#03a3ff',
+    width: '60vw',
+    textAlign: 'center'
   },
   gridImage: {
     transition: 'all .2s ease-in-out',
@@ -119,6 +124,10 @@ const useStyles = makeStyles({
     '&:hover': {
       transform: 'scale(1.2)'
     }
+  },
+  divider: {
+    width: '40px',
+    border: 0
   }
 });
 export const Skills: React.FC = () => {
@@ -135,17 +144,26 @@ export const Skills: React.FC = () => {
 
   return (
     <div id='skills' className={classes.root}>
-      <Grid container direction='column' item xs={6} alignItems='center'>
-        <Typography
-          variant='h4'
-          className={classes.header}
-          style={{ color: 'white' }}>
+      <Grid container direction='column' xs={12} alignItems='center'>
+        <Typography variant='h4' style={{ color: 'white' }}>
           Skills
         </Typography>
-      </Grid>
 
-      <div style={{ textAlign: 'center', marginTop: '40px' }}>
-        <Typography variant='h4' className={classes.header}>
+        <hr
+          className={classes.divider}
+          style={{ borderTop: '2px solid white' }}
+        />
+        <br></br>
+        <Typography
+          variant='h5'
+          style={{ color: '#4a4a4a', display: 'flex', marginTop: '140px' }}>
+          <Language
+            fontSize='large'
+            style={{
+              color: '#03a3ff',
+              paddingRight: '10px'
+            }}
+          />
           Languages
         </Typography>
 
@@ -184,49 +202,49 @@ export const Skills: React.FC = () => {
             </Grid>
           ))}
         </Grid>
+      </Grid>
+      <Typography variant='h5' style={{ color: '#4a4a4a', display: 'flex' }}>
+        <Code
+          fontSize='large'
+          style={{
+            color: '#03a3ff',
+            paddingRight: '10px'
+          }}
+        />
+        Technologies
+      </Typography>
 
-        <div style={{ textAlign: 'center' }}>
-          <Typography variant='h4' className={classes.header}>
-            Technologies
-          </Typography>
-
+      <Grid container className={classes.gridList} spacing={0} justify='center'>
+        {technologies.map(item => (
           <Grid
-            container
-            className={classes.gridList}
-            spacing={0}
-            justify='center'>
-            {technologies.map(item => (
-              <Grid
-                item
-                style={{ padding: '10px' }}
-                xs={'auto'}
-                sm={6}
-                md={4}
-                lg={4}
-                xl={'auto'}>
-                <Fade bottom>
-                  <img
-                    width={100}
-                    height={100}
-                    src={item.image}
-                    className={classes.gridImage}
-                    onMouseOver={event => handleMouseOver(event, item.color)}
-                    onMouseOut={event => handleMouseOut(event)}
-                    alt={'image' + languages.indexOf(item)}
-                  />
-                  <Typography
-                    style={{
-                      color: 'white',
-                      paddingTop: '10px'
-                    }}>
-                    {item.language}
-                  </Typography>
-                </Fade>
-              </Grid>
-            ))}
+            item
+            style={{ padding: '10px' }}
+            xs={'auto'}
+            sm={6}
+            md={4}
+            lg={4}
+            xl={'auto'}>
+            <Fade bottom>
+              <img
+                width={100}
+                height={100}
+                src={item.image}
+                className={classes.gridImage}
+                onMouseOver={event => handleMouseOver(event, item.color)}
+                onMouseOut={event => handleMouseOut(event)}
+                alt={'image' + languages.indexOf(item)}
+              />
+              <Typography
+                style={{
+                  color: 'white',
+                  paddingTop: '10px'
+                }}>
+                {item.language}
+              </Typography>
+            </Fade>
           </Grid>
-        </div>
-      </div>
+        ))}
+      </Grid>
     </div>
   );
 };
