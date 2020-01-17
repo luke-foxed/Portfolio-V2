@@ -108,7 +108,7 @@ export const Projects: React.FC = () => {
 
   return (
     <div id='projects' className={classes.root}>
-      <Typography variant='h4' style={{}}>
+      <Typography variant='h4'>
         Projects
       </Typography>
 

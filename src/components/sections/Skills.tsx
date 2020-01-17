@@ -93,7 +93,6 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     minHeight: '100vh',
-    backgroundImage: 'url(' + gradient + ')',
     backgroundRepeat: 'no-repeat',
     backgroundColor: 'rgb(232, 232, 232)',
     '& h4': {
@@ -107,27 +106,43 @@ const useStyles = makeStyles({
       padding: '10px'
     }
   },
-  gridList: {
-    padding: '15px',
-    marginTop: '10px',
-    borderRadius: 50,
-    backgroundColor: '#03a3ff',
-    width: '60vw',
-    textAlign: 'center'
-  },
-  gridImage: {
-    transition: 'all .2s ease-in-out',
-    overflow: 'hidden',
-    borderRadius: 150,
-    borderColor: 'transparent',
-    backgroundColor: 'grey',
-    '&:hover': {
-      transform: 'scale(1.2)'
-    }
-  },
+
   divider: {
     width: '40px',
     border: 0
+  },
+  skillCard: {
+    position: 'relative',
+    width: '300px',
+    height: '300px',
+    backgroundColor: '#008CBA',
+    '&:hover > #overlay': {
+      width: '100%'
+    },
+    '&:hover > img': {
+      filter: 'blur(8px)'
+    }
+  },
+  cardOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    overflow: 'hidden',
+    width: '0',
+    height: '100%',
+    transition: '.5s ease-in-out'
+  },
+
+  cardText: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    fontFamily: 'Raleway',
+    fontSize: '28px',
+    color: 'white'
   }
 });
 export const Skills: React.FC = () => {
@@ -142,108 +157,36 @@ export const Skills: React.FC = () => {
     e.target.style.backgroundColor = 'grey';
   };
 
+  const SkillCard = () => {
+    return (
+      <div className={classes.skillCard}>
+        <img
+          style={{ transition: '.5s ease-in-out' }}
+          alt='logo'
+          width={300}
+          height={300}
+          src={
+            'https://help.crossbrowsertesting.com/wp-content/uploads/2017/08/java-logo-large.png'
+          }
+        />
+        <div className={classes.cardOverlay} id={'overlay'}>
+          <div className={classes.cardText}>JAVA</div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div id='skills' className={classes.root}>
-      <Grid container direction='column' xs={12} alignItems='center'>
-        <Typography variant='h4' style={{ color: 'white' }}>
-          Skills
-        </Typography>
+      <Typography variant='h4'>Skills</Typography>
 
-        <hr
-          className={classes.divider}
-          style={{ borderTop: '2px solid white' }}
-        />
-        <br></br>
-        <Typography
-          variant='h5'
-          style={{ color: '#4a4a4a', display: 'flex', marginTop: '140px' }}>
-          <Language
-            fontSize='large'
-            style={{
-              color: '#03a3ff',
-              paddingRight: '10px'
-            }}
-          />
-          Languages
-        </Typography>
+      <hr
+        className={classes.divider}
+        style={{ borderTop: '2px solid #03a3ff' }}
+      />
 
-        <Grid
-          container
-          className={classes.gridList}
-          spacing={0}
-          justify='center'>
-          {languages.map(item => (
-            <Grid
-              item
-              style={{ padding: '10px' }}
-              xs={'auto'}
-              sm={6}
-              md={4}
-              lg={4}
-              xl={'auto'}>
-              <Fade bottom>
-                <img
-                  width={100}
-                  height={100}
-                  src={item.image}
-                  className={classes.gridImage}
-                  onMouseOver={event => handleMouseOver(event, item.color)}
-                  onMouseOut={event => handleMouseOut(event)}
-                  alt={'image' + languages.indexOf(item)}
-                />
-                <Typography
-                  style={{
-                    color: 'white',
-                    paddingTop: '10px'
-                  }}>
-                  {item.language}
-                </Typography>
-              </Fade>
-            </Grid>
-          ))}
-        </Grid>
-      </Grid>
-      <Typography variant='h5' style={{ color: '#4a4a4a', display: 'flex' }}>
-        <Code
-          fontSize='large'
-          style={{
-            color: '#03a3ff',
-            paddingRight: '10px'
-          }}
-        />
-        Technologies
-      </Typography>
-
-      <Grid container className={classes.gridList} spacing={0} justify='center'>
-        {technologies.map(item => (
-          <Grid
-            item
-            style={{ padding: '10px' }}
-            xs={'auto'}
-            sm={6}
-            md={4}
-            lg={4}
-            xl={'auto'}>
-            <Fade bottom>
-              <img
-                width={100}
-                height={100}
-                src={item.image}
-                className={classes.gridImage}
-                onMouseOver={event => handleMouseOver(event, item.color)}
-                onMouseOut={event => handleMouseOut(event)}
-                alt={'image' + languages.indexOf(item)}
-              />
-              <Typography
-                style={{
-                  color: 'white',
-                  paddingTop: '10px'
-                }}>
-                {item.language}
-              </Typography>
-            </Fade>
-          </Grid>
-        ))}
+      <Grid container direction={'row'} justify='center' spacing={4} xs={12}>
+        <SkillCard></SkillCard>
       </Grid>
     </div>
   );
