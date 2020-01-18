@@ -1,11 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography, Divider } from '@material-ui/core';
-import { School, Work } from '@material-ui/icons';
-import pattern from '../../assets/images/pattern.png';
+import { Grid, Typography, IconButton } from '@material-ui/core';
+import { School, Work, ExpandMore } from '@material-ui/icons';
+import { scroller } from 'react-scroll';
 import me from '../../assets/images/me.png';
-
-const Fade = require('react-reveal/Fade');
 
 const useStyles = makeStyles({
   root: {
@@ -13,20 +11,40 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     minHeight: '100vh',
-    backgroundColor: '#cccccc'
-  },
-  header: {
-    fontFamily: 'Raleway',
-    textTransform: 'uppercase',
-    marginTop: '50px'
+    backgroundColor: '#cccccc',
+    '& h4': {
+      fontFamily: 'Raleway',
+      textTransform: 'uppercase',
+      marginTop: '60px'
+    },
+    '& h5': {
+      fontFamily: 'Raleway',
+      textTransform: 'uppercase',
+      padding: '10px',
+      textAlign: 'center'
+    }
   },
   divider: {
     width: '40px',
     border: 0
+  },
+
+  expandButton: {
+    marginTop: '20px',
+    color: '#4a4a4a',
+    zIndex: 2
   }
 });
 export const About: React.FC = () => {
   const classes = useStyles();
+
+  const handleExpandClick = () => {
+    scroller.scrollTo('skills', {
+      duration: 1500,
+      delay: 100,
+      smooth: true
+    });
+  };
 
   return (
     <div id='about' className={classes.root}>
@@ -36,10 +54,7 @@ export const About: React.FC = () => {
         xs={12}
         alignItems='center'
         style={{ backgroundColor: '#dedede', width: '100%' }}>
-        <Typography
-          variant='h4'
-          className={classes.header}
-          style={{ color: '#4a4a4a' }}>
+        <Typography variant='h4' style={{ color: '#4a4a4a' }}>
           About
         </Typography>
         <hr
@@ -78,11 +93,8 @@ export const About: React.FC = () => {
         direction='column'
         xs={12}
         alignItems='center'
-        style={{ width: '100%' }}>
-        <Typography
-          variant='h5'
-          className={classes.header}
-          style={{ color: '#4a4a4a', display: 'flex' }}>
+        style={{ width: '70%', marginTop: '20px' }}>
+        <Typography variant='h5' style={{ color: '#4a4a4a', display: 'flex' }}>
           <School
             fontSize='large'
             style={{
@@ -110,10 +122,7 @@ export const About: React.FC = () => {
           Comuting with a specialty in Forensics and Security.
         </Typography>
 
-        <Typography
-          variant='h5'
-          className={classes.header}
-          style={{ color: '#4a4a4a', display: 'flex' }}>
+        <Typography variant='h5' style={{ color: '#4a4a4a', display: 'flex' }}>
           <Work
             fontSize='large'
             style={{
@@ -144,6 +153,10 @@ export const About: React.FC = () => {
           Typescript!
         </Typography>
       </Grid>
+
+      <IconButton className={classes.expandButton} onClick={handleExpandClick}>
+        <ExpandMore fontSize='large' />
+      </IconButton>
     </div>
   );
 };

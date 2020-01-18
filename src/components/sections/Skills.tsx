@@ -1,91 +1,19 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography } from '@material-ui/core';
-import gradient from '../../assets/images/gradient.png';
-import { Language, Code } from '@material-ui/icons';
+import {
+  Grid,
+  Typography,
+  Paper,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  IconButton
+} from '@material-ui/core';
+import { scroller } from 'react-scroll';
+import { ArrowForward, ExpandMore } from '@material-ui/icons';
 
 const Fade = require('react-reveal/Fade');
-
-const languages = [
-  {
-    image: require('../../assets/images/languages/typescript.png'),
-    color: '#1076c6',
-    language: 'TypeScript'
-  },
-  {
-    image: require('../../assets/images/languages/javascript.png'),
-    color: '#dc35ce',
-    language: 'JavaScript'
-  },
-  {
-    image: require('../../assets/images/languages/python.png'),
-    color: '#ffd242',
-    language: 'Python'
-  },
-  {
-    image: require('../../assets/images/languages/html.png'),
-    color: '#f16529',
-    language: 'HTML'
-  },
-  {
-    image: require('../../assets/images/languages/java.png'),
-    color: '#dc3535',
-    language: 'Java'
-  },
-  {
-    image: require('../../assets/images/languages/css.png'),
-    color: '#55b773',
-    language: 'CSS'
-  },
-  {
-    image: require('../../assets/images/languages/kotlin.png'),
-    color: '#7c66f3',
-    language: 'Kotlin'
-  }
-];
-
-const technologies = [
-  {
-    image: require('../../assets/images/technologies/node.png'),
-    color: '#83cd29',
-    language: 'Node'
-  },
-  {
-    image: require('../../assets/images/technologies/docker.png'),
-    color: '#0b92d1',
-    language: 'Docker'
-  },
-  {
-    image: require('../../assets/images/technologies/express.png'),
-    color: '#444444',
-    language: 'Express'
-  },
-  {
-    image: require('../../assets/images/technologies/tensorflow.png'),
-    color: '#ff8600',
-    language: 'Tensorflow'
-  },
-  {
-    image: require('../../assets/images/technologies/react.png'),
-    color: '#53c1de',
-    language: 'React'
-  },
-  {
-    image: require('../../assets/images/technologies/webdriverio.png'),
-    color: '#ea5906',
-    language: 'WebdriverIO'
-  },
-  {
-    image: require('../../assets/images/technologies/flask.png'),
-    color: '#000',
-    language: 'Flask'
-  },
-  {
-    image: require('../../assets/images/technologies/git.png'),
-    color: '#f05033',
-    language: 'Git'
-  }
-];
 
 const useStyles = makeStyles({
   root: {
@@ -93,158 +21,219 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     minHeight: '100vh',
-    backgroundImage: 'url(' + gradient + ')',
     backgroundRepeat: 'no-repeat',
     backgroundColor: 'rgb(232, 232, 232)',
     '& h4': {
       fontFamily: 'Raleway',
       textTransform: 'uppercase',
-      marginTop: '50px'
+      marginTop: '60px'
     },
     '& h5': {
       fontFamily: 'Raleway',
       textTransform: 'uppercase',
-      padding: '10px'
+      padding: '10px',
+      textAlign: 'center'
     }
   },
-  gridList: {
-    padding: '15px',
-    marginTop: '10px',
-    borderRadius: 50,
-    backgroundColor: '#03a3ff',
-    width: '60vw',
-    textAlign: 'center'
-  },
-  gridImage: {
-    transition: 'all .2s ease-in-out',
-    overflow: 'hidden',
-    borderRadius: 150,
-    borderColor: 'transparent',
-    backgroundColor: 'grey',
-    '&:hover': {
-      transform: 'scale(1.2)'
-    }
-  },
+
   divider: {
     width: '40px',
     border: 0
+  },
+
+  card: {
+    transition: 'all .2s ease-in-out',
+    width: '300px',
+    height: '450px',
+    '&:hover': {
+      transform: 'scale(1.08)'
+    },
+    '& img': {
+      marginTop: '-40px',
+      backgroundColor: '#03a3ff',
+      borderRadius: 50,
+      width: '80px',
+      height: '80px'
+    }
+  },
+
+  expandButton: {
+    marginTop: '20px',
+    color: '#4a4a4a',
+    zIndex: 2
   }
 });
+
+const frontend = [
+  'React',
+  'JavaScript',
+  'TypeScript',
+  'HTML/CSS',
+  'Material UI & Semantic UI'
+];
+
+const backend = [
+  'Python',
+  'Java & Kotlin',
+  'Flask',
+  'ExpressJS',
+  'MongoDB',
+  'MySQL'
+];
+
+const tech = [
+  'Docker',
+  'Tensorflow',
+  'Git',
+  'WebdriverIO',
+  'Rest Assured',
+  'NodeJS'
+];
+
 export const Skills: React.FC = () => {
   const classes = useStyles();
 
-  const handleMouseOver = (e: any, color: String) => {
-    const currentImage = e.target;
-    currentImage.style.backgroundColor = color;
-  };
-
-  const handleMouseOut = (e: any) => {
-    e.target.style.backgroundColor = 'grey';
+  const handleExpandClick = () => {
+    scroller.scrollTo('projects', {
+      duration: 1500,
+      delay: 100,
+      smooth: true
+    });
   };
 
   return (
     <div id='skills' className={classes.root}>
-      <Grid container direction='column' xs={12} alignItems='center'>
-        <Typography variant='h4' style={{ color: 'white' }}>
-          Skills
-        </Typography>
+      <Typography variant='h4' style={{ color: '#4a4a4a' }}>
+        Skills
+      </Typography>
+      <hr
+        className={classes.divider}
+        style={{ borderTop: '2px solid #03a3ff' }}
+      />
 
-        <hr
-          className={classes.divider}
-          style={{ borderTop: '2px solid white' }}
-        />
-        <br></br>
-        <Typography
-          variant='h5'
-          style={{ color: '#4a4a4a', display: 'flex', marginTop: '140px' }}>
-          <Language
-            fontSize='large'
-            style={{
-              color: '#03a3ff',
-              paddingRight: '10px'
-            }}
-          />
-          Languages
-        </Typography>
-
-        <Grid
-          container
-          className={classes.gridList}
-          spacing={0}
-          justify='center'>
-          {languages.map(item => (
-            <Grid
-              item
-              style={{ padding: '10px' }}
-              xs={'auto'}
-              sm={6}
-              md={4}
-              lg={4}
-              xl={'auto'}>
-              <Fade bottom>
-                <img
-                  width={100}
-                  height={100}
-                  src={item.image}
-                  className={classes.gridImage}
-                  onMouseOver={event => handleMouseOver(event, item.color)}
-                  onMouseOut={event => handleMouseOut(event)}
-                  alt={'image' + languages.indexOf(item)}
-                />
-                <Typography
-                  style={{
-                    color: 'white',
-                    paddingTop: '10px'
-                  }}>
-                  {item.language}
-                </Typography>
-              </Fade>
-            </Grid>
-          ))}
-        </Grid>
-      </Grid>
-      <Typography variant='h5' style={{ color: '#4a4a4a', display: 'flex' }}>
-        <Code
-          fontSize='large'
-          style={{
-            color: '#03a3ff',
-            paddingRight: '10px'
-          }}
-        />
-        Technologies
+      <Typography
+        style={{
+          color: '#4a4a4a',
+          padding: '20px',
+          width: '50%',
+          textAlign: 'center'
+        }}>
+        Here are some of the languages and tech I have picked up along the way,
+        be it through college or my own interest!
       </Typography>
 
-      <Grid container className={classes.gridList} spacing={0} justify='center'>
-        {technologies.map(item => (
-          <Grid
-            item
-            style={{ padding: '10px' }}
-            xs={'auto'}
-            sm={6}
-            md={4}
-            lg={4}
-            xl={'auto'}>
-            <Fade bottom>
+      <hr
+        className={classes.divider}
+        style={{ borderTop: '2px solid #4a4a4a' }}
+      />
+
+      <Grid
+        container
+        direction={'row'}
+        justify='center'
+        alignContent='center'
+        spacing={8}
+        style={{ marginTop: '30px', marginBottom: '10px', width: '100%' }}>
+        <Grid item>
+          <Paper elevation={3} className={classes.card}>
+            <div style={{ width: '100%', textAlign: 'center' }}>
               <img
-                width={100}
-                height={100}
-                src={item.image}
-                className={classes.gridImage}
-                onMouseOver={event => handleMouseOver(event, item.color)}
-                onMouseOut={event => handleMouseOut(event)}
-                alt={'image' + languages.indexOf(item)}
+                alt='frontend'
+                src={require('../../assets/images/skills/frontend.png')}
               />
-              <Typography
-                style={{
-                  color: 'white',
-                  paddingTop: '10px'
-                }}>
-                {item.language}
-              </Typography>
+            </div>
+            <Typography variant='h5'>Frontend</Typography>
+            <hr
+              className={classes.divider}
+              style={{ borderTop: '2px solid #4a4a4a' }}
+            />
+
+            <Fade top cascade>
+              <List>
+                {frontend.map(item => (
+                  <ListItem>
+                    <ListItemIcon>
+                      <ArrowForward
+                        fontSize='small'
+                        style={{ color: '#03a3ff' }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText primary={item} />
+                  </ListItem>
+                ))}
+              </List>
             </Fade>
-          </Grid>
-        ))}
+          </Paper>
+        </Grid>
+
+        <Grid item>
+          <Paper elevation={3} className={classes.card}>
+            <div style={{ width: '100%', textAlign: 'center' }}>
+              <img
+                alt='backend'
+                src={require('../../assets/images/skills/backend.png')}
+              />
+            </div>
+            <Typography variant='h5'>Backend</Typography>
+            <hr
+              className={classes.divider}
+              style={{ borderTop: '2px solid #4a4a4a' }}
+            />
+
+            <Fade top cascade>
+              <List>
+                {backend.map(item => (
+                  <ListItem>
+                    <ListItemIcon>
+                      <ArrowForward
+                        fontSize='small'
+                        style={{ color: '#03a3ff' }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText primary={item} />
+                  </ListItem>
+                ))}
+              </List>
+            </Fade>
+          </Paper>
+        </Grid>
+
+        <Grid item>
+          <Paper elevation={3} className={classes.card}>
+            <div style={{ width: '100%', textAlign: 'center' }}>
+              <img
+                alt='tech'
+                src={require('../../assets/images/skills/tools.png')}
+              />
+            </div>
+            <Typography variant='h5'>Other Tech</Typography>
+            <hr
+              className={classes.divider}
+              style={{ borderTop: '2px solid #4a4a4a' }}
+            />
+
+            <Fade top cascade>
+              <List>
+                {tech.map(item => (
+                  <ListItem>
+                    <ListItemIcon>
+                      <ArrowForward
+                        fontSize='small'
+                        style={{ color: '#03a3ff' }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText primary={item} />
+                  </ListItem>
+                ))}
+              </List>
+            </Fade>
+          </Paper>
+        </Grid>
       </Grid>
+
+      <IconButton className={classes.expandButton} onClick={handleExpandClick}>
+        <ExpandMore fontSize='large' />
+      </IconButton>
     </div>
   );
 };
