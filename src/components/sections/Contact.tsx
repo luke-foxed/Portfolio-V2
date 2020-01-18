@@ -76,7 +76,7 @@ export const Contact: React.FC = () => {
         direction='column'
         xs={12}
         alignItems='center'
-        style={{ backgroundColor: '#cccccc', width: '100%', height: '33.3vh' }}>
+        style={{ backgroundColor: '#cccccc', width: '100%' }}>
         <Typography variant='h4' style={{ color: '#4a4a4a' }}>
           Contact
         </Typography>
@@ -100,7 +100,8 @@ export const Contact: React.FC = () => {
         container
         direction={'row'}
         justify='center'
-        alignContent='center'
+        xs={12}
+        style={{ padding: '120px' }}
         className={classes.contactContainer}>
         <a
           href='https://www.linkedin.com/in/luke-fox-aa103a148/'
@@ -178,14 +179,16 @@ export const Contact: React.FC = () => {
           style={{
             color: '#4a4a4a',
             padding: '20px',
-            width: '50%',
+            width: '55%',
             textAlign: 'center'
           }}>
           If you'd like a CV, please get in contact with me and I will send them
           upon request!
         </Typography>
+
         <Button
           onClick={handleTopClick}
+          style={{ margin: '20px' }}
           startIcon={<ExpandLess fontSize='large' />}>
           Back To Top
         </Button>
