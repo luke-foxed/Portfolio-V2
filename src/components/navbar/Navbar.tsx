@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-scroll';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import { BrowserRouter, Link as RouterLink } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -9,6 +10,10 @@ import {
   ListItem,
   ListItemText
 } from '@material-ui/core';
+
+import { createBrowserHistory } from 'history';
+
+const history = createBrowserHistory();
 
 const useStyles = makeStyles({
   root: {
@@ -43,6 +48,7 @@ export const Navbar: React.FC = () => {
     } else {
       setActive(false);
     }
+    history.push(`/${to}`);
   };
 
   return (
@@ -56,66 +62,69 @@ export const Navbar: React.FC = () => {
             : { backgroundColor: '#e3e3e3' }
         }>
         <Toolbar>
-          <List
-            className={classes.navItems}
-            component='nav'
-            style={active ? { color: 'white' } : { color: '#575757' }}>
-            <Link
-              activeClass={classes.navActiveItem}
-              onSetActive={handleState}
-              to='home'
-              spy={true}
-              smooth={true}
-              duration={500}>
-              <ListItem button style={{ borderRadius: 25 }}>
-                <ListItemText primary='Home' />
-              </ListItem>
-            </Link>
-            <Link
-              activeClass={classes.navActiveItem}
-              onSetActive={handleState}
-              to='about'
-              spy={true}
-              smooth={true}
-              duration={500}>
-              <ListItem button style={{ borderRadius: 25 }}>
-                <ListItemText primary='About' />
-              </ListItem>
-            </Link>
-            <Link
-              activeClass={classes.navActiveItem}
-              onSetActive={handleState}
-              to='skills'
-              spy={true}
-              smooth={true}
-              duration={500}>
-              <ListItem button style={{ borderRadius: 25 }}>
-                <ListItemText primary='Skills' />
-              </ListItem>
-            </Link>
-            <Link
-              activeClass={classes.navActiveItem}
-              onSetActive={handleState}
-              to='projects'
-              spy={true}
-              smooth={true}
-              duration={500}>
-              <ListItem button style={{ borderRadius: 25 }}>
-                <ListItemText primary='Projects' />
-              </ListItem>
-            </Link>
-            <Link
-              activeClass={classes.navActiveItem}
-              onSetActive={handleState}
-              to='contact'
-              spy={true}
-              smooth={true}
-              duration={500}>
-              <ListItem button style={{ borderRadius: 25 }}>
-                <ListItemText primary='Contact' />
-              </ListItem>
-            </Link>
-          </List>
+          <BrowserRouter>
+            <List
+              className={classes.navItems}
+              component='nav'
+              style={active ? { color: 'white' } : { color: '#575757' }}>
+              <Link
+                activeClass={classes.navActiveItem}
+                onSetActive={handleState}
+                to='home'
+                spy={true}
+                smooth={true}
+                duration={500}>
+                <ListItem button style={{ borderRadius: 25 }}>
+                  <ListItemText primary='Home' />
+                </ListItem>
+              </Link>
+
+              <Link
+                activeClass={classes.navActiveItem}
+                onSetActive={handleState}
+                to='about'
+                spy={true}
+                smooth={true}
+                duration={500}>
+                <ListItem button style={{ borderRadius: 25 }}>
+                  <ListItemText primary='About' />
+                </ListItem>
+              </Link>
+              <Link
+                activeClass={classes.navActiveItem}
+                onSetActive={handleState}
+                to='skills'
+                spy={true}
+                smooth={true}
+                duration={500}>
+                <ListItem button style={{ borderRadius: 25 }}>
+                  <ListItemText primary='Skills' />
+                </ListItem>
+              </Link>
+              <Link
+                activeClass={classes.navActiveItem}
+                onSetActive={handleState}
+                to='projects'
+                spy={true}
+                smooth={true}
+                duration={500}>
+                <ListItem button style={{ borderRadius: 25 }}>
+                  <ListItemText primary='Projects' />
+                </ListItem>
+              </Link>
+              <Link
+                activeClass={classes.navActiveItem}
+                onSetActive={handleState}
+                to='contact'
+                spy={true}
+                smooth={true}
+                duration={500}>
+                <ListItem button style={{ borderRadius: 25 }}>
+                  <ListItemText primary='Contact' />
+                </ListItem>
+              </Link>
+            </List>
+          </BrowserRouter>
         </Toolbar>
       </AppBar>
     </Paper>
