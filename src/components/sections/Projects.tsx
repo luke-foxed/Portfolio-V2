@@ -1,9 +1,7 @@
 import React, {
   useEffect,
   useState,
-  useRef,
   useCallback,
-  useLayoutEffect
 } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
