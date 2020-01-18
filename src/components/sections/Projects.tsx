@@ -8,7 +8,8 @@ import {
   CardMedia,
   CardContent,
   CardActions,
-  Button
+  Button,
+  IconButton
 } from '@material-ui/core';
 import pattern from '../../assets/images/skills_pattern.png';
 import {
@@ -16,8 +17,10 @@ import {
   GitHub,
   Star,
   Publish,
-  OpenInNew
+  OpenInNew,
+  ExpandMore
 } from '@material-ui/icons';
+import { scroller } from 'react-scroll';
 import { getRepos, Irepo } from '../../Actions';
 
 const projects = [
@@ -50,7 +53,7 @@ const useStyles = makeStyles({
       color: 'white',
       fontFamily: 'Raleway',
       textTransform: 'uppercase',
-      marginTop: '50px'
+      marginTop: '60px'
     },
     '& h5': {
       fontFamily: 'Raleway',
@@ -88,6 +91,10 @@ const useStyles = makeStyles({
       backgroundColor: '#03a3ff',
       color: 'white'
     }
+  },
+  expandButton: {
+    marginTop: '20px',
+    color: '#4a4a4a'
   }
 });
 export const Projects: React.FC = () => {
@@ -103,14 +110,17 @@ export const Projects: React.FC = () => {
     }
   }, [repos]);
 
-  console.log('Render');
-  console.log(repos);
+  const handleExpandClick = () => {
+    scroller.scrollTo('contact', {
+      duration: 1500,
+      delay: 100,
+      smooth: true
+    });
+  };
 
   return (
     <div id='projects' className={classes.root}>
-      <Typography variant='h4'>
-        Projects
-      </Typography>
+      <Typography variant='h4'>Projects</Typography>
 
       <hr
         className={classes.divider}
@@ -229,6 +239,12 @@ export const Projects: React.FC = () => {
             </a>
           ))}
         </Grid>
+
+        <IconButton
+          className={classes.expandButton}
+          onClick={handleExpandClick}>
+          <ExpandMore fontSize='large' />
+        </IconButton>
       </div>
     </div>
   );

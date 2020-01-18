@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     '& h4': {
       fontFamily: 'Raleway',
       textTransform: 'uppercase',
-      marginTop: '50px'
+      marginTop: '60px'
     },
     '& h5': {
       fontFamily: 'Raleway',
