@@ -1,4 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useCallback,
+  useLayoutEffect
+} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
@@ -101,6 +107,9 @@ export const Projects: React.FC = () => {
   const classes = useStyles();
   const [repos, setRepos] = useState<Irepo[]>([]);
 
+  const [, updateState] = React.useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
+
   useEffect(() => {
     async function fetchRepos() {
       setRepos(await getRepos());
@@ -119,7 +128,7 @@ export const Projects: React.FC = () => {
   };
 
   return (
-    <div id='projects' className={classes.root}>
+    <div id='projects' className={classes.root} onLoadStart={forceUpdate}>
       <Typography variant='h4'>Projects</Typography>
 
       <hr
@@ -206,39 +215,44 @@ export const Projects: React.FC = () => {
           Active GitHub Repos
         </Typography>
 
-        <Grid container direction={'row'} justify='center' xs={12}>
-          {repos.map(repo => (
-            <a href={repo.html_url} style={{ textDecoration: 'none' }}>
-              <Card className={classes.githubCard}>
-                <CardActionArea>
-                  <CardContent>
-                    <Typography variant='h6'>{repo.name}</Typography>
-                    <Typography
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center'
-                      }}>
-                      <Publish
-                        fontSize='small'
-                        style={{ paddingRight: '10px' }}
-                      />
-                      Commits: {repo.commits_url}
-                    </Typography>
+        {repos !== null && (
+          <Grid container direction={'row'} justify='center' xs={12}>
+            {repos.map(repo => (
+              <a href={repo.html_url} style={{ textDecoration: 'none' }}>
+                <Card className={classes.githubCard}>
+                  <CardActionArea>
+                    <CardContent>
+                      <Typography variant='h6'>{repo.name}</Typography>
+                      <Typography
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}>
+                        <Publish
+                          fontSize='small'
+                          style={{ paddingRight: '10px' }}
+                        />
+                        Commits: {repo.commits_url}
+                      </Typography>
 
-                    <Typography
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center'
-                      }}>
-                      <Star fontSize='small' style={{ paddingRight: '10px' }} />
-                      Stars: {repo.stargazers_count}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </a>
-          ))}
-        </Grid>
+                      <Typography
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}>
+                        <Star
+                          fontSize='small'
+                          style={{ paddingRight: '10px' }}
+                        />
+                        Stars: {repo.stargazers_count}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </a>
+            ))}
+          </Grid>
+        )}
 
         <IconButton
           className={classes.expandButton}
