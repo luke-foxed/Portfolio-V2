@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './App.css';
-import { Navbar } from '../navbar/Navbar';
+import { NavbarDesktop } from '../navbar/NavbarDesktop';
 import { Home } from '../sections/Home';
 import { About } from '../sections/About';
 import { Skills } from '../sections/Skills';
 import { Contact } from '../sections/Contact';
 import { Projects } from '../sections/Projects';
+import { NavbarMobile } from '../navbar/NabarMobile';
+import { isMobile } from 'react-device-detect';
 
 const App: React.FC = () => {
+  const ResponsiveNav: FC = () => {
+    if (isMobile) {
+      return <NavbarMobile />;
+    } else {
+      return <NavbarDesktop />;
+    }
+  };
+
   return (
     <div className='App'>
-      <Navbar />
+      <ResponsiveNav />
       <Home />
       <About />
       <Skills />

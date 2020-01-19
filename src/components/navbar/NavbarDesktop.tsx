@@ -38,7 +38,7 @@ const useStyles = makeStyles({
   }
 });
 
-export const Navbar: React.FC = () => {
+export const NavbarDesktop: React.FC = () => {
   const classes = useStyles();
   const [active, setActive] = useState(false);
 
