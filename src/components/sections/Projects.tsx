@@ -9,7 +9,8 @@ import {
   CardContent,
   CardActions,
   Button,
-  IconButton
+  IconButton,
+  CircularProgress
 } from '@material-ui/core';
 import pattern from '../../assets/images/skills_pattern.png';
 import {
@@ -213,7 +214,12 @@ export const Projects: React.FC = () => {
           Active GitHub Repos
         </Typography>
 
-        {repos !== null && (
+        {repos.length === 0 ? (
+          <CircularProgress
+            value={0}
+            style={{ padding: '20px', color: '#03a3ff' }}
+          />
+        ) : (
           <Grid container direction={'row'} justify='center' xs={12}>
             {repos.map(repo => (
               <a href={repo.html_url} style={{ textDecoration: 'none' }}>
