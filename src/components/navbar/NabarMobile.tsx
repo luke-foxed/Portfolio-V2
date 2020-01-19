@@ -11,7 +11,6 @@ import {
   Divider,
   Typography
 } from '@material-ui/core';
-import avatar from '../../assets/images/avatar.png';
 
 const history = createBrowserHistory();
 
