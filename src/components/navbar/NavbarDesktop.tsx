@@ -45,10 +45,11 @@ export const NavbarDesktop: React.FC = () => {
   const handleState = (to: any) => {
     if (to === 'home') {
       setActive(true);
+      history.push('/');
     } else {
       setActive(false);
+      history.push(`/${to}`);
     }
-    history.push(`/${to}`);
   };
 
   return (

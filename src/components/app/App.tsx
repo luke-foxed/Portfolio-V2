@@ -8,6 +8,8 @@ import { Contact } from '../sections/Contact';
 import { Projects } from '../sections/Projects';
 import { NavbarMobile } from '../navbar/NabarMobile';
 import { isMobile } from 'react-device-detect';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Blog } from '../sections/Blog';
 
 const App: React.FC = () => {
   const ResponsiveNav: FC = () => {
@@ -20,12 +22,26 @@ const App: React.FC = () => {
 
   return (
     <div className='App'>
-      <ResponsiveNav />
+      {/* <ResponsiveNav />
       <Home />
       <About />
       <Skills />
       <Projects />
-      <Contact />
+      <Contact /> */}
+
+      <Router>
+        <Switch>
+          <Route exact path='/'>
+            <ResponsiveNav />
+            <Home />
+            <About />
+            <Skills />
+            <Projects />
+            <Contact />
+          </Route>
+          <Route exact path='/admin' component={Blog}></Route>
+        </Switch>
+      </Router>
     </div>
   );
 };

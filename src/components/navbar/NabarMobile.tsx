@@ -39,11 +39,12 @@ export const NavbarMobile: React.FC = () => {
   const handleState = (to: any) => {
     if (to === 'home') {
       setActive(true);
+      history.push('/home');
     } else {
       setActive(false);
+      history.push(`/${to}`);
     }
     setMenuOpen(false);
-    history.push(`/${to}`);
   };
 
   var burgerStyle = {
