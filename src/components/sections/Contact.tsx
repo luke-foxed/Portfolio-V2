@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Button } from '@material-ui/core';
 import { scroller } from 'react-scroll';
 import cover from '../../assets/images/cover.png';
-import { Description, ExpandLess } from '@material-ui/icons';
+import { Description, ExpandLess, Favorite } from '@material-ui/icons';
 
 const useStyles = makeStyles({
   root: {
@@ -197,7 +197,7 @@ export const Contact: React.FC = () => {
       </div>
 
       <div className={classes.footer}>
-        Made with <span>&nbsp;🤍&nbsp;</span> by Luke Fox, 2020
+        Made with &nbsp; <Favorite /> &nbsp; by Luke Fox, 2020
       </div>
     </div>
   );

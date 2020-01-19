@@ -109,7 +109,7 @@ export const About: React.FC = () => {
           style={{
             color: '#4a4a4a',
             padding: '20px',
-            width: '50%',
+            width: '70%',
             textAlign: 'center'
           }}>
           <i>Waterford IT, Applied Computing - 2016 to 2020</i>
@@ -137,7 +137,7 @@ export const About: React.FC = () => {
           style={{
             color: '#4a4a4a',
             padding: '20px',
-            width: '50%',
+            width: '70%',
             textAlign: 'center'
           }}>
           <i>Distilled SCH, QA Engineer - January to September 2019</i>

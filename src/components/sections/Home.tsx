@@ -6,6 +6,7 @@ import { scroller } from 'react-scroll';
 import Particles from 'react-particles-js';
 import cover from '../../assets/images/cover.png';
 import avatar from '../../assets/images/avatar.png';
+import { isMobile } from 'react-device-detect';
 
 const useStyles = makeStyles({
   root: {
@@ -57,7 +58,7 @@ export const Home: React.FC = () => {
           params={{
             particles: {
               number: {
-                value: 50
+                value: isMobile ? 20 : 50
               },
               size: {
                 value: 3
@@ -65,7 +66,13 @@ export const Home: React.FC = () => {
             }
           }}
         />
-        <img src={avatar} alt='avatar' width={250} height={250}></img>
+        <img
+          src={avatar}
+          alt='avatar'
+          width={250}
+          height={250}
+          style={{ zIndex: 1 }}
+        />
         <Typography variant='h2' className={classes.header}>
           Luke Fox
         </Typography>
@@ -78,8 +85,6 @@ export const Home: React.FC = () => {
           <ExpandMore fontSize='large' />
         </IconButton>
       </Grid>
-
-      
     </div>
   );
 };

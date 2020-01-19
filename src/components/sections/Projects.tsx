@@ -1,8 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  useCallback,
-} from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
@@ -67,12 +63,10 @@ const useStyles = makeStyles({
   },
   projectCard: {
     transition: 'all .2s ease-in-out',
-    marginTop: '30px',
+    margin: '20px',
     width: '300px',
     height: '420px',
     textAlign: 'center',
-    marginLeft: '40px',
-    marginBottom: '10px',
     '&:hover': {
       transform: 'scale(1.08)'
     }
@@ -145,7 +139,13 @@ export const Projects: React.FC = () => {
         Recent Works
       </Typography>
 
-      <Grid container direction={'row'} justify='center' spacing={4} xs={12}>
+      <Grid
+        container
+        direction={'row'}
+        justify='center'
+        spacing={4}
+        xs={12}
+        style={{ marginTop: '10px' }}>
         {projects.map(project => (
           <Card raised={true} className={classes.projectCard}>
             <CardActionArea>

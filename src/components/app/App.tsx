@@ -20,7 +20,8 @@ const App: React.FC = () => {
 
   return (
     <div className='App'>
-      <ResponsiveNav />
+      {/* <ResponsiveNav /> */}
+      <NavbarMobile />
       <Home />
       <About />
       <Skills />

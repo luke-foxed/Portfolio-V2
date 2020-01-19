@@ -4,7 +4,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import { createBrowserHistory } from 'history';
-import { List, ListItem, ListItemText } from '@material-ui/core';
+import {
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+  Typography
+} from '@material-ui/core';
+import avatar from '../../assets/images/avatar.png';
 
 const history = createBrowserHistory();
 
@@ -16,8 +23,7 @@ const useStyles = makeStyles({
     color: 'white',
     display: 'flex',
     flexDirection: 'column',
-    paddingLeft: '30px',
-
+    textAlign: 'center',
     textTransform: 'uppercase'
   },
   navActiveItem: {
@@ -62,7 +68,8 @@ export const NavbarMobile: React.FC = () => {
       background: '#bdc3c7'
     },
     bmMenuWrap: {
-      position: 'fixed'
+      position: 'fixed',
+      width: '200px'
     },
     bmMenu: {
       background: '#373a47',
@@ -90,6 +97,10 @@ export const NavbarMobile: React.FC = () => {
   return (
     <Menu styles={burgerStyle} isOpen={isOpen} onStateChange={handleMenu}>
       <BrowserRouter>
+        <Typography variant={'h3'} style={{ textAlign: 'center' }}>
+          LF
+        </Typography>
+        <Divider></Divider>
         <List className={classes.navItems} component='nav'>
           <Link
             activeClass={classes.navActiveItem}
@@ -98,7 +109,10 @@ export const NavbarMobile: React.FC = () => {
             spy={true}
             smooth={true}
             duration={500}>
-            <ListItem button style={{ borderRadius: 25 }} onClick={handleState}>
+            <ListItem
+              button
+              style={{ borderRadius: 25, textAlign: 'center' }}
+              onClick={handleState}>
               <ListItemText primary='Home' />
             </ListItem>
           </Link>
@@ -110,7 +124,7 @@ export const NavbarMobile: React.FC = () => {
             spy={true}
             smooth={true}
             duration={500}>
-            <ListItem button style={{ borderRadius: 25 }}>
+            <ListItem button style={{ borderRadius: 25, textAlign: 'center' }}>
               <ListItemText primary='About' />
             </ListItem>
           </Link>
@@ -121,7 +135,7 @@ export const NavbarMobile: React.FC = () => {
             spy={true}
             smooth={true}
             duration={500}>
-            <ListItem button style={{ borderRadius: 25 }}>
+            <ListItem button style={{ borderRadius: 25, textAlign: 'center' }}>
               <ListItemText primary='Skills' />
             </ListItem>
           </Link>
@@ -132,7 +146,7 @@ export const NavbarMobile: React.FC = () => {
             spy={true}
             smooth={true}
             duration={500}>
-            <ListItem button style={{ borderRadius: 25 }}>
+            <ListItem button style={{ borderRadius: 25, textAlign: 'center' }}>
               <ListItemText primary='Projects' />
             </ListItem>
           </Link>
@@ -143,7 +157,7 @@ export const NavbarMobile: React.FC = () => {
             spy={true}
             smooth={true}
             duration={500}>
-            <ListItem button style={{ borderRadius: 25 }}>
+            <ListItem button style={{ borderRadius: 25, textAlign: 'center' }}>
               <ListItemText primary='Contact' />
             </ListItem>
           </Link>
