@@ -11,6 +11,8 @@ import { isMobile } from 'react-device-detect';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Blog } from '../sections/Blog';
 
+require('dotenv').config({ debug: true });
+
 const App: React.FC = () => {
   const ResponsiveNav: FC = () => {
     if (isMobile) {
@@ -22,14 +24,14 @@ const App: React.FC = () => {
 
   return (
     <div className='App'>
-      {/* <ResponsiveNav />
+      <ResponsiveNav />
       <Home />
       <About />
       <Skills />
       <Projects />
-      <Contact /> */}
+      <Contact />
 
-      <Router>
+      {/* <Router>
         <Switch>
           <Route exact path='/'>
             <ResponsiveNav />
@@ -41,7 +43,7 @@ const App: React.FC = () => {
           </Route>
           <Route exact path='/admin' component={Blog}></Route>
         </Switch>
-      </Router>
+      </Router> */}
     </div>
   );
 };

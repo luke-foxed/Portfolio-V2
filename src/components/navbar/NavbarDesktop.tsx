@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-scroll';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -10,10 +10,18 @@ import {
   ListItem,
   ListItemText
 } from '@material-ui/core';
-
+import ReactGA from 'react-ga';
 import { createBrowserHistory } from 'history';
 
 const history = createBrowserHistory();
+const trackingId = process.env.REACT_APP_TRACKING;
+ReactGA.initialize(trackingId as string);
+
+console.log(process.env.REACT_APP_TRACKING);
+history.listen(location => {
+  ReactGA.set({ page: location.pathname });
+  ReactGA.pageview(location.pathname);
+});
 
 const useStyles = makeStyles({
   root: {
@@ -63,7 +71,7 @@ export const NavbarDesktop: React.FC = () => {
             : { backgroundColor: '#e3e3e3' }
         }>
         <Toolbar>
-          <BrowserRouter>
+          <Router history={history}>
             <List
               className={classes.navItems}
               component='nav'
@@ -125,7 +133,7 @@ export const NavbarDesktop: React.FC = () => {
                 </ListItem>
               </Link>
             </List>
-          </BrowserRouter>
+          </Router>
         </Toolbar>
       </AppBar>
     </Paper>

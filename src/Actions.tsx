@@ -21,6 +21,7 @@ export const getRepos = async () => {
 
   // source https://codeburst.io/javascript-async-await-with-foreach-b6ba62bbf404
   await asyncForEach(data, async (repo: Irepo) => {
+    let count;
     let { data } = await axios.get(
       `https://api.github.com/repos/Foxyf76/${repo.name}/stats/contributors`
     );
@@ -29,14 +30,19 @@ export const getRepos = async () => {
       repo.name = repo.name.substring(0, 15) + '...';
     }
 
+    try {
+      count = data[0].total;
+    } catch {
+      count = 0;
+    }
+
     results.push({
       name: repo.name,
       stargazers_count: repo.stargazers_count,
-      commits_url: data[0].total,
+      commits_url: count,
       html_url: repo.html_url
     });
   });
 
   return results;
 };
-
