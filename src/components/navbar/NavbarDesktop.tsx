@@ -14,10 +14,9 @@ import ReactGA from 'react-ga';
 import { createBrowserHistory } from 'history';
 
 const history = createBrowserHistory();
-const trackingId = process.env.REACT_APP_TRACKING;
+const trackingId = process.env.REACT_APP_TRACKING_ID;
 ReactGA.initialize(trackingId as string);
 
-console.log(process.env.REACT_APP_TRACKING);
 history.listen(location => {
   ReactGA.set({ page: location.pathname });
   ReactGA.pageview(location.pathname);
