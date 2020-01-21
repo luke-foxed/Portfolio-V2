@@ -222,7 +222,11 @@ export const Projects: React.FC = () => {
         ) : (
           <Grid container direction={'row'} justify='center' xs={12}>
             {repos.map(repo => (
-              <a href={repo.html_url} style={{ textDecoration: 'none' }}>
+              <a
+                href={repo.html_url}
+                style={{ textDecoration: 'none' }}
+                target='_blank'
+                rel='noopener noreferrer'>
                 <Card className={classes.githubCard}>
                   <CardActionArea>
                     <CardContent>

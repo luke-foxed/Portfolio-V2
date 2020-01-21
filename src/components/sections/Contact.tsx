@@ -47,6 +47,16 @@ const useStyles = makeStyles({
     }
   },
 
+  contactButton: {
+    transition: 'all .2s ease-in-out',
+    backgroundColor: 'transparent',
+    margin: '20px',
+    '&:hover': {
+      backgroundColor: '#03a3ff',
+      color: 'white'
+    }
+  },
+
   footer: {
     height: '50px',
     backgroundColor: '#757575',
@@ -139,7 +149,7 @@ export const Contact: React.FC = () => {
         </a>
 
         <a
-          href='mailto:lukefoxportfolio@gmail.com'
+          href='https://mail.google.com/mail/u/0/?view=cm&fs=1&to=lukefoxportfolio@gmail.com&tf=1'
           rel='noopener noreferrer'
           target='_blank'>
           <img
@@ -182,9 +192,18 @@ export const Contact: React.FC = () => {
             width: '55%',
             textAlign: 'center'
           }}>
-          If you'd like a CV, please get in contact with me and I will send them
-          upon request!
+          If you'd like a CV, please get in contact with via LinkedIn or GMail
+          and I will send oe upon request!
         </Typography>
+
+        <Button
+          variant='outlined'
+          href='mailto:lukefoxportfolio@gmail.com'
+          rel='noopener noreferrer'
+          target='_blank'
+          className={classes.contactButton}>
+          Send an Email
+        </Button>
 
         <Button
           onClick={handleTopClick}

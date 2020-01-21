@@ -11,8 +11,16 @@ import {
   Divider,
   Typography
 } from '@material-ui/core';
+import ReactGA from 'react-ga';
 
 const history = createBrowserHistory();
+const trackingId = process.env.REACT_APP_TRACKING_ID;
+ReactGA.initialize(trackingId as string);
+
+history.listen(location => {
+  ReactGA.set({ page: location.pathname });
+  ReactGA.pageview(location.pathname);
+});
 
 const useStyles = makeStyles({
   root: {
@@ -39,7 +47,7 @@ export const NavbarMobile: React.FC = () => {
   const handleState = (to: any) => {
     if (to === 'home') {
       setActive(true);
-      history.push('/home');
+      history.push('/');
     } else {
       setActive(false);
       history.push(`/${to}`);
