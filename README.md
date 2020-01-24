@@ -1,12 +1,12 @@
 ## Portfolio
 
-My personal portfolio website to showcase some of my projects and skills. Visit here
+My personal portfolio website to showcase some of my projects and skills. Visit here:
 
 https://lukefox.herokuapp.com/
 
 Made with:
 - React
-- TypesScript
+- TypeScript
 - Material UI
 - Google Analytics
 
