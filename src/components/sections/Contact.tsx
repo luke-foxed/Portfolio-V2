@@ -192,8 +192,8 @@ export const Contact: React.FC = () => {
             width: '55%',
             textAlign: 'center'
           }}>
-          If you'd like a CV, please get in contact with via LinkedIn or GMail
-          and I will send oe upon request!
+          If you'd like a CV, please get in contact with via LinkedIn or Gmail
+          and I will send one upon request!
         </Typography>
 
         <Button
