@@ -8,7 +8,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  IconButton
+  IconButton,
 } from '@material-ui/core';
 import { scroller } from 'react-scroll';
 import { ArrowForward, ExpandMore } from '@material-ui/icons';
@@ -26,69 +26,64 @@ const useStyles = makeStyles({
     '& h4': {
       fontFamily: 'Raleway',
       textTransform: 'uppercase',
-      marginTop: '60px'
+      marginTop: '60px',
     },
     '& h5': {
       fontFamily: 'Raleway',
       textTransform: 'uppercase',
       padding: '10px',
-      textAlign: 'center'
-    }
+      textAlign: 'center',
+    },
   },
 
   divider: {
     width: '40px',
-    border: 0
+    border: 0,
   },
 
   card: {
     transition: 'all .2s ease-in-out',
     width: '300px',
-    height: '450px',
+    height: '480px',
     '&:hover': {
-      transform: 'scale(1.08)'
+      transform: 'scale(1.08)',
     },
     '& img': {
       marginTop: '-40px',
       backgroundColor: '#03a3ff',
       borderRadius: 50,
       width: '80px',
-      height: '80px'
-    }
+      height: '80px',
+    },
   },
 
   expandButton: {
     marginTop: '20px',
     color: '#4a4a4a',
-    zIndex: 2
-  }
+    zIndex: 2,
+  },
 });
 
 const frontend = [
   'React',
+  'Redux',
   'JavaScript',
   'TypeScript',
   'HTML/CSS',
-  'Material UI & Semantic UI'
+  'Material UI & Semantic UI',
 ];
 
 const backend = [
   'Python',
   'Java & Kotlin',
   'Flask',
+  'Haskell',
   'ExpressJS',
   'MongoDB',
-  'MySQL'
+  'MySQL',
 ];
 
-const tech = [
-  'Docker',
-  'Tensorflow',
-  'Git',
-  'WebdriverIO',
-  'Rest Assured',
-  'NodeJS'
-];
+const tech = ['Docker', 'Tensorflow', 'Git', 'WebdriverIO', 'AWS', 'NodeJS'];
 
 export const Skills: React.FC = () => {
   const classes = useStyles();
@@ -97,7 +92,7 @@ export const Skills: React.FC = () => {
     scroller.scrollTo('projects', {
       duration: 1500,
       delay: 100,
-      smooth: true
+      smooth: true,
     });
   };
 
@@ -116,7 +111,7 @@ export const Skills: React.FC = () => {
           color: '#4a4a4a',
           padding: '20px',
           width: '50%',
-          textAlign: 'center'
+          textAlign: 'center',
         }}>
         Here are some of the languages and tech I have picked up along the way,
         be it through college or my own interest!
@@ -148,9 +143,9 @@ export const Skills: React.FC = () => {
               style={{ borderTop: '2px solid #4a4a4a' }}
             />
 
-            <Fade top cascade>
-              <List>
-                {frontend.map(item => (
+            <List>
+              {frontend.map((item, index) => (
+                <Fade top cascade duration={+index * 300}>
                   <ListItem>
                     <ListItemIcon>
                       <ArrowForward
@@ -160,9 +155,9 @@ export const Skills: React.FC = () => {
                     </ListItemIcon>
                     <ListItemText primary={item} />
                   </ListItem>
-                ))}
-              </List>
-            </Fade>
+                </Fade>
+              ))}
+            </List>
           </Paper>
         </Grid>
 
@@ -180,9 +175,9 @@ export const Skills: React.FC = () => {
               style={{ borderTop: '2px solid #4a4a4a' }}
             />
 
-            <Fade top cascade>
-              <List>
-                {backend.map(item => (
+            <List>
+              {backend.map((item, index) => (
+                <Fade top cascade duration={+index * 300}>
                   <ListItem>
                     <ListItemIcon>
                       <ArrowForward
@@ -192,9 +187,9 @@ export const Skills: React.FC = () => {
                     </ListItemIcon>
                     <ListItemText primary={item} />
                   </ListItem>
-                ))}
-              </List>
-            </Fade>
+                </Fade>
+              ))}
+            </List>
           </Paper>
         </Grid>
 
@@ -212,9 +207,9 @@ export const Skills: React.FC = () => {
               style={{ borderTop: '2px solid #4a4a4a' }}
             />
 
-            <Fade top cascade>
-              <List>
-                {tech.map(item => (
+            <List>
+              {tech.map((item, index) => (
+                <Fade top cascade duration={+index * 300}>
                   <ListItem>
                     <ListItemIcon>
                       <ArrowForward
@@ -224,9 +219,9 @@ export const Skills: React.FC = () => {
                     </ListItemIcon>
                     <ListItemText primary={item} />
                   </ListItem>
-                ))}
-              </List>
-            </Fade>
+                </Fade>
+              ))}
+            </List>
           </Paper>
         </Grid>
       </Grid>
