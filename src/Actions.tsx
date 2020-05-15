@@ -16,14 +16,22 @@ export const getRepos = async () => {
 
   let results: Irepo[] = [];
   let { data } = await axios.get(
-    `https://api.github.com/users/Foxyf76/repos?per_page=5&sort=created:asc`
+    'https://api.github.com/users/Foxyf76/repos?per_page=5&sort=created:asc',
+    {
+      'user-agent': 'node.js',
+      Authorization: `token ${process.env.REACT_APP_GITHUB_KEY}`,
+    }
   );
 
   // source https://codeburst.io/javascript-async-await-with-foreach-b6ba62bbf404
   await asyncForEach(data, async (repo: Irepo) => {
     let count;
     let { data } = await axios.get(
-      `https://api.github.com/repos/Foxyf76/${repo.name}/stats/contributors`
+      `https://api.github.com/repos/Foxyf76/${repo.name}/stats/contributors`,
+      {
+        'user-agent': 'node.js',
+        Authorization: `token ${process.env.REACT_APP_GITHUB_KEY}`,
+      }
     );
 
     if (repo.name.length > 20) {
@@ -40,7 +48,7 @@ export const getRepos = async () => {
       name: repo.name,
       stargazers_count: repo.stargazers_count,
       commits_url: count,
-      html_url: repo.html_url
+      html_url: repo.html_url,
     });
   });
 
