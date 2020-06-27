@@ -77,7 +77,7 @@ export const Home: React.FC = () => {
           Luke Fox
         </Typography>
         <Typography variant='subtitle1' className={classes.subtitle}>
-          Computer Science Student
+          Cybersecurity & Web Development Enthusiast 
         </Typography>
         <IconButton
           className={classes.expandButton}
