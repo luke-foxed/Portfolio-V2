@@ -10,7 +10,7 @@ import {
   CardActions,
   Button,
   IconButton,
-  CircularProgress
+  CircularProgress,
 } from '@material-ui/core';
 import pattern from '../../assets/images/skills_pattern.png';
 import {
@@ -19,7 +19,7 @@ import {
   Star,
   Publish,
   OpenInNew,
-  ExpandMore
+  ExpandMore,
 } from '@material-ui/icons';
 import { scroller } from 'react-scroll';
 import { getRepos, Irepo } from '../../Actions';
@@ -30,16 +30,24 @@ const projects = [
     name: 'SEO Spider',
     description: `An SEO tool which scrapes the 'people also asked' (PAA) section of the Google search results page. The resulting PAA questions 
     are then searched and scraped to create a tree structure of search terms and the google search results.`,
-    link: 'https://github.com/Foxyf76/People-Also-Asked/'
+    link: 'https://github.com/Foxyf76/People-Also-Asked/',
   },
 
   {
     image: require('../../assets/images/socialcleanr.png'),
-    name: 'SocialCleanr (Ongoing)',
-    description: `A web app that uses machine learning and social media APIs to pull down a user's Facebook/Twitter content before filtering it for 
-    innapropriate imagry or text`,
-    link: 'https://github.com/Foxyf76/Social-Cleaner'
-  }
+    name: 'SocialCleanr',
+    description: `A web app that uses machine learning and social media APIs to pull user's Facebook/Twitter content before filtering it for 
+    innapropriate imagry or text. All innapropriate detected via machine learning are then alerted to the user`,
+    link: 'https://github.com/Foxyf76/Social-Cleaner',
+  },
+
+  {
+    image: require('../../assets/images/wip.svg'),
+    name: 'TotalOSINT (WIP)',
+    description: `A work-in-progress app for scraping and combining OSINT from across multiple websites including VirusTotal and IBM X-Force. This 
+    app supports searches on IP addresses, file hashes and domains`,
+    link: 'https://github.com/Foxyf76/TotalOSINT',
+  },
 ];
 
 const useStyles = makeStyles({
@@ -54,13 +62,13 @@ const useStyles = makeStyles({
       color: 'white',
       fontFamily: 'Raleway',
       textTransform: 'uppercase',
-      marginTop: '60px'
+      marginTop: '60px',
     },
     '& h5': {
       fontFamily: 'Raleway',
       textTransform: 'uppercase',
-      padding: '10px'
-    }
+      padding: '10px',
+    },
   },
   projectCard: {
     transition: 'all .2s ease-in-out',
@@ -69,12 +77,12 @@ const useStyles = makeStyles({
     height: '420px',
     textAlign: 'center',
     '&:hover': {
-      transform: 'scale(1.08)'
-    }
+      transform: 'scale(1.08)',
+    },
   },
   divider: {
     width: '40px',
-    border: 0
+    border: 0,
   },
   githubCard: {
     margin: '10px',
@@ -84,17 +92,17 @@ const useStyles = makeStyles({
     transition: 'all .5s ease-in-out',
     '& h6': {
       fontFamily: 'Raleway',
-      textTransform: 'uppercase'
+      textTransform: 'uppercase',
     },
     '&:hover': {
       backgroundColor: '#03a3ff',
-      color: 'white'
-    }
+      color: 'white',
+    },
   },
   expandButton: {
     marginTop: '20px',
-    color: '#4a4a4a'
-  }
+    color: '#4a4a4a',
+  },
 });
 export const Projects: React.FC = () => {
   const classes = useStyles();
@@ -116,7 +124,7 @@ export const Projects: React.FC = () => {
     scroller.scrollTo('contact', {
       duration: 1500,
       delay: 100,
-      smooth: true
+      smooth: true,
     });
   };
 
@@ -134,7 +142,7 @@ export const Projects: React.FC = () => {
           fontSize='large'
           style={{
             color: '#03a3ff',
-            paddingRight: '10px'
+            paddingRight: '10px',
           }}
         />
         Recent Works
@@ -146,8 +154,9 @@ export const Projects: React.FC = () => {
         justify='center'
         spacing={4}
         xs={12}
-        style={{ marginTop: '10px' }}>
-        {projects.map(project => (
+        style={{ marginTop: '10px' }}
+      >
+        {projects.map((project) => (
           <Card raised={true} className={classes.projectCard}>
             <CardActionArea>
               <CardMedia
@@ -164,7 +173,8 @@ export const Projects: React.FC = () => {
                   style={{ height: '120px' }}
                   variant='body2'
                   color='textSecondary'
-                  component='p'>
+                  component='p'
+                >
                   {project.description}
                 </Typography>
               </CardContent>
@@ -174,12 +184,14 @@ export const Projects: React.FC = () => {
                 href={project.link}
                 style={{ textDecoration: 'none' }}
                 target='_blank'
-                rel='noopener noreferrer'>
+                rel='noopener noreferrer'
+              >
                 <Button
                   startIcon={<OpenInNew />}
                   size='small'
                   color='primary'
-                  style={{ color: '#4a4a4a' }}>
+                  style={{ color: '#4a4a4a' }}
+                >
                   View On GitHub
                 </Button>
               </a>
@@ -196,8 +208,9 @@ export const Projects: React.FC = () => {
           flexGrow: 1,
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center'
-        }}>
+          alignItems: 'center',
+        }}
+      >
         <hr
           className={classes.divider}
           style={{ borderTop: '2px solid #4a4a4a' }}
@@ -208,7 +221,7 @@ export const Projects: React.FC = () => {
             fontSize='large'
             style={{
               color: '#03a3ff',
-              paddingRight: '10px'
+              paddingRight: '10px',
             }}
           />
           Active GitHub Repos
@@ -221,12 +234,13 @@ export const Projects: React.FC = () => {
           />
         ) : (
           <Grid container direction={'row'} justify='center' xs={12}>
-            {repos.map(repo => (
+            {repos.map((repo) => (
               <a
                 href={repo.html_url}
                 style={{ textDecoration: 'none' }}
                 target='_blank'
-                rel='noopener noreferrer'>
+                rel='noopener noreferrer'
+              >
                 <Card className={classes.githubCard}>
                   <CardActionArea>
                     <CardContent>
@@ -234,8 +248,9 @@ export const Projects: React.FC = () => {
                       <Typography
                         style={{
                           display: 'flex',
-                          alignItems: 'center'
-                        }}>
+                          alignItems: 'center',
+                        }}
+                      >
                         <Publish
                           fontSize='small'
                           style={{ paddingRight: '10px' }}
@@ -246,8 +261,9 @@ export const Projects: React.FC = () => {
                       <Typography
                         style={{
                           display: 'flex',
-                          alignItems: 'center'
-                        }}>
+                          alignItems: 'center',
+                        }}
+                      >
                         <Star
                           fontSize='small'
                           style={{ paddingRight: '10px' }}
@@ -264,7 +280,8 @@ export const Projects: React.FC = () => {
 
         <IconButton
           className={classes.expandButton}
-          onClick={handleExpandClick}>
+          onClick={handleExpandClick}
+        >
           <ExpandMore fontSize='large' />
         </IconButton>
       </div>

@@ -16,18 +16,18 @@ const useStyles = makeStyles({
     '& h4': {
       fontFamily: 'Raleway',
       textTransform: 'uppercase',
-      marginTop: '60px'
+      marginTop: '60px',
     },
     '& h5': {
       fontFamily: 'Raleway',
       textTransform: 'uppercase',
-      padding: '10px'
-    }
+      padding: '10px',
+    },
   },
 
   divider: {
     width: '40px',
-    border: 0
+    border: 0,
   },
   contactContainer: {
     width: '100%',
@@ -42,9 +42,9 @@ const useStyles = makeStyles({
       margin: '20px',
       borderRadius: 200,
       '&:hover': {
-        backgroundColor: '#03a3ff'
-      }
-    }
+        backgroundColor: '#03a3ff',
+      },
+    },
   },
 
   contactButton: {
@@ -53,8 +53,8 @@ const useStyles = makeStyles({
     margin: '20px',
     '&:hover': {
       backgroundColor: '#03a3ff',
-      color: 'white'
-    }
+      color: 'white',
+    },
   },
 
   footer: {
@@ -65,8 +65,8 @@ const useStyles = makeStyles({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    color: '#dbdbdb'
-  }
+    color: '#dbdbdb',
+  },
 });
 export const Contact: React.FC = () => {
   const classes = useStyles();
@@ -75,7 +75,7 @@ export const Contact: React.FC = () => {
     scroller.scrollTo('home', {
       duration: 1000,
       delay: 100,
-      smooth: true
+      smooth: true,
     });
   };
 
@@ -86,13 +86,15 @@ export const Contact: React.FC = () => {
         direction='column'
         xs={12}
         alignItems='center'
-        style={{ backgroundColor: '#cccccc', width: '100%' }}>
+        style={{ backgroundColor: '#cccccc', width: '100%' }}
+      >
         <Typography variant='h4' style={{ color: '#4a4a4a' }}>
           Contact
         </Typography>
         <hr
           className={classes.divider}
-          style={{ borderTop: '2px solid #03a3ff' }}></hr>
+          style={{ borderTop: '2px solid #03a3ff' }}
+        ></hr>
       </Grid>
 
       <Typography
@@ -100,8 +102,9 @@ export const Contact: React.FC = () => {
           color: '#4a4a4a',
           padding: '20px',
           width: '50%',
-          textAlign: 'center'
-        }}>
+          textAlign: 'center',
+        }}
+      >
         Want to see more or get in touch? Feel free to check out any of the
         below sites!
       </Typography>
@@ -112,11 +115,13 @@ export const Contact: React.FC = () => {
         justify='center'
         xs={12}
         style={{ padding: '120px' }}
-        className={classes.contactContainer}>
+        className={classes.contactContainer}
+      >
         <a
           href='https://www.linkedin.com/in/luke-fox-aa103a148/'
           rel='noopener noreferrer'
-          target='_blank'>
+          target='_blank'
+        >
           <img
             width={200}
             height={200}
@@ -127,7 +132,8 @@ export const Contact: React.FC = () => {
         <a
           href='https://github.com/Foxyf76'
           rel='noopener noreferrer'
-          target='_blank'>
+          target='_blank'
+        >
           <img
             width={200}
             height={200}
@@ -139,7 +145,8 @@ export const Contact: React.FC = () => {
         <a
           href='https://twitter.com/luke_foxed'
           rel='noopener noreferrer'
-          target='_blank'>
+          target='_blank'
+        >
           <img
             width={200}
             height={200}
@@ -151,7 +158,8 @@ export const Contact: React.FC = () => {
         <a
           href='https://mail.google.com/mail/u/0/?view=cm&fs=1&to=lukefoxportfolio@gmail.com&tf=1'
           rel='noopener noreferrer'
-          target='_blank'>
+          target='_blank'
+        >
           <img
             width={200}
             height={200}
@@ -171,16 +179,18 @@ export const Contact: React.FC = () => {
           display: 'flex',
           flex: '1 0 auto',
           flexDirection: 'column',
-          alignItems: 'center'
-        }}>
+          alignItems: 'center',
+        }}
+      >
         <Typography
           variant='h5'
-          style={{ display: 'flex', color: '#4a4a4a', flex: '1 0 auto' }}>
+          style={{ display: 'flex', color: '#4a4a4a', flex: '1 0 auto' }}
+        >
           <Description
             fontSize='large'
             style={{
               color: '#03a3ff',
-              paddingRight: '10px'
+              paddingRight: '10px',
             }}
           />
           Request A CV
@@ -190,8 +200,9 @@ export const Contact: React.FC = () => {
             color: '#4a4a4a',
             padding: '20px',
             width: '55%',
-            textAlign: 'center'
-          }}>
+            textAlign: 'center',
+          }}
+        >
           If you'd like a CV, please get in contact with via LinkedIn or Gmail
           and I will send one upon request!
         </Typography>
@@ -201,14 +212,16 @@ export const Contact: React.FC = () => {
           href='mailto:lukefoxportfolio@gmail.com'
           rel='noopener noreferrer'
           target='_blank'
-          className={classes.contactButton}>
+          className={classes.contactButton}
+        >
           Send an Email
         </Button>
 
         <Button
           onClick={handleTopClick}
           style={{ margin: '20px' }}
-          startIcon={<ExpandLess fontSize='large' />}>
+          startIcon={<ExpandLess fontSize='large' />}
+        >
           Back To Top
         </Button>
         <br />
@@ -216,7 +229,8 @@ export const Contact: React.FC = () => {
       </div>
 
       <div className={classes.footer}>
-        Made with &nbsp; <Favorite /> &nbsp; by Luke Fox, 2020
+        <p>Made with</p> &nbsp; <Favorite style={{ color: '#03a3ff' }} /> &nbsp;
+        <p>by Luke Fox, 2020</p>
       </div>
     </div>
   );

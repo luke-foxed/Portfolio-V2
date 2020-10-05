@@ -43,7 +43,7 @@ const useStyles = makeStyles({
 
   card: {
     transition: 'all .2s ease-in-out',
-    width: '300px',
+    width: '280px',
     height: '480px',
     '&:hover': {
       transform: 'scale(1.08)',
@@ -85,6 +85,14 @@ const backend = [
 
 const tech = ['Docker', 'Tensorflow', 'Git', 'WebdriverIO', 'AWS', 'NodeJS'];
 
+const security = [
+  'Splunk',
+  'QRadar',
+  'LogRhythm',
+  'Carbon Black',
+  'CrowdStrike',
+];
+
 export const Skills: React.FC = () => {
   const classes = useStyles();
 
@@ -112,9 +120,10 @@ export const Skills: React.FC = () => {
           padding: '20px',
           width: '50%',
           textAlign: 'center',
-        }}>
-        Here are some of the languages and tech I have picked up along the way,
-        be it through college or my own interest!
+        }}
+      >
+        Here are some of the languages, tech and tools I have picked up along
+        the way, be it through college, work or my own interest!
       </Typography>
 
       <hr
@@ -127,8 +136,9 @@ export const Skills: React.FC = () => {
         direction={'row'}
         justify='center'
         alignContent='center'
-        spacing={8}
-        style={{ marginTop: '30px', marginBottom: '10px', width: '100%' }}>
+        spacing={6}
+        style={{ marginTop: '30px', marginBottom: '10px', width: '100%' }}
+      >
         <Grid item>
           <Paper elevation={3} className={classes.card}>
             <div style={{ width: '100%', textAlign: 'center' }}>
@@ -209,6 +219,38 @@ export const Skills: React.FC = () => {
 
             <List>
               {tech.map((item, index) => (
+                <Fade top cascade duration={+index * 300}>
+                  <ListItem>
+                    <ListItemIcon>
+                      <ArrowForward
+                        fontSize='small'
+                        style={{ color: '#03a3ff' }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText primary={item} />
+                  </ListItem>
+                </Fade>
+              ))}
+            </List>
+          </Paper>
+        </Grid>
+
+        <Grid item>
+          <Paper elevation={3} className={classes.card}>
+            <div style={{ width: '100%', textAlign: 'center' }}>
+              <img
+                alt='security'
+                src={require('../../assets/images/skills/security.png')}
+              />
+            </div>
+            <Typography variant='h5'>Security</Typography>
+            <hr
+              className={classes.divider}
+              style={{ borderTop: '2px solid #4a4a4a' }}
+            />
+
+            <List>
+              {security.map((item, index) => (
                 <Fade top cascade duration={+index * 300}>
                   <ListItem>
                     <ListItemIcon>

@@ -1,9 +1,19 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography, IconButton } from '@material-ui/core';
-import { School, Work, ExpandMore } from '@material-ui/icons';
+import {
+  Grid,
+  Typography,
+  IconButton,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  List,
+} from '@material-ui/core';
+import { School, Work, ExpandMore, ArrowForward } from '@material-ui/icons';
 import { scroller } from 'react-scroll';
 import me from '../../assets/images/me.png';
+
+const Fade = require('react-reveal/Fade');
 
 const useStyles = makeStyles({
   root: {
@@ -28,13 +38,33 @@ const useStyles = makeStyles({
     width: '40px',
     border: 0,
   },
-
   expandButton: {
     marginTop: '20px',
     color: '#4a4a4a',
     zIndex: 2,
   },
+  roundImage: {
+    height: '160px',
+    width: '160px',
+    transition: 'all .2s ease-in-out',
+    '&:hover': {
+      transform: 'rotate(10deg) scale(0.9)',
+    },
+  },
 });
+
+const distilled = [
+  'Leading Irish online media company, consisting of DoneDeal, Daft & Adverts',
+  'Working within a scrum team to provide manual and automated testing of features before being released to DoneDeal',
+  'Exposure to tech such as Docker, Webdriver IO, Rest Assured and Typescript',
+];
+
+const reliaquest = [
+  'Company specializing in security-as-a-service',
+  'Providing analysis and investigation of security related data from a range of security devices and customer environments',
+  'Use of various SIEM, EDR and EMS tools such as Splunk, LogRhythm, CrowdStrike & Carbon Black ',
+];
+
 export const About: React.FC = () => {
   const classes = useStyles();
 
@@ -51,9 +81,9 @@ export const About: React.FC = () => {
       <Grid
         container
         direction='column'
-        xs={12}
         alignItems='center'
-        style={{ backgroundColor: '#dedede', width: '100%' }}>
+        style={{ backgroundColor: '#dedede', width: '100%' }}
+      >
         <Typography variant='h4' style={{ color: '#4a4a4a' }}>
           About
         </Typography>
@@ -78,11 +108,12 @@ export const About: React.FC = () => {
             padding: '20px',
             width: '50%',
             textAlign: 'center',
-          }}>
-          Hi, I'm Luke! I am a 4th year student of computer science with a
-          passion for all things computer related! These include cybersecurity,
-          networking, web development, app development, graphic design, computer
-          hardware and lots more.
+          }}
+        >
+          Hi, I'm <b style={{ color: '#03a3ff' }}>Luke</b>! I am a recent
+          computer science graduate with a passion for all things computer
+          related! These include cybersecurity, networking, web development, app
+          development, graphic design, computer hardware and lots more.
         </Typography>
       </Grid>
 
@@ -93,7 +124,8 @@ export const About: React.FC = () => {
         direction='column'
         xs={12}
         alignItems='center'
-        style={{ width: '70%', marginTop: '20px' }}>
+        style={{ width: '70%', marginTop: '20px' }}
+      >
         <Typography variant='h5' style={{ color: '#4a4a4a', display: 'flex' }}>
           <School
             fontSize='large'
@@ -111,7 +143,8 @@ export const About: React.FC = () => {
             padding: '20px',
             width: '70%',
             textAlign: 'center',
-          }}>
+          }}
+        >
           <i style={{ fontSize: '18px', fontFamily: 'Raleway' }}>
             Waterford IT, Applied Computing - 2016 to 2020
           </i>
@@ -119,9 +152,40 @@ export const About: React.FC = () => {
             className={classes.divider}
             style={{ borderTop: '2px solid #4a4a4a' }}
           />
-          I attended Waterford Institute of Technology, studying Applied
-          Computing (level 8) with a specialty in Forensics and Security - where
-          I received first class honors.
+          <Grid
+            container
+            direction='row'
+            justify='center'
+            alignContent='center'
+            alignItems='center'
+          >
+            <Grid item sm={3}>
+              <img
+                src={require('../../assets/images/wit.png')}
+                alt='wit'
+                className={classes.roundImage}
+              />
+            </Grid>
+            <Grid item sm={9}>
+              <List>
+                <Fade top cascade duration={300}>
+                  <ListItem>
+                    <ListItemIcon>
+                      <ArrowForward
+                        fontSize='small'
+                        style={{ color: '#03a3ff' }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={
+                        'I attended Waterford Institute of Technology, studying Applied Computing (level 8) with a specialty in Forensics and Security - where I received first class honors.'
+                      }
+                    />
+                  </ListItem>
+                </Fade>
+              </List>
+            </Grid>
+          </Grid>
         </Typography>
 
         <Typography variant='h5' style={{ color: '#4a4a4a', display: 'flex' }}>
@@ -141,20 +205,47 @@ export const About: React.FC = () => {
             padding: '20px',
             width: '70%',
             textAlign: 'center',
-          }}>
+          }}
+        >
           <i style={{ fontSize: '18px', fontFamily: 'Raleway' }}>
-            Distilled SCH, QA Engineer - January to September 2019
+            Distilled SCH, QA Engineer Intern - January to September 2019
           </i>
           <hr
             className={classes.divider}
             style={{ borderTop: '2px solid #4a4a4a' }}
           />
-          This experience was part of my 3rd year college placement. At
-          Distilled SCH, I was part of a scrum team with the responsibility of
-          QA engineer. This consisted of manual and automated testing of
-          features before being released to DoneDeal.ie. I was fortunate to
-          learn new technologies such as Docker, Webdriver IO, Rest Assured and
-          Typescript!
+          <Grid
+            container
+            direction='row'
+            justify='center'
+            alignContent='center'
+            alignItems='center'
+          >
+            <Grid item sm={9}>
+              <List>
+                {distilled.map((item, index) => (
+                  <Fade top cascade duration={+index * 300}>
+                    <ListItem>
+                      <ListItemIcon>
+                        <ArrowForward
+                          fontSize='small'
+                          style={{ color: '#03a3ff' }}
+                        />
+                      </ListItemIcon>
+                      <ListItemText primary={item} />
+                    </ListItem>
+                  </Fade>
+                ))}
+              </List>
+            </Grid>
+            <Grid item sm={3}>
+              <img
+                src={require('../../assets/images/distilled.png')}
+                alt='distilled'
+                className={classes.roundImage}
+              />
+            </Grid>
+          </Grid>
         </Typography>
 
         <Typography
@@ -163,7 +254,8 @@ export const About: React.FC = () => {
             padding: '20px',
             width: '70%',
             textAlign: 'center',
-          }}>
+          }}
+        >
           <i style={{ fontSize: '18px', fontFamily: 'Raleway' }}>
             ReliaQuest, Security Analyst - June 2020 to Present
           </i>
@@ -171,12 +263,38 @@ export const About: React.FC = () => {
             className={classes.divider}
             style={{ borderTop: '2px solid #4a4a4a' }}
           />
-          I am currently working as a security analyst with ReliaQuest, a
-          company specializing in security model management. Here, I am
-          responsible for providing analysis and investigation of security
-          related data from a wide range of security devices and customer
-          environments. With this role, I am exposed to various SIEM and EDR
-          technologies such as QRadar, Splunk, Carbon Black and many others!
+          <Grid
+            container
+            direction='row'
+            justify='center'
+            alignContent='center'
+            alignItems='center'
+          >
+            <Grid item sm={3}>
+              <img
+                src={require('../../assets/images/rq.png')}
+                alt='reliaquest'
+                className={classes.roundImage}
+              />
+            </Grid>
+            <Grid item sm={9}>
+              <List>
+                {reliaquest.map((item, index) => (
+                  <Fade top cascade duration={+index * 300}>
+                    <ListItem>
+                      <ListItemIcon>
+                        <ArrowForward
+                          fontSize='small'
+                          style={{ color: '#03a3ff' }}
+                        />
+                      </ListItemIcon>
+                      <ListItemText primary={item} />
+                    </ListItem>
+                  </Fade>
+                ))}
+              </List>
+            </Grid>
+          </Grid>
         </Typography>
       </Grid>
 
