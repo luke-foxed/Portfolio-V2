@@ -42,7 +42,7 @@ const projects = [
   },
 
   {
-    image: require('../../assets/images/wip.svg'),
+    image: require('../../assets/images/totalosint.png'),
     name: 'TotalOSINT (WIP)',
     description: `A work-in-progress app for scraping and combining OSINT from across multiple websites including VirusTotal and IBM X-Force. This 
     app supports searches on IP addresses, file hashes and domains`,
