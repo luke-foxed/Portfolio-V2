@@ -92,9 +92,8 @@ const security = [
 ];
 
 export const Skills: React.FC = () => {
-  const classes = useStyles();
+  const classes = useStyles({});
   const { lightTheme } = useContext(ThemeContext);
-
   const theme = palette(lightTheme);
 
   const handleExpandClick = () => {

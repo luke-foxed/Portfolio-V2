@@ -43,7 +43,7 @@ const useStyles = makeStyles({
 });
 
 export const NavbarMobile: React.FC = () => {
-  const classes = useStyles();
+  const classes = useStyles({});
   const [isOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState(false);
 

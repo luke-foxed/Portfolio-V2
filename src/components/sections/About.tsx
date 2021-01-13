@@ -69,7 +69,7 @@ const reliaquest = [
 ];
 
 export const About: React.FC = () => {
-  const classes = useStyles();
+  const classes = useStyles({});
   const { lightTheme } = useContext(ThemeContext);
   const theme = palette(lightTheme);
 

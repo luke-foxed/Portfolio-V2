@@ -40,7 +40,7 @@ const useStyles = makeStyles({
   },
 });
 export const Home: React.FC = () => {
-  const classes = useStyles();
+  const classes = useStyles({});
   const { lightTheme } = useContext(ThemeContext);
 
   const handleExpandClick = () => {

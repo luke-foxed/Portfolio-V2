@@ -59,7 +59,7 @@ const useStyles = makeStyles({
 });
 
 export const NavbarDesktop: React.FC = () => {
-  const classes = useStyles();
+  const classes = useStyles({});
   const [active, setActive] = useState(false);
   const { lightTheme, toggleTheme } = useContext(ThemeContext);
 

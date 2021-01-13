@@ -73,7 +73,7 @@ const useStyles = makeStyles({
   },
 });
 export const Contact: React.FC = () => {
-  const classes = useStyles();
+  const classes = useStyles({});
   const { lightTheme } = useContext(ThemeContext);
   const theme = palette(lightTheme);
 
