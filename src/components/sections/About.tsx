@@ -52,6 +52,10 @@ const useStyles = makeStyles({
   },
 });
 
+const stitherads = [
+  'Building technology to help advertisers scale full-funnel performance marketing campaigns on Facebook, Instagram, Pinterest and SnapChat. ',
+];
+
 const distilled = [
   'Leading Irish online media company, consisting of DoneDeal, Daft & Adverts',
   'Working within a scrum team to provide manual and automated testing of features before being released to DoneDeal',
@@ -264,7 +268,7 @@ export const About: React.FC = () => {
           }}
         >
           <i style={{ fontSize: '18px', fontFamily: 'Raleway' }}>
-            ReliaQuest, Security Analyst - June 2020 to Present
+            ReliaQuest, Security Analyst - June 2020 to December 2020
           </i>
 
           <Seperator color={theme.fontCol} />
@@ -299,6 +303,54 @@ export const About: React.FC = () => {
                   </Fade>
                 ))}
               </List>
+            </Grid>
+          </Grid>
+        </Typography>
+
+        <Typography
+          style={{
+            color: theme.fontCol,
+            padding: '20px',
+            width: '70%',
+            textAlign: 'center',
+          }}
+        >
+          <i style={{ fontSize: '18px', fontFamily: 'Raleway' }}>
+            StitcherAds, Software Engineer - January to Present 2021
+          </i>
+
+          <Seperator color={theme.fontCol} />
+
+          <Grid
+            container
+            direction='row'
+            justify='center'
+            alignContent='center'
+            alignItems='center'
+          >
+            <Grid item sm={9}>
+              <List>
+                {stitherads.map((item, index) => (
+                  <Fade top cascade duration={+index * 300}>
+                    <ListItem>
+                      <ListItemIcon>
+                        <ArrowForward
+                          fontSize='small'
+                          style={{ color: '#03a3ff' }}
+                        />
+                      </ListItemIcon>
+                      <ListItemText primary={item} />
+                    </ListItem>
+                  </Fade>
+                ))}
+              </List>
+            </Grid>
+            <Grid item sm={3}>
+              <img
+                src={require('../../assets/images/stitcher.png')}
+                alt='distilled'
+                className={classes.roundImage}
+              />
             </Grid>
           </Grid>
         </Typography>
