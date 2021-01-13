@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
@@ -12,6 +12,9 @@ import {
 import { School, Work, ExpandMore, ArrowForward } from '@material-ui/icons';
 import { scroller } from 'react-scroll';
 import me from '../../assets/images/me.png';
+import { ThemeContext } from '../../themeProvider';
+import aboutPage from '../theme';
+import Seperator from '../layout/Seperator';
 
 const Fade = require('react-reveal/Fade');
 
@@ -21,7 +24,7 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     minHeight: '100vh',
-    backgroundColor: '#cccccc',
+    transition: 'background-color 0.5s ease-in-out',
     '& h4': {
       fontFamily: 'Raleway',
       textTransform: 'uppercase',
@@ -33,14 +36,13 @@ const useStyles = makeStyles({
       padding: '10px',
       textAlign: 'center',
     },
-  },
-  divider: {
-    width: '40px',
-    border: 0,
+    '& *': {
+      transition: 'background-color 0.5s ease-in-out',
+    },
   },
   expandButton: {
     marginTop: '20px',
-    color: '#4a4a4a',
+    color: '#03a3ff',
     zIndex: 2,
   },
   roundImage: {
@@ -67,6 +69,7 @@ const reliaquest = [
 
 export const About: React.FC = () => {
   const classes = useStyles();
+  const { lightTheme } = useContext(ThemeContext);
 
   const handleExpandClick = () => {
     scroller.scrollTo('skills', {
@@ -76,21 +79,26 @@ export const About: React.FC = () => {
     });
   };
 
+  const theme = aboutPage(lightTheme);
+
   return (
-    <div id='about' className={classes.root}>
+    <div
+      id='about'
+      className={classes.root}
+      style={{ backgroundColor: theme.background1Col }}
+    >
       <Grid
         container
         direction='column'
         alignItems='center'
-        style={{ backgroundColor: '#dedede', width: '100%' }}
+        style={{ backgroundColor: theme.background2Col, width: '100%' }}
       >
-        <Typography variant='h4' style={{ color: '#4a4a4a' }}>
+        <Typography variant='h4' style={{ color: theme.fontCol }}>
           About
         </Typography>
-        <hr
-          className={classes.divider}
-          style={{ borderTop: '2px solid #03a3ff' }}
-        />
+
+        <Seperator color='#03a3ff' />
+
         <img
           src={me}
           alt='me'
@@ -98,13 +106,12 @@ export const About: React.FC = () => {
           height={150}
           style={{ padding: '20px' }}
         />
-        <hr
-          className={classes.divider}
-          style={{ borderTop: '2px solid #4a4a4a' }}
-        />
+
+        <Seperator color={theme.fontCol} />
+
         <Typography
           style={{
-            color: '#4a4a4a',
+            color: theme.fontCol,
             padding: '20px',
             width: '50%',
             textAlign: 'center',
@@ -126,7 +133,10 @@ export const About: React.FC = () => {
         alignItems='center'
         style={{ width: '70%', marginTop: '20px' }}
       >
-        <Typography variant='h5' style={{ color: '#4a4a4a', display: 'flex' }}>
+        <Typography
+          variant='h5'
+          style={{ color: theme.fontCol, display: 'flex' }}
+        >
           <School
             fontSize='large'
             style={{
@@ -139,7 +149,7 @@ export const About: React.FC = () => {
 
         <Typography
           style={{
-            color: '#4a4a4a',
+            color: theme.fontCol,
             padding: '20px',
             width: '70%',
             textAlign: 'center',
@@ -148,10 +158,9 @@ export const About: React.FC = () => {
           <i style={{ fontSize: '18px', fontFamily: 'Raleway' }}>
             Waterford IT, Applied Computing - 2016 to 2020
           </i>
-          <hr
-            className={classes.divider}
-            style={{ borderTop: '2px solid #4a4a4a' }}
-          />
+
+          <Seperator color={theme.fontCol} />
+
           <Grid
             container
             direction='row'
@@ -188,7 +197,10 @@ export const About: React.FC = () => {
           </Grid>
         </Typography>
 
-        <Typography variant='h5' style={{ color: '#4a4a4a', display: 'flex' }}>
+        <Typography
+          variant='h5'
+          style={{ color: theme.fontCol, display: 'flex' }}
+        >
           <Work
             fontSize='large'
             style={{
@@ -201,7 +213,7 @@ export const About: React.FC = () => {
 
         <Typography
           style={{
-            color: '#4a4a4a',
+            color: theme.fontCol,
             padding: '20px',
             width: '70%',
             textAlign: 'center',
@@ -210,10 +222,9 @@ export const About: React.FC = () => {
           <i style={{ fontSize: '18px', fontFamily: 'Raleway' }}>
             Distilled SCH, QA Engineer Intern - January to September 2019
           </i>
-          <hr
-            className={classes.divider}
-            style={{ borderTop: '2px solid #4a4a4a' }}
-          />
+
+          <Seperator color={theme.fontCol} />
+
           <Grid
             container
             direction='row'
@@ -250,7 +261,7 @@ export const About: React.FC = () => {
 
         <Typography
           style={{
-            color: '#4a4a4a',
+            color: theme.fontCol,
             padding: '20px',
             width: '70%',
             textAlign: 'center',
@@ -259,10 +270,9 @@ export const About: React.FC = () => {
           <i style={{ fontSize: '18px', fontFamily: 'Raleway' }}>
             ReliaQuest, Security Analyst - June 2020 to Present
           </i>
-          <hr
-            className={classes.divider}
-            style={{ borderTop: '2px solid #4a4a4a' }}
-          />
+
+          <Seperator color={theme.fontCol} />
+
           <Grid
             container
             direction='row'

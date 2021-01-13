@@ -22,7 +22,7 @@ import {
   ExpandMore,
 } from '@material-ui/icons';
 import { scroller } from 'react-scroll';
-import { getRepos, Irepo } from '../../Actions';
+import { getRepos, Irepo } from '../../actions';
 
 const projects = [
   {
