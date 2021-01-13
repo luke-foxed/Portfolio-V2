@@ -13,7 +13,7 @@ import { School, Work, ExpandMore, ArrowForward } from '@material-ui/icons';
 import { scroller } from 'react-scroll';
 import me from '../../assets/images/me.png';
 import { ThemeContext } from '../../themeProvider';
-import aboutPage from '../theme';
+import palette from '../theme';
 import Seperator from '../layout/Seperator';
 
 const Fade = require('react-reveal/Fade');
@@ -35,9 +35,6 @@ const useStyles = makeStyles({
       textTransform: 'uppercase',
       padding: '10px',
       textAlign: 'center',
-    },
-    '& *': {
-      transition: 'background-color 0.5s ease-in-out',
     },
   },
   expandButton: {
@@ -70,6 +67,7 @@ const reliaquest = [
 export const About: React.FC = () => {
   const classes = useStyles();
   const { lightTheme } = useContext(ThemeContext);
+  const theme = palette(lightTheme);
 
   const handleExpandClick = () => {
     scroller.scrollTo('skills', {
@@ -78,8 +76,6 @@ export const About: React.FC = () => {
       smooth: true,
     });
   };
-
-  const theme = aboutPage(lightTheme);
 
   return (
     <div

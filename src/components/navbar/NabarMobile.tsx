@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-scroll';
 import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter } from 'react-router-dom';
@@ -9,40 +9,45 @@ import {
   ListItem,
   ListItemText,
   Divider,
-  Typography
+  Typography,
+  IconButton,
 } from '@material-ui/core';
 import ReactGA from 'react-ga';
+import { ThemeContext } from '../../themeProvider';
+import { Brightness2, WbSunny } from '@material-ui/icons';
 
 const history = createBrowserHistory();
 const trackingId = process.env.REACT_APP_TRACKING_ID;
 ReactGA.initialize(trackingId as string);
 
-history.listen(location => {
+history.listen((location) => {
   ReactGA.set({ page: location.pathname });
   ReactGA.pageview(location.pathname);
 });
 
 const useStyles = makeStyles({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   navItems: {
     color: 'white',
     display: 'flex',
     flexDirection: 'column',
     textAlign: 'center',
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
   },
   navActiveItem: {
     color: 'rgb(27,163,251)',
-    borderRadius: 25
-  }
+    borderRadius: 25,
+  },
 });
 
 export const NavbarMobile: React.FC = () => {
   const classes = useStyles();
   const [isOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState(false);
+
+  const { lightTheme, toggleTheme } = useContext(ThemeContext);
 
   const handleState = (to: any) => {
     if (to === 'home') {
@@ -61,41 +66,41 @@ export const NavbarMobile: React.FC = () => {
       width: '36px',
       height: '30px',
       left: '36px',
-      top: '36px'
+      top: '36px',
     },
     bmBurgerBars: {
       transition: 'background-color 0.5s ease-in-out',
-      background: active ? '#e3e3e3' : 'rgb(27,163,251)'
+      background: active ? '#e3e3e3' : 'rgb(27,163,251)',
     },
 
     bmCrossButton: {
       height: '24px',
-      width: '24px'
+      width: '24px',
     },
     bmCross: {
-      background: '#bdc3c7'
+      background: '#bdc3c7',
     },
     bmMenuWrap: {
       position: 'fixed',
-      width: '200px'
+      width: '200px',
     },
     bmMenu: {
-      background: '#373a47',
+      background: lightTheme ? '#696969' : '#2b2b2b',
       padding: '2.5em 1.5em 0',
-      fontSize: '1.15em'
+      fontSize: '1.15em',
     },
     bmMorphShape: {
-      fill: '#373a47'
+      fill: '#373a47',
     },
     bmItemList: {
-      color: '#b8b7ad'
+      color: '#b8b7ad',
     },
     bmItem: {
-      display: 'inline-block'
+      display: 'inline-block',
     },
     bmOverlay: {
-      background: 'rgba(0, 0, 0, 0.3)'
-    }
+      background: 'rgba(0, 0, 0, 0.3)',
+    },
   };
 
   const handleMenu = (state: any) => {
@@ -105,10 +110,13 @@ export const NavbarMobile: React.FC = () => {
   return (
     <Menu styles={burgerStyle} isOpen={isOpen} onStateChange={handleMenu}>
       <BrowserRouter>
-        <Typography variant={'h3'} style={{ textAlign: 'center' }}>
+        <Typography
+          variant={'h3'}
+          style={{ textAlign: 'center', color: 'rgb(27,163,251)' }}
+        >
           LF
         </Typography>
-        <Divider></Divider>
+        <Divider />
         <List className={classes.navItems} component='nav'>
           <Link
             activeClass={classes.navActiveItem}
@@ -116,11 +124,13 @@ export const NavbarMobile: React.FC = () => {
             to='home'
             spy={true}
             smooth={true}
-            duration={500}>
+            duration={500}
+          >
             <ListItem
               button
               style={{ borderRadius: 25, textAlign: 'center' }}
-              onClick={handleState}>
+              onClick={handleState}
+            >
               <ListItemText primary='Home' />
             </ListItem>
           </Link>
@@ -131,7 +141,8 @@ export const NavbarMobile: React.FC = () => {
             to='about'
             spy={true}
             smooth={true}
-            duration={500}>
+            duration={500}
+          >
             <ListItem button style={{ borderRadius: 25, textAlign: 'center' }}>
               <ListItemText primary='About' />
             </ListItem>
@@ -142,7 +153,8 @@ export const NavbarMobile: React.FC = () => {
             to='skills'
             spy={true}
             smooth={true}
-            duration={500}>
+            duration={500}
+          >
             <ListItem button style={{ borderRadius: 25, textAlign: 'center' }}>
               <ListItemText primary='Skills' />
             </ListItem>
@@ -153,7 +165,8 @@ export const NavbarMobile: React.FC = () => {
             to='projects'
             spy={true}
             smooth={true}
-            duration={500}>
+            duration={500}
+          >
             <ListItem button style={{ borderRadius: 25, textAlign: 'center' }}>
               <ListItemText primary='Projects' />
             </ListItem>
@@ -164,11 +177,20 @@ export const NavbarMobile: React.FC = () => {
             to='contact'
             spy={true}
             smooth={true}
-            duration={500}>
+            duration={500}
+          >
             <ListItem button style={{ borderRadius: 25, textAlign: 'center' }}>
               <ListItemText primary='Contact' />
             </ListItem>
           </Link>
+
+          <IconButton style={{ marginLeft: '20px' }} onClick={toggleTheme}>
+            {lightTheme ? (
+              <Brightness2 style={{ color: active ? 'white' : '#03a3ff' }} />
+            ) : (
+              <WbSunny style={{ color: active ? 'white' : '#03a3ff' }} />
+            )}
+          </IconButton>
         </List>
       </BrowserRouter>
     </Menu>

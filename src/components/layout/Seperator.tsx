@@ -6,7 +6,7 @@ interface SeperatorProps {
 
 const Seperator: FC<SeperatorProps> = ({ color }) => {
   return (
-    <hr style={{ borderTop: `2px solid ${color}`, width: '40px', border: 0 }} />
+    <hr style={{ border: 0, borderTop: `2px solid ${color}`, width: '40px' }} />
   );
 };
 

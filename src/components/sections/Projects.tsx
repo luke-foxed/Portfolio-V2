@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
@@ -23,6 +23,9 @@ import {
 } from '@material-ui/icons';
 import { scroller } from 'react-scroll';
 import { getRepos, Irepo } from '../../actions';
+import Seperator from '../layout/Seperator';
+import { ThemeContext } from '../../themeProvider';
+import palette from '../theme';
 
 const projects = [
   {
@@ -58,6 +61,7 @@ const useStyles = makeStyles({
     minHeight: '100vh',
     backgroundImage: 'url(' + pattern + ')',
     boxShadow: 'inset 0px 10px 10px rgba(0,0,0,0.6)',
+    transition: 'background-color 0.5s ease-in-out',
     '& h4': {
       color: 'white',
       fontFamily: 'Raleway',
@@ -76,6 +80,7 @@ const useStyles = makeStyles({
     width: '300px',
     height: '420px',
     textAlign: 'center',
+    borderRadius: '15px',
     '&:hover': {
       transform: 'scale(1.08)',
     },
@@ -85,6 +90,7 @@ const useStyles = makeStyles({
     border: 0,
   },
   githubCard: {
+    borderRadius: '15px',
     margin: '10px',
     paddingBottom: '10px',
     width: '300px',
@@ -95,21 +101,22 @@ const useStyles = makeStyles({
       textTransform: 'uppercase',
     },
     '&:hover': {
-      backgroundColor: '#03a3ff',
-      color: 'white',
+      backgroundColor: '#03a3ff !important',
+      '& p, h6': {
+        color: 'white !important',
+      },
     },
   },
   expandButton: {
     marginTop: '20px',
-    color: '#4a4a4a',
+    color: '#03a3ff',
   },
 });
 export const Projects: React.FC = () => {
   const classes = useStyles();
   const [repos, setRepos] = useState<Irepo[]>([]);
-
-  const [, updateState] = React.useState();
-  const forceUpdate = useCallback(() => updateState({}), []);
+  const { lightTheme } = useContext(ThemeContext);
+  const theme = palette(lightTheme);
 
   useEffect(() => {
     async function fetchRepos() {
@@ -129,13 +136,10 @@ export const Projects: React.FC = () => {
   };
 
   return (
-    <div id='projects' className={classes.root} onLoadStart={forceUpdate}>
+    <div id='projects' className={classes.root}>
       <Typography variant='h4'>Projects</Typography>
 
-      <hr
-        className={classes.divider}
-        style={{ borderTop: '2px solid #03a3ff' }}
-      />
+      <Seperator color='#03a3ff' />
 
       <Typography variant='h5' style={{ color: 'white', display: 'flex' }}>
         <DeveloperBoard
@@ -157,7 +161,11 @@ export const Projects: React.FC = () => {
         style={{ marginTop: '10px' }}
       >
         {projects.map((project) => (
-          <Card raised={true} className={classes.projectCard}>
+          <Card
+            raised={true}
+            className={classes.projectCard}
+            style={{ backgroundColor: theme.cardCol }}
+          >
             <CardActionArea>
               <CardMedia
                 component='img'
@@ -166,11 +174,16 @@ export const Projects: React.FC = () => {
                 image={project.image}
               />
               <CardContent>
-                <Typography gutterBottom variant='h5' component='h2'>
+                <Typography
+                  gutterBottom
+                  variant='h5'
+                  component='h2'
+                  style={{ color: theme.fontCol }}
+                >
                   {project.name}
                 </Typography>
                 <Typography
-                  style={{ height: '120px' }}
+                  style={{ height: '120px', color: theme.fontCol }}
                   variant='body2'
                   color='textSecondary'
                   component='p'
@@ -190,7 +203,7 @@ export const Projects: React.FC = () => {
                   startIcon={<OpenInNew />}
                   size='small'
                   color='primary'
-                  style={{ color: '#4a4a4a' }}
+                  style={{ color: '#03a3ff' }}
                 >
                   View On GitHub
                 </Button>
@@ -202,21 +215,22 @@ export const Projects: React.FC = () => {
 
       <div
         style={{
-          backgroundColor: '#dedede',
+          backgroundColor: theme.background2Col,
           marginTop: '60px',
           width: '100%',
           flexGrow: 1,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          transition: 'background-color 0.5s ease-in-out',
         }}
       >
-        <hr
-          className={classes.divider}
-          style={{ borderTop: '2px solid #4a4a4a' }}
-        />
+        <Seperator color={theme.fontCol} />
 
-        <Typography variant='h5' style={{ display: 'flex', color: '#4a4a4a' }}>
+        <Typography
+          variant='h5'
+          style={{ display: 'flex', color: theme.fontCol }}
+        >
           <GitHub
             fontSize='large'
             style={{
@@ -241,14 +255,20 @@ export const Projects: React.FC = () => {
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <Card className={classes.githubCard}>
+                <Card
+                  className={classes.githubCard}
+                  style={{ backgroundColor: theme.cardCol }}
+                >
                   <CardActionArea>
                     <CardContent>
-                      <Typography variant='h6'>{repo.name}</Typography>
+                      <Typography variant='h6' style={{ color: theme.fontCol }}>
+                        {repo.name}
+                      </Typography>
                       <Typography
                         style={{
                           display: 'flex',
                           alignItems: 'center',
+                          color: theme.fontCol,
                         }}
                       >
                         <Publish
@@ -262,6 +282,7 @@ export const Projects: React.FC = () => {
                         style={{
                           display: 'flex',
                           alignItems: 'center',
+                          color: theme.fontCol,
                         }}
                       >
                         <Star

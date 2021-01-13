@@ -10,10 +10,11 @@ import {
   ListItemText,
   Grid,
   IconButton,
+  Typography,
 } from '@material-ui/core';
 import ReactGA from 'react-ga';
 import { createBrowserHistory } from 'history';
-import { WbSunny } from '@material-ui/icons';
+import { Brightness2, WbSunny } from '@material-ui/icons';
 import { ThemeContext } from '../../themeProvider';
 
 const history = createBrowserHistory();
@@ -36,11 +37,20 @@ const useStyles = makeStyles({
   navBar: {
     transition: 'background-color 0.5s ease-in-out',
   },
+  circle: {
+    height: '45px',
+    width: '45px',
+    borderRadius: '200px',
+    backgroundColor: 'transparent',
+    display: ' flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   navItems: {
     display: 'flex',
     flexDirection: 'row',
-    // paddingLeft: '30px',
-    // textTransform: 'uppercase',
+    textTransform: 'uppercase',
   },
   navActiveItem: {
     color: 'rgb(27,163,251)',
@@ -63,6 +73,82 @@ export const NavbarDesktop: React.FC = () => {
     }
   };
 
+  const RouterComponent = () => {
+    return (
+      <Router history={history}>
+        <List
+          className={classes.navItems}
+          component='nav'
+          style={{
+            color: active ? 'white' : lightTheme ? '#575757' : 'white',
+          }}
+        >
+          <Link
+            activeClass={classes.navActiveItem}
+            onSetActive={handleState}
+            to='home'
+            spy={true}
+            smooth={true}
+            duration={500}
+          >
+            <ListItem button style={{ borderRadius: 25 }}>
+              <ListItemText primary='Home' />
+            </ListItem>
+          </Link>
+
+          <Link
+            activeClass={classes.navActiveItem}
+            onSetActive={handleState}
+            to='about'
+            spy={true}
+            smooth={true}
+            duration={500}
+          >
+            <ListItem button style={{ borderRadius: 25 }}>
+              <ListItemText primary='About' />
+            </ListItem>
+          </Link>
+          <Link
+            activeClass={classes.navActiveItem}
+            onSetActive={handleState}
+            to='skills'
+            spy={true}
+            smooth={true}
+            duration={500}
+          >
+            <ListItem button style={{ borderRadius: 25 }}>
+              <ListItemText primary='Skills' />
+            </ListItem>
+          </Link>
+          <Link
+            activeClass={classes.navActiveItem}
+            onSetActive={handleState}
+            to='projects'
+            spy={true}
+            smooth={true}
+            duration={500}
+          >
+            <ListItem button style={{ borderRadius: 25 }}>
+              <ListItemText primary='Projects' />
+            </ListItem>
+          </Link>
+          <Link
+            activeClass={classes.navActiveItem}
+            onSetActive={handleState}
+            to='contact'
+            spy={true}
+            smooth={true}
+            duration={500}
+          >
+            <ListItem button style={{ borderRadius: 25 }}>
+              <ListItemText primary='Contact' />
+            </ListItem>
+          </Link>
+        </List>
+      </Router>
+    );
+  };
+
   return (
     <AppBar
       elevation={active ? 0 : 5}
@@ -72,161 +158,50 @@ export const NavbarDesktop: React.FC = () => {
           ? 'transparent'
           : lightTheme
           ? '#e3e3e3'
-          : '#000',
+          : 'rgba(0,0,0,0.8)',
       }}
     >
-      <Toolbar style={{ width: '70%', margin: 'auto' }}>
+      <Toolbar
+        style={{
+          width: '60%',
+          margin: 'auto',
+        }}
+      >
         <Grid container justify='center'>
-          <Grid xs={6} container justify='flex-start' item>
-            LOGO
-          </Grid>
-          <Grid xs={6} container justify='flex-end' item alignItems='center'>
-            <Router history={history}>
-              <List
-                className={classes.navItems}
-                component='nav'
-                style={{
-                  color: active ? 'white' : lightTheme ? '#575757' : 'white',
-                }}
-              >
-                <Link
-                  activeClass={classes.navActiveItem}
-                  onSetActive={handleState}
-                  to='home'
-                  spy={true}
-                  smooth={true}
-                  duration={500}
+          <Grid xs={4} container item justify='flex-start' alignItems='center'>
+            <div
+              className={classes.circle}
+              style={{
+                border: `3px solid ${
+                  active ? 'white' : lightTheme ? '#03a3ff' : 'white'
+                }`,
+              }}
+            >
+              <Typography style={{ fontFamily: 'Raleway', fontSize: '25px' }}>
+                <b
+                  style={{
+                    color: active ? 'white' : lightTheme ? '#03a3ff' : 'white',
+                  }}
                 >
-                  <ListItem button style={{ borderRadius: 25 }}>
-                    <ListItemText primary='Home' />
-                  </ListItem>
-                </Link>
+                  L
+                </b>
 
-                <Link
-                  activeClass={classes.navActiveItem}
-                  onSetActive={handleState}
-                  to='about'
-                  spy={true}
-                  smooth={true}
-                  duration={500}
-                >
-                  <ListItem button style={{ borderRadius: 25 }}>
-                    <ListItemText primary='About' />
-                  </ListItem>
-                </Link>
-                <Link
-                  activeClass={classes.navActiveItem}
-                  onSetActive={handleState}
-                  to='skills'
-                  spy={true}
-                  smooth={true}
-                  duration={500}
-                >
-                  <ListItem button style={{ borderRadius: 25 }}>
-                    <ListItemText primary='Skills' />
-                  </ListItem>
-                </Link>
-                <Link
-                  activeClass={classes.navActiveItem}
-                  onSetActive={handleState}
-                  to='projects'
-                  spy={true}
-                  smooth={true}
-                  duration={500}
-                >
-                  <ListItem button style={{ borderRadius: 25 }}>
-                    <ListItemText primary='Projects' />
-                  </ListItem>
-                </Link>
-                <Link
-                  activeClass={classes.navActiveItem}
-                  onSetActive={handleState}
-                  to='contact'
-                  spy={true}
-                  smooth={true}
-                  duration={500}
-                >
-                  <ListItem button style={{ borderRadius: 25 }}>
-                    <ListItemText primary='Contact' />
-                  </ListItem>
-                </Link>
-              </List>
-            </Router>
+                <b style={{ color: '#03a3ff' }}>F</b>
+              </Typography>
+            </div>
+          </Grid>
+
+          <Grid xs={8} container justify='flex-end' item alignItems='center'>
+            <RouterComponent />
             <IconButton style={{ marginLeft: '20px' }} onClick={toggleTheme}>
-              <WbSunny style={{ color: 'white' }} />
+              {lightTheme ? (
+                <Brightness2 style={{ color: active ? 'white' : '#03a3ff' }} />
+              ) : (
+                <WbSunny style={{ color: active ? 'white' : '#03a3ff' }} />
+              )}
             </IconButton>
           </Grid>
         </Grid>
-
-        {/* <Router history={history}>
-            <List
-              className={classes.navItems}
-              component='nav'
-              style={active ? { color: 'white' } : { color: '#575757' }}
-            >
-              <Link
-                activeClass={classes.navActiveItem}
-                onSetActive={handleState}
-                to='home'
-                spy={true}
-                smooth={true}
-                duration={500}
-              >
-                <ListItem button style={{ borderRadius: 25 }}>
-                  <ListItemText primary='Home' />
-                </ListItem>
-              </Link>
-
-              <Link
-                activeClass={classes.navActiveItem}
-                onSetActive={handleState}
-                to='about'
-                spy={true}
-                smooth={true}
-                duration={500}
-              >
-                <ListItem button style={{ borderRadius: 25 }}>
-                  <ListItemText primary='About' />
-                </ListItem>
-              </Link>
-              <Link
-                activeClass={classes.navActiveItem}
-                onSetActive={handleState}
-                to='skills'
-                spy={true}
-                smooth={true}
-                duration={500}
-              >
-                <ListItem button style={{ borderRadius: 25 }}>
-                  <ListItemText primary='Skills' />
-                </ListItem>
-              </Link>
-              <Link
-                activeClass={classes.navActiveItem}
-                onSetActive={handleState}
-                to='projects'
-                spy={true}
-                smooth={true}
-                duration={500}
-              >
-                <ListItem button style={{ borderRadius: 25 }}>
-                  <ListItemText primary='Projects' />
-                </ListItem>
-              </Link>
-              <Link
-                activeClass={classes.navActiveItem}
-                onSetActive={handleState}
-                to='contact'
-                spy={true}
-                smooth={true}
-                duration={500}
-              >
-                <ListItem button style={{ borderRadius: 25 }}>
-                  <ListItemText primary='Contact' />
-                </ListItem>
-              </Link>
-            </List>
-          </Router> */}
       </Toolbar>
     </AppBar>
   );

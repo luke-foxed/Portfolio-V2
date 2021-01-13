@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
@@ -12,6 +12,9 @@ import {
 } from '@material-ui/core';
 import { scroller } from 'react-scroll';
 import { ArrowForward, ExpandMore } from '@material-ui/icons';
+import palette from '../theme';
+import Seperator from '../layout/Seperator';
+import { ThemeContext } from '../../themeProvider';
 
 const Fade = require('react-reveal/Fade');
 
@@ -21,8 +24,7 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     minHeight: '100vh',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor: 'rgb(232, 232, 232)',
+    transition: 'background-color 0.5s ease-in-out',
     '& h4': {
       fontFamily: 'Raleway',
       textTransform: 'uppercase',
@@ -35,16 +37,11 @@ const useStyles = makeStyles({
       textAlign: 'center',
     },
   },
-
-  divider: {
-    width: '40px',
-    border: 0,
-  },
-
   card: {
     transition: 'all .2s ease-in-out',
     width: '280px',
     height: '480px',
+    borderRadius: '15px',
     '&:hover': {
       transform: 'scale(1.08)',
     },
@@ -91,10 +88,14 @@ const security = [
   'LogRhythm',
   'Carbon Black',
   'CrowdStrike',
+  'Kali Linux',
 ];
 
 export const Skills: React.FC = () => {
   const classes = useStyles();
+  const { lightTheme } = useContext(ThemeContext);
+
+  const theme = palette(lightTheme);
 
   const handleExpandClick = () => {
     scroller.scrollTo('projects', {
@@ -105,18 +106,20 @@ export const Skills: React.FC = () => {
   };
 
   return (
-    <div id='skills' className={classes.root}>
-      <Typography variant='h4' style={{ color: '#4a4a4a' }}>
+    <div
+      id='skills'
+      className={classes.root}
+      style={{ backgroundColor: theme.background2Col }}
+    >
+      <Typography variant='h4' style={{ color: theme.fontCol }}>
         Skills
       </Typography>
-      <hr
-        className={classes.divider}
-        style={{ borderTop: '2px solid #03a3ff' }}
-      />
+
+      <Seperator color='#03a3ff' />
 
       <Typography
         style={{
-          color: '#4a4a4a',
+          color: theme.fontCol,
           padding: '20px',
           width: '50%',
           textAlign: 'center',
@@ -126,10 +129,7 @@ export const Skills: React.FC = () => {
         the way, be it through college, work or my own interest!
       </Typography>
 
-      <hr
-        className={classes.divider}
-        style={{ borderTop: '2px solid #4a4a4a' }}
-      />
+      <Seperator color={theme.fontCol} />
 
       <Grid
         container
@@ -140,7 +140,11 @@ export const Skills: React.FC = () => {
         style={{ marginTop: '30px', marginBottom: '10px', width: '100%' }}
       >
         <Grid item>
-          <Paper elevation={3} className={classes.card}>
+          <Paper
+            elevation={3}
+            className={classes.card}
+            style={{ backgroundColor: theme.cardCol, color: theme.fontCol }}
+          >
             <div style={{ width: '100%', textAlign: 'center' }}>
               <img
                 alt='frontend'
@@ -148,10 +152,8 @@ export const Skills: React.FC = () => {
               />
             </div>
             <Typography variant='h5'>Frontend</Typography>
-            <hr
-              className={classes.divider}
-              style={{ borderTop: '2px solid #4a4a4a' }}
-            />
+
+            <Seperator color={theme.fontCol} />
 
             <List>
               {frontend.map((item, index) => (
@@ -172,7 +174,11 @@ export const Skills: React.FC = () => {
         </Grid>
 
         <Grid item>
-          <Paper elevation={3} className={classes.card}>
+          <Paper
+            elevation={3}
+            className={classes.card}
+            style={{ backgroundColor: theme.cardCol, color: theme.fontCol }}
+          >
             <div style={{ width: '100%', textAlign: 'center' }}>
               <img
                 alt='backend'
@@ -180,10 +186,8 @@ export const Skills: React.FC = () => {
               />
             </div>
             <Typography variant='h5'>Backend</Typography>
-            <hr
-              className={classes.divider}
-              style={{ borderTop: '2px solid #4a4a4a' }}
-            />
+
+            <Seperator color={theme.fontCol} />
 
             <List>
               {backend.map((item, index) => (
@@ -204,7 +208,11 @@ export const Skills: React.FC = () => {
         </Grid>
 
         <Grid item>
-          <Paper elevation={3} className={classes.card}>
+          <Paper
+            elevation={3}
+            className={classes.card}
+            style={{ backgroundColor: theme.cardCol, color: theme.fontCol }}
+          >
             <div style={{ width: '100%', textAlign: 'center' }}>
               <img
                 alt='tech'
@@ -212,10 +220,8 @@ export const Skills: React.FC = () => {
               />
             </div>
             <Typography variant='h5'>Other Tech</Typography>
-            <hr
-              className={classes.divider}
-              style={{ borderTop: '2px solid #4a4a4a' }}
-            />
+
+            <Seperator color={theme.fontCol} />
 
             <List>
               {tech.map((item, index) => (
@@ -236,7 +242,11 @@ export const Skills: React.FC = () => {
         </Grid>
 
         <Grid item>
-          <Paper elevation={3} className={classes.card}>
+          <Paper
+            elevation={3}
+            className={classes.card}
+            style={{ backgroundColor: theme.cardCol, color: theme.fontCol }}
+          >
             <div style={{ width: '100%', textAlign: 'center' }}>
               <img
                 alt='security'
@@ -244,10 +254,8 @@ export const Skills: React.FC = () => {
               />
             </div>
             <Typography variant='h5'>Security</Typography>
-            <hr
-              className={classes.divider}
-              style={{ borderTop: '2px solid #4a4a4a' }}
-            />
+
+            <Seperator color={theme.fontCol} />
 
             <List>
               {security.map((item, index) => (

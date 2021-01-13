@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import './App.css';
 import { NavbarDesktop } from '../navbar/NavbarDesktop';
 import { Home } from '../sections/Home';
 import { About } from '../sections/About';

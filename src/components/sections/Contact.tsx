@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Button } from '@material-ui/core';
 import { scroller } from 'react-scroll';
 import cover from '../../assets/images/cover.png';
 import { Description, ExpandLess, Favorite } from '@material-ui/icons';
+import { ThemeContext } from '../../themeProvider';
+import palette from '../theme';
+import Seperator from '../layout/Seperator';
 
 const useStyles = makeStyles({
   root: {
@@ -11,7 +14,7 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     minHeight: '100vh',
-    backgroundColor: '#cccccc',
+    transition: 'background-color 0.5s ease-in-out',
 
     '& h4': {
       fontFamily: 'Raleway',
@@ -66,10 +69,13 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     alignItems: 'center',
     color: '#dbdbdb',
+    transition: 'background-color 0.5s ease-in-out',
   },
 });
 export const Contact: React.FC = () => {
   const classes = useStyles();
+  const { lightTheme } = useContext(ThemeContext);
+  const theme = palette(lightTheme);
 
   const handleTopClick = () => {
     scroller.scrollTo('home', {
@@ -80,26 +86,28 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <div id='contact' className={classes.root}>
+    <div
+      id='contact'
+      className={classes.root}
+      style={{ backgroundColor: theme.background1Col }}
+    >
       <Grid
         container
         direction='column'
         xs={12}
         alignItems='center'
-        style={{ backgroundColor: '#cccccc', width: '100%' }}
+        style={{ width: '100%' }}
       >
-        <Typography variant='h4' style={{ color: '#4a4a4a' }}>
+        <Typography variant='h4' style={{ color: theme.fontCol }}>
           Contact
         </Typography>
-        <hr
-          className={classes.divider}
-          style={{ borderTop: '2px solid #03a3ff' }}
-        ></hr>
+
+        <Seperator color='#03a3ff' />
       </Grid>
 
       <Typography
         style={{
-          color: '#4a4a4a',
+          color: theme.fontCol,
           padding: '20px',
           width: '50%',
           textAlign: 'center',
@@ -169,10 +177,7 @@ export const Contact: React.FC = () => {
         </a>
       </Grid>
 
-      <hr
-        className={classes.divider}
-        style={{ borderTop: '2px solid #4a4a4a' }}
-      />
+      <Seperator color={theme.fontCol} />
 
       <div
         style={{
@@ -184,7 +189,7 @@ export const Contact: React.FC = () => {
       >
         <Typography
           variant='h5'
-          style={{ display: 'flex', color: '#4a4a4a', flex: '1 0 auto' }}
+          style={{ display: 'flex', color: theme.fontCol, flex: '1 0 auto' }}
         >
           <Description
             fontSize='large'
@@ -197,7 +202,7 @@ export const Contact: React.FC = () => {
         </Typography>
         <Typography
           style={{
-            color: '#4a4a4a',
+            color: theme.fontCol,
             padding: '20px',
             width: '55%',
             textAlign: 'center',
@@ -212,6 +217,7 @@ export const Contact: React.FC = () => {
           href='mailto:lukefoxportfolio@gmail.com'
           rel='noopener noreferrer'
           target='_blank'
+          style={{ color: theme.fontCol }}
           className={classes.contactButton}
         >
           Send an Email
@@ -219,7 +225,7 @@ export const Contact: React.FC = () => {
 
         <Button
           onClick={handleTopClick}
-          style={{ margin: '20px' }}
+          style={{ margin: '20px', color: '#03a3ff' }}
           startIcon={<ExpandLess fontSize='large' />}
         >
           Back To Top
@@ -228,7 +234,7 @@ export const Contact: React.FC = () => {
         <br />
       </div>
 
-      <div className={classes.footer}>
+      <div className={classes.footer} style={{ backgroundColor: theme.footer }}>
         <p>Made with</p> &nbsp; <Favorite style={{ color: '#03a3ff' }} /> &nbsp;
         <p>by Luke Fox, 2020</p>
       </div>
