@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { NavbarDesktop } from '../navbar/NavbarDesktop';
 import { Home } from '../sections/Home';
 import { About } from '../sections/About';
@@ -7,13 +7,20 @@ import { Contact } from '../sections/Contact';
 import { Projects } from '../sections/Projects';
 import { NavbarMobile } from '../navbar/NabarMobile';
 import { isMobile } from 'react-device-detect';
-import './App.css';
 
 require('dotenv').config({ debug: true });
 
 const App: React.FC = () => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      setWidth(window.innerWidth);
+    });
+  }, [width]);
+
   const ResponsiveNav: FC = () => {
-    if (isMobile) {
+    if (isMobile || width < 700) {
       return <NavbarMobile />;
     } else {
       return <NavbarDesktop />;

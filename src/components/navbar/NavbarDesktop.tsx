@@ -11,6 +11,7 @@ import {
   Grid,
   IconButton,
   Typography,
+  Fade,
 } from '@material-ui/core';
 import ReactGA from 'react-ga';
 import { createBrowserHistory } from 'history';
@@ -167,27 +168,31 @@ export const NavbarDesktop: React.FC = () => {
     >
       <Toolbar
         style={{
-          width: '60%',
+          width: '75%',
           margin: 'auto',
         }}
       >
         <Grid container justify='center'>
-          <Grid xs={4} container item justify='flex-start' alignItems='center'>
-            {active ? (
-              <div className={classes.circle} style={{}}>
+          <Grid xs={3} container item justify='flex-start' alignItems='center'>
+            <Fade in={active} timeout={1000}>
+              <div className={classes.circle}>
                 <Typography style={{ fontFamily: 'Raleway', fontSize: '25px' }}>
                   L<b style={{ color: '#03a3ff' }}>F</b>
                 </Typography>
               </div>
-            ) : (
-              <Typography style={{ fontFamily: 'Raleway', fontSize: '25px' }}>
-                <b style={{ color: theme.fontCol }}>LUKE_</b>
-                <b style={{ color: '#03a3ff' }}>FOX</b>
-              </Typography>
-            )}
+            </Fade>
+
+            <Fade in={!active} timeout={1000}>
+              <div style={{}}>
+                <Typography style={{ fontFamily: 'Raleway', fontSize: '25px' }}>
+                  <b style={{ color: theme.fontCol }}>LUKE_</b>
+                  <b style={{ color: '#03a3ff' }}>FOX</b>
+                </Typography>
+              </div>
+            </Fade>
           </Grid>
 
-          <Grid xs={8} container justify='flex-end' item alignItems='center'>
+          <Grid xs={9} container justify='flex-end' item alignItems='center'>
             <RouterComponent />
             <IconButton style={{ marginLeft: '20px' }} onClick={toggleTheme}>
               {lightTheme ? (

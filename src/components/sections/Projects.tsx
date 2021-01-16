@@ -20,8 +20,6 @@ import {
   Publish,
   OpenInNew,
   ExpandMore,
-  ArrowLeft,
-  ArrowRight,
 } from '@material-ui/icons';
 import { scroller } from 'react-scroll';
 import { getRepos, Irepo } from '../../actions';
@@ -47,24 +45,24 @@ const projects = [
     image: require('../../assets/images/socialcleanr.png'),
     name: 'SocialCleanr',
     description: `A web app that uses machine learning and social media APIs to pull user's Facebook/Twitter content before filtering it for 
-    innapropriate imagry or text. All innapropriate detected via machine learning are then alerted to the user`,
+    innapropriate imagry or text. All innapropriate detected via machine learning are then alerted to the user.`,
     link: 'https://github.com/Foxyf76/Social-Cleaner',
   },
 
   {
-    image: require('../../assets/images/totalosint.png'),
+    image: require('../../assets/images/totalosint1.png'),
     name: 'TotalOSINT (WIP)',
-    description: `A work-in-progress app for scraping and combining OSINT from across multiple websites including VirusTotal and IBM X-Force. This 
-    app supports searches on IP addresses, file hashes and domains`,
+    description: `A web app for scraping and combining OSINT from across multiple websites including VirusTotal, MetaDefender and IBM X-Force. This 
+    app supports searches on IP addresses, file hashes and domains.`,
     link: 'https://github.com/Foxyf76/TotalOSINT',
   },
 
   {
-    image: require('../../assets/images/totalosint.png'),
+    image: require('../../assets/images/gifme.png'),
     name: 'GifMe',
-    description: `A work-in-progress app for scraping and combining OSINT from across multiple websites including VirusTotal and IBM X-Force. This 
-    app supports searches on IP addresses, file hashes and domains`,
-    link: 'https://github.com/Foxyf76/TotalOSINT',
+    description: `A small app built as part of a coding challenge, GifMe uses the Giphy API to display and lazy-load trending images from Giphy.
+    Also supported by this app are searching and saving functionality.`,
+    link: 'https://github.com/Foxyf76/GifMe',
   },
 ];
 
@@ -72,6 +70,7 @@ const useStyles = makeStyles({
   root: {
     display: 'flex',
     flexDirection: 'column',
+    overflow: 'hidden',
     alignItems: 'center',
     minHeight: '100vh',
     backgroundImage: 'url(' + pattern + ')',
@@ -88,12 +87,14 @@ const useStyles = makeStyles({
       textTransform: 'uppercase',
       padding: '10px',
     },
-
     '& .slick-list': {
-      maxHeight: '70vh',
-      margin: '20px !important',
-      boxShadow:
-        '25px 0px 20px -25px rgba(0, 0, 0, 0.75), -25px 0px 20px -25px rgba(0, 0, 0, 0.75)',
+      margin: '10px',
+    },
+    '& .slick-initialized': {
+      width: isMobile ? 'auto' : '70%',
+    },
+    '& .slick-dots li button:before': {
+      color: 'white',
     },
   },
   projectCard: {
@@ -102,20 +103,10 @@ const useStyles = makeStyles({
     maxWidth: '300px',
     height: '420px',
     textAlign: 'center',
-    borderRadius: '15px',
+
     '&:hover': {
       transform: 'scale(1.08)',
     },
-  },
-  divider: {
-    width: '40px',
-    border: 0,
-  },
-  carouselTest: {
-    maxWidth: '75%',
-  },
-  carouselDots: {
-    color: 'white',
   },
   githubCard: {
     borderRadius: '15px',
@@ -163,42 +154,13 @@ export const Projects: React.FC = () => {
     });
   };
 
-  var settings = {
+  const settings = {
     dots: true,
     infinite: false,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 4,
+    slidesToScroll: 1,
     initialSlide: 2,
-
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 4,
-          initialSlide: 2,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 4,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 4,
-          initialSlide: 2,
-        },
-      },
-    ],
   };
 
   return (
@@ -218,81 +180,75 @@ export const Projects: React.FC = () => {
         Recent Works
       </Typography>
 
-      <Grid
-        container
-        direction={'row'}
-        justify='center'
-        alignItems='center'
-        alignContent='center'
-        spacing={4}
-        style={{
-          marginTop: '10px',
-          maxWidth: '80vw',
-        }}
+      <Slider
+        {...settings}
+        centerMode={true}
+        variableWidth={true}
+        draggable={isMobile}
+        swipeToSlide={isMobile}
+        arrows={!isMobile}
       >
-        <Slider
-          {...settings}
-          className={classes.carouselTest}
-          centerMode={true}
-          variableWidth={true}
-          draggable={isMobile}
-          // dotsClass={classes.carouselDots}
-        >
-          {projects.map((project, key) => (
-            <Grid item xs={12}>
-              <Card
-                raised={true}
-                className={classes.projectCard}
-                style={{ backgroundColor: theme.cardCol }}
-              >
-                <CardActionArea>
-                  <CardMedia
-                    component='img'
-                    alt={project.name}
-                    height='180'
-                    image={project.image}
-                  />
-                  <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant='h5'
-                      component='h2'
-                      style={{ color: theme.fontCol }}
-                    >
-                      {project.name}
-                    </Typography>
-                    <Typography
-                      style={{ height: '120px', color: theme.fontCol }}
-                      variant='body2'
-                      color='textSecondary'
-                      component='p'
-                    >
-                      {project.description}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions style={{ textAlign: 'center' }}>
-                  <a
-                    href={project.link}
-                    style={{ textDecoration: 'none' }}
-                    target='_blank'
-                    rel='noopener noreferrer'
+        {projects.map((project, key) => (
+          <div>
+            <Card
+              key={key}
+              raised={true}
+              className={classes.projectCard}
+              style={{
+                borderRadius: '15px',
+                backgroundColor: theme.cardCol,
+              }}
+            >
+              <CardActionArea>
+                <CardMedia
+                  component='img'
+                  alt={project.name}
+                  height='180'
+                  image={project.image}
+                />
+                <CardContent>
+                  <Typography
+                    gutterBottom
+                    variant='h5'
+                    component='h2'
+                    style={{ color: theme.fontCol }}
                   >
-                    <Button
-                      startIcon={<OpenInNew />}
-                      size='small'
-                      color='primary'
-                      style={{ color: '#03a3ff' }}
-                    >
-                      View On GitHub
-                    </Button>
-                  </a>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Slider>
-      </Grid>
+                    {project.name}
+                  </Typography>
+                  <Typography
+                    style={{ height: '120px', color: theme.fontCol }}
+                    variant='body2'
+                    color='textSecondary'
+                    component='p'
+                  >
+                    {project.description}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <a
+                  href={project.link}
+                  style={{
+                    textDecoration: 'none',
+                    margin: '0 auto',
+                  }}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <Button
+                    startIcon={<OpenInNew />}
+                    size='small'
+                    color='primary'
+                    style={{ color: '#03a3ff' }}
+                  >
+                    View On GitHub
+                  </Button>
+                </a>
+              </CardActions>
+            </Card>
+          </div>
+        ))}
+      </Slider>
 
       <div
         style={{
