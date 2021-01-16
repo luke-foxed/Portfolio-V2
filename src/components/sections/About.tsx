@@ -15,6 +15,7 @@ import me from '../../assets/images/me.png';
 import { ThemeContext } from '../../themeProvider';
 import palette from '../theme';
 import Seperator from '../layout/Seperator';
+import { isMobile } from 'react-device-detect';
 
 const Fade = require('react-reveal/Fade');
 
@@ -124,14 +125,12 @@ export const About: React.FC = () => {
         </Typography>
       </Grid>
 
-      {/* GRID 2 */}
-
       <Grid
         container
         direction='column'
         xs={12}
         alignItems='center'
-        style={{ width: '70%', marginTop: '20px' }}
+        style={{ width: isMobile ? '100%' : '70%', marginTop: '20px' }}
       >
         <Typography
           variant='h5'
@@ -187,7 +186,7 @@ export const About: React.FC = () => {
                     </ListItemIcon>
                     <ListItemText
                       primary={
-                        'I attended Waterford Institute of Technology, studying Applied Computing (level 8) with a specialty in Forensics and Security - where I received first class honors.'
+                        'I attended Waterford Institute of Technology, studying Applied Computing (level 8) with a specialty in Forensics and Security - where I graduated with first class honors.'
                       }
                     />
                   </ListItem>

@@ -16,6 +16,7 @@ import ReactGA from 'react-ga';
 import { createBrowserHistory } from 'history';
 import { Brightness2, WbSunny } from '@material-ui/icons';
 import { ThemeContext } from '../../themeProvider';
+import palette from '../theme';
 
 const history = createBrowserHistory();
 const trackingId = process.env.REACT_APP_TRACKING_ID;
@@ -41,11 +42,13 @@ const useStyles = makeStyles({
     height: '45px',
     width: '45px',
     borderRadius: '200px',
+    border: '3px solid white',
     backgroundColor: 'transparent',
     display: ' flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    boxShadow: '0px 0px 33px 0px rgba(0,0,0,0.5)',
   },
   navItems: {
     display: 'flex',
@@ -62,6 +65,7 @@ export const NavbarDesktop: React.FC = () => {
   const classes = useStyles({});
   const [active, setActive] = useState(false);
   const { lightTheme, toggleTheme } = useContext(ThemeContext);
+  const theme = palette(lightTheme);
 
   const handleState = (to: any) => {
     if (to === 'home') {
@@ -169,26 +173,18 @@ export const NavbarDesktop: React.FC = () => {
       >
         <Grid container justify='center'>
           <Grid xs={4} container item justify='flex-start' alignItems='center'>
-            <div
-              className={classes.circle}
-              style={{
-                border: `3px solid ${
-                  active ? 'white' : lightTheme ? '#03a3ff' : 'white'
-                }`,
-              }}
-            >
+            {active ? (
+              <div className={classes.circle} style={{}}>
+                <Typography style={{ fontFamily: 'Raleway', fontSize: '25px' }}>
+                  L<b style={{ color: '#03a3ff' }}>F</b>
+                </Typography>
+              </div>
+            ) : (
               <Typography style={{ fontFamily: 'Raleway', fontSize: '25px' }}>
-                <b
-                  style={{
-                    color: active ? 'white' : lightTheme ? '#03a3ff' : 'white',
-                  }}
-                >
-                  L
-                </b>
-
-                <b style={{ color: '#03a3ff' }}>F</b>
+                <b style={{ color: theme.fontCol }}>LUKE_</b>
+                <b style={{ color: '#03a3ff' }}>FOX</b>
               </Typography>
-            </div>
+            )}
           </Grid>
 
           <Grid xs={8} container justify='flex-end' item alignItems='center'>

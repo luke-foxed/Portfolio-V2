@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
@@ -20,12 +20,19 @@ import {
   Publish,
   OpenInNew,
   ExpandMore,
+  ArrowLeft,
+  ArrowRight,
 } from '@material-ui/icons';
 import { scroller } from 'react-scroll';
 import { getRepos, Irepo } from '../../actions';
 import Seperator from '../layout/Seperator';
 import { ThemeContext } from '../../themeProvider';
 import palette from '../theme';
+
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { isMobile } from 'react-device-detect';
 
 const projects = [
   {
@@ -47,6 +54,14 @@ const projects = [
   {
     image: require('../../assets/images/totalosint.png'),
     name: 'TotalOSINT (WIP)',
+    description: `A work-in-progress app for scraping and combining OSINT from across multiple websites including VirusTotal and IBM X-Force. This 
+    app supports searches on IP addresses, file hashes and domains`,
+    link: 'https://github.com/Foxyf76/TotalOSINT',
+  },
+
+  {
+    image: require('../../assets/images/totalosint.png'),
+    name: 'GifMe',
     description: `A work-in-progress app for scraping and combining OSINT from across multiple websites including VirusTotal and IBM X-Force. This 
     app supports searches on IP addresses, file hashes and domains`,
     link: 'https://github.com/Foxyf76/TotalOSINT',
@@ -73,11 +88,18 @@ const useStyles = makeStyles({
       textTransform: 'uppercase',
       padding: '10px',
     },
+
+    '& .slick-list': {
+      maxHeight: '70vh',
+      margin: '20px !important',
+      boxShadow:
+        '25px 0px 20px -25px rgba(0, 0, 0, 0.75), -25px 0px 20px -25px rgba(0, 0, 0, 0.75)',
+    },
   },
   projectCard: {
     transition: 'all .2s ease-in-out',
     margin: '20px',
-    width: '300px',
+    maxWidth: '300px',
     height: '420px',
     textAlign: 'center',
     borderRadius: '15px',
@@ -88,6 +110,12 @@ const useStyles = makeStyles({
   divider: {
     width: '40px',
     border: 0,
+  },
+  carouselTest: {
+    maxWidth: '75%',
+  },
+  carouselDots: {
+    color: 'white',
   },
   githubCard: {
     borderRadius: '15px',
@@ -135,6 +163,44 @@ export const Projects: React.FC = () => {
     });
   };
 
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 4,
+    initialSlide: 2,
+
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 4,
+          initialSlide: 2,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 4,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 4,
+          initialSlide: 2,
+        },
+      },
+    ],
+  };
+
   return (
     <div id='projects' className={classes.root}>
       <Typography variant='h4'>Projects</Typography>
@@ -156,61 +222,76 @@ export const Projects: React.FC = () => {
         container
         direction={'row'}
         justify='center'
+        alignItems='center'
+        alignContent='center'
         spacing={4}
-        xs={12}
-        style={{ marginTop: '10px' }}
+        style={{
+          marginTop: '10px',
+          maxWidth: '80vw',
+        }}
       >
-        {projects.map((project) => (
-          <Card
-            raised={true}
-            className={classes.projectCard}
-            style={{ backgroundColor: theme.cardCol }}
-          >
-            <CardActionArea>
-              <CardMedia
-                component='img'
-                alt={project.name}
-                height='180'
-                image={project.image}
-              />
-              <CardContent>
-                <Typography
-                  gutterBottom
-                  variant='h5'
-                  component='h2'
-                  style={{ color: theme.fontCol }}
-                >
-                  {project.name}
-                </Typography>
-                <Typography
-                  style={{ height: '120px', color: theme.fontCol }}
-                  variant='body2'
-                  color='textSecondary'
-                  component='p'
-                >
-                  {project.description}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions style={{ textAlign: 'center' }}>
-              <a
-                href={project.link}
-                style={{ textDecoration: 'none' }}
-                target='_blank'
-                rel='noopener noreferrer'
+        <Slider
+          {...settings}
+          className={classes.carouselTest}
+          centerMode={true}
+          variableWidth={true}
+          draggable={isMobile}
+          // dotsClass={classes.carouselDots}
+        >
+          {projects.map((project, key) => (
+            <Grid item xs={12}>
+              <Card
+                raised={true}
+                className={classes.projectCard}
+                style={{ backgroundColor: theme.cardCol }}
               >
-                <Button
-                  startIcon={<OpenInNew />}
-                  size='small'
-                  color='primary'
-                  style={{ color: '#03a3ff' }}
-                >
-                  View On GitHub
-                </Button>
-              </a>
-            </CardActions>
-          </Card>
-        ))}
+                <CardActionArea>
+                  <CardMedia
+                    component='img'
+                    alt={project.name}
+                    height='180'
+                    image={project.image}
+                  />
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant='h5'
+                      component='h2'
+                      style={{ color: theme.fontCol }}
+                    >
+                      {project.name}
+                    </Typography>
+                    <Typography
+                      style={{ height: '120px', color: theme.fontCol }}
+                      variant='body2'
+                      color='textSecondary'
+                      component='p'
+                    >
+                      {project.description}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions style={{ textAlign: 'center' }}>
+                  <a
+                    href={project.link}
+                    style={{ textDecoration: 'none' }}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <Button
+                      startIcon={<OpenInNew />}
+                      size='small'
+                      color='primary'
+                      style={{ color: '#03a3ff' }}
+                    >
+                      View On GitHub
+                    </Button>
+                  </a>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Slider>
       </Grid>
 
       <div

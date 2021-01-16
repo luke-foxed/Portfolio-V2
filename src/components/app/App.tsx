@@ -7,6 +7,7 @@ import { Contact } from '../sections/Contact';
 import { Projects } from '../sections/Projects';
 import { NavbarMobile } from '../navbar/NabarMobile';
 import { isMobile } from 'react-device-detect';
+import './App.css';
 
 require('dotenv').config({ debug: true });
 
