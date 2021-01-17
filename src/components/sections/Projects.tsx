@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, Fragment } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
@@ -91,7 +91,10 @@ const useStyles = makeStyles({
       margin: '10px',
     },
     '& .slick-initialized': {
-      width: isMobile ? 'auto' : '70%',
+      /* I have no idea why, but setting this width for mobile seems to fix the swiping on mobile
+       Without the width being set, swiping doesn't work. If the with is set to <=70%, the cards stack in a single slide */
+      width: isMobile ? '110%' : '70%',
+      height: '500px',
     },
     '& .slick-dots li button:before': {
       color: 'white',
@@ -154,15 +157,6 @@ export const Projects: React.FC = () => {
     });
   };
 
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    initialSlide: 2,
-  };
-
   return (
     <div id='projects' className={classes.root}>
       <Typography variant='h4'>Projects</Typography>
@@ -181,17 +175,17 @@ export const Projects: React.FC = () => {
       </Typography>
 
       <Slider
-        {...settings}
+        dots={true}
         centerMode={true}
         variableWidth={true}
-        draggable={isMobile}
-        swipeToSlide={isMobile}
+        draggable={true}
+        swipeToSlide={true}
+        swipe={true}
         arrows={!isMobile}
       >
         {projects.map((project, key) => (
-          <div>
+          <div key={key}>
             <Card
-              key={key}
               raised={true}
               className={classes.projectCard}
               style={{
