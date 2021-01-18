@@ -32,6 +32,7 @@ const useStyles = makeStyles({
     fontFamily: 'Raleway',
     color: 'white',
     fontSize: '18px',
+    textAlign: 'center',
   },
   expandButton: {
     marginTop: '20px',

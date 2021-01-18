@@ -36,9 +36,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-scroll": "^1.8.1",
-    "react-scroll-parallax": "^2.3.5",
     "react-slick": "^0.27.14",
-    "react-spring": "^8.0.27",
     "require": "^2.4.20",
     "slick-carousel": "^1.8.1",
     "typescript": "^3.9.7"

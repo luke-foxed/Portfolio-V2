@@ -1,4 +1,4 @@
-const palette = (isLight: boolean) => {
+export const palette = (isLight: boolean) => {
   return {
     background1Col: isLight ? '#cccccc' : '#2b2b2b',
     background2Col: isLight ? '#dedede' : '#1c1c1c',
@@ -8,4 +8,4 @@ const palette = (isLight: boolean) => {
   };
 };
 
-export default palette;
+export const primaryCol = '#03a3ff';

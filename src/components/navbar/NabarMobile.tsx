@@ -15,6 +15,7 @@ import {
 import ReactGA from 'react-ga';
 import { ThemeContext } from '../../themeProvider';
 import { Brightness2, WbSunny } from '@material-ui/icons';
+import { primaryCol } from '../theme';
 
 const history = createBrowserHistory();
 const trackingId = process.env.REACT_APP_TRACKING_ID;
@@ -37,7 +38,7 @@ const useStyles = makeStyles({
     textTransform: 'uppercase',
   },
   navActiveItem: {
-    color: 'rgb(27,163,251)',
+    color: primaryCol,
     borderRadius: 25,
   },
 });
@@ -70,9 +71,8 @@ export const NavbarMobile: React.FC = () => {
     },
     bmBurgerBars: {
       transition: 'background-color 0.5s ease-in-out',
-      background: active ? '#e3e3e3' : 'rgb(27,163,251)',
+      background: active ? '#e3e3e3' : primaryCol,
     },
-
     bmCrossButton: {
       height: '24px',
       width: '24px',
@@ -112,7 +112,7 @@ export const NavbarMobile: React.FC = () => {
       <BrowserRouter>
         <Typography
           variant={'h3'}
-          style={{ textAlign: 'center', color: 'rgb(27,163,251)' }}
+          style={{ textAlign: 'center', color: primaryCol }}
         >
           LF
         </Typography>
@@ -186,9 +186,9 @@ export const NavbarMobile: React.FC = () => {
 
           <IconButton style={{ marginLeft: '20px' }} onClick={toggleTheme}>
             {lightTheme ? (
-              <Brightness2 style={{ color: active ? 'white' : '#03a3ff' }} />
+              <Brightness2 style={{ color: active ? 'white' : primaryCol }} />
             ) : (
-              <WbSunny style={{ color: active ? 'white' : '#03a3ff' }} />
+              <WbSunny style={{ color: active ? 'white' : primaryCol }} />
             )}
           </IconButton>
         </List>

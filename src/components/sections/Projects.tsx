@@ -25,8 +25,7 @@ import { scroller } from 'react-scroll';
 import { getRepos, Irepo } from '../../actions';
 import Seperator from '../layout/Seperator';
 import { ThemeContext } from '../../themeProvider';
-import palette from '../theme';
-
+import { primaryCol, palette } from '../theme';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -123,7 +122,7 @@ const useStyles = makeStyles({
       textTransform: 'uppercase',
     },
     '&:hover': {
-      backgroundColor: '#03a3ff !important',
+      backgroundColor: `${primaryCol} !important`,
       '& p, h6': {
         color: 'white !important',
       },
@@ -131,7 +130,7 @@ const useStyles = makeStyles({
   },
   expandButton: {
     marginTop: '20px',
-    color: '#03a3ff',
+    color: primaryCol,
   },
 });
 export const Projects: React.FC = () => {
@@ -161,13 +160,13 @@ export const Projects: React.FC = () => {
     <div id='projects' className={classes.root}>
       <Typography variant='h4'>Projects</Typography>
 
-      <Seperator color='#03a3ff' />
+      <Seperator color={primaryCol} />
 
       <Typography variant='h5' style={{ color: 'white', display: 'flex' }}>
         <DeveloperBoard
           fontSize='large'
           style={{
-            color: '#03a3ff',
+            color: primaryCol,
             paddingRight: '10px',
           }}
         />
@@ -233,7 +232,7 @@ export const Projects: React.FC = () => {
                     startIcon={<OpenInNew />}
                     size='small'
                     color='primary'
-                    style={{ color: '#03a3ff' }}
+                    style={{ color: primaryCol }}
                   >
                     View On GitHub
                   </Button>
@@ -265,7 +264,7 @@ export const Projects: React.FC = () => {
           <GitHub
             fontSize='large'
             style={{
-              color: '#03a3ff',
+              color: primaryCol,
               paddingRight: '10px',
             }}
           />
@@ -275,7 +274,7 @@ export const Projects: React.FC = () => {
         {repos.length === 0 ? (
           <CircularProgress
             value={0}
-            style={{ padding: '20px', color: '#03a3ff' }}
+            style={{ padding: '20px', color: primaryCol }}
           />
         ) : (
           <Grid container direction={'row'} justify='center' xs={12}>

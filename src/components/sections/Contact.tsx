@@ -5,7 +5,7 @@ import { scroller } from 'react-scroll';
 import cover from '../../assets/images/cover.png';
 import { Description, ExpandLess, Favorite } from '@material-ui/icons';
 import { ThemeContext } from '../../themeProvider';
-import palette from '../theme';
+import { primaryCol, palette } from '../theme';
 import Seperator from '../layout/Seperator';
 
 const useStyles = makeStyles({
@@ -15,7 +15,6 @@ const useStyles = makeStyles({
     alignItems: 'center',
     minHeight: '100vh',
     transition: 'background-color 0.5s ease-in-out',
-
     '& h4': {
       fontFamily: 'Raleway',
       textTransform: 'uppercase',
@@ -27,7 +26,6 @@ const useStyles = makeStyles({
       padding: '10px',
     },
   },
-
   divider: {
     width: '40px',
     border: 0,
@@ -45,21 +43,19 @@ const useStyles = makeStyles({
       margin: '20px',
       borderRadius: 200,
       '&:hover': {
-        backgroundColor: '#03a3ff',
+        backgroundColor: primaryCol,
       },
     },
   },
-
   contactButton: {
     transition: 'all .2s ease-in-out',
     backgroundColor: 'transparent',
     margin: '20px',
     '&:hover': {
-      backgroundColor: '#03a3ff',
+      backgroundColor: primaryCol,
       color: 'white',
     },
   },
-
   footer: {
     height: '50px',
     backgroundColor: '#757575',
@@ -102,7 +98,7 @@ export const Contact: React.FC = () => {
           Contact
         </Typography>
 
-        <Seperator color='#03a3ff' />
+        <Seperator color={primaryCol} />
       </Grid>
 
       <Typography
@@ -194,7 +190,7 @@ export const Contact: React.FC = () => {
           <Description
             fontSize='large'
             style={{
-              color: '#03a3ff',
+              color: primaryCol,
               paddingRight: '10px',
             }}
           />
@@ -225,7 +221,7 @@ export const Contact: React.FC = () => {
 
         <Button
           onClick={handleTopClick}
-          style={{ margin: '20px', color: '#03a3ff' }}
+          style={{ margin: '20px', color: primaryCol }}
           startIcon={<ExpandLess fontSize='large' />}
         >
           Back To Top

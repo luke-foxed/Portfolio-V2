@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { scroller } from 'react-scroll';
 import { ArrowForward, ExpandMore } from '@material-ui/icons';
-import palette from '../theme';
+import { primaryCol, palette } from '../theme';
 import Seperator from '../layout/Seperator';
 import { ThemeContext } from '../../themeProvider';
 
@@ -47,7 +47,7 @@ const useStyles = makeStyles({
     },
     '& img': {
       marginTop: '-40px',
-      backgroundColor: '#03a3ff',
+      backgroundColor: primaryCol,
       borderRadius: 50,
       width: '80px',
       height: '80px',
@@ -114,7 +114,7 @@ export const Skills: React.FC = () => {
         Skills
       </Typography>
 
-      <Seperator color='#03a3ff' />
+      <Seperator color={primaryCol} />
 
       <Typography
         style={{
@@ -161,7 +161,7 @@ export const Skills: React.FC = () => {
                     <ListItemIcon>
                       <ArrowForward
                         fontSize='small'
-                        style={{ color: '#03a3ff' }}
+                        style={{ color: primaryCol }}
                       />
                     </ListItemIcon>
                     <ListItemText primary={item} />
@@ -195,7 +195,7 @@ export const Skills: React.FC = () => {
                     <ListItemIcon>
                       <ArrowForward
                         fontSize='small'
-                        style={{ color: '#03a3ff' }}
+                        style={{ color: primaryCol }}
                       />
                     </ListItemIcon>
                     <ListItemText primary={item} />
@@ -229,7 +229,7 @@ export const Skills: React.FC = () => {
                     <ListItemIcon>
                       <ArrowForward
                         fontSize='small'
-                        style={{ color: '#03a3ff' }}
+                        style={{ color: primaryCol }}
                       />
                     </ListItemIcon>
                     <ListItemText primary={item} />
@@ -263,7 +263,7 @@ export const Skills: React.FC = () => {
                     <ListItemIcon>
                       <ArrowForward
                         fontSize='small'
-                        style={{ color: '#03a3ff' }}
+                        style={{ color: primaryCol }}
                       />
                     </ListItemIcon>
                     <ListItemText primary={item} />

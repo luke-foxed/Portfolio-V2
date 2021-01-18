@@ -13,9 +13,9 @@ import { School, Work, ExpandMore, ArrowForward } from '@material-ui/icons';
 import { scroller } from 'react-scroll';
 import me from '../../assets/images/me.png';
 import { ThemeContext } from '../../themeProvider';
-import palette from '../theme';
 import Seperator from '../layout/Seperator';
 import { isMobile } from 'react-device-detect';
+import { palette, primaryCol } from '../theme';
 
 const Fade = require('react-reveal/Fade');
 
@@ -38,9 +38,14 @@ const useStyles = makeStyles({
       textAlign: 'center',
     },
   },
+  italicHeader: {
+    padding: '20px',
+    width: '70%',
+    textAlign: 'center',
+    fontSize: '18px',
+  },
   expandButton: {
     marginTop: '20px',
-    color: '#03a3ff',
     zIndex: 2,
   },
   roundImage: {
@@ -98,7 +103,7 @@ export const About: React.FC = () => {
           About
         </Typography>
 
-        <Seperator color='#03a3ff' />
+        <Seperator color={primaryCol} />
 
         <img
           src={me}
@@ -118,7 +123,7 @@ export const About: React.FC = () => {
             textAlign: 'center',
           }}
         >
-          Hi, I'm <b style={{ color: '#03a3ff' }}>Luke</b>! I am a recent
+          Hi, I'm <b style={{ color: primaryCol }}>Luke</b>! I am a recent
           computer science graduate with a passion for all things computer
           related! These include cybersecurity, networking, web development, app
           development, graphic design, computer hardware and lots more.
@@ -139,7 +144,7 @@ export const About: React.FC = () => {
           <School
             fontSize='large'
             style={{
-              color: '#03a3ff',
+              color: primaryCol,
               paddingRight: '10px',
             }}
           />
@@ -147,14 +152,12 @@ export const About: React.FC = () => {
         </Typography>
 
         <Typography
+          className={classes.italicHeader}
           style={{
             color: theme.fontCol,
-            padding: '20px',
-            width: '70%',
-            textAlign: 'center',
           }}
         >
-          <i style={{ fontSize: '18px', fontFamily: 'Raleway' }}>
+          <i style={{ fontFamily: 'Raleway' }}>
             Waterford IT, Applied Computing - 2016 to 2020
           </i>
 
@@ -181,7 +184,7 @@ export const About: React.FC = () => {
                     <ListItemIcon>
                       <ArrowForward
                         fontSize='small'
-                        style={{ color: '#03a3ff' }}
+                        style={{ color: primaryCol }}
                       />
                     </ListItemIcon>
                     <ListItemText
@@ -203,7 +206,7 @@ export const About: React.FC = () => {
           <Work
             fontSize='large'
             style={{
-              color: '#03a3ff',
+              color: primaryCol,
               paddingRight: '10px',
             }}
           />
@@ -211,14 +214,12 @@ export const About: React.FC = () => {
         </Typography>
 
         <Typography
+          className={classes.italicHeader}
           style={{
             color: theme.fontCol,
-            padding: '20px',
-            width: '70%',
-            textAlign: 'center',
           }}
         >
-          <i style={{ fontSize: '18px', fontFamily: 'Raleway' }}>
+          <i style={{ fontFamily: 'Raleway' }}>
             Distilled SCH, QA Engineer Intern - January to September 2019
           </i>
 
@@ -239,7 +240,7 @@ export const About: React.FC = () => {
                       <ListItemIcon>
                         <ArrowForward
                           fontSize='small'
-                          style={{ color: '#03a3ff' }}
+                          style={{ color: primaryCol }}
                         />
                       </ListItemIcon>
                       <ListItemText primary={item} />
@@ -259,14 +260,12 @@ export const About: React.FC = () => {
         </Typography>
 
         <Typography
+          className={classes.italicHeader}
           style={{
             color: theme.fontCol,
-            padding: '20px',
-            width: '70%',
-            textAlign: 'center',
           }}
         >
-          <i style={{ fontSize: '18px', fontFamily: 'Raleway' }}>
+          <i style={{ fontFamily: 'Raleway' }}>
             ReliaQuest, Security Analyst - June 2020 to December 2020
           </i>
 
@@ -294,7 +293,7 @@ export const About: React.FC = () => {
                       <ListItemIcon>
                         <ArrowForward
                           fontSize='small'
-                          style={{ color: '#03a3ff' }}
+                          style={{ color: primaryCol }}
                         />
                       </ListItemIcon>
                       <ListItemText primary={item} />
@@ -307,14 +306,12 @@ export const About: React.FC = () => {
         </Typography>
 
         <Typography
+          className={classes.italicHeader}
           style={{
             color: theme.fontCol,
-            padding: '20px',
-            width: '70%',
-            textAlign: 'center',
           }}
         >
-          <i style={{ fontSize: '18px', fontFamily: 'Raleway' }}>
+          <i style={{ fontFamily: 'Raleway' }}>
             StitcherAds, Software Engineer - January to Present 2021
           </i>
 
@@ -335,7 +332,7 @@ export const About: React.FC = () => {
                       <ListItemIcon>
                         <ArrowForward
                           fontSize='small'
-                          style={{ color: '#03a3ff' }}
+                          style={{ color: primaryCol }}
                         />
                       </ListItemIcon>
                       <ListItemText primary={item} />
@@ -355,7 +352,11 @@ export const About: React.FC = () => {
         </Typography>
       </Grid>
 
-      <IconButton className={classes.expandButton} onClick={handleExpandClick}>
+      <IconButton
+        className={classes.expandButton}
+        onClick={handleExpandClick}
+        style={{ color: primaryCol }}
+      >
         <ExpandMore fontSize='large' />
       </IconButton>
     </div>

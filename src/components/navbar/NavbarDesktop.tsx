@@ -17,7 +17,7 @@ import ReactGA from 'react-ga';
 import { createBrowserHistory } from 'history';
 import { Brightness2, WbSunny } from '@material-ui/icons';
 import { ThemeContext } from '../../themeProvider';
-import palette from '../theme';
+import { primaryCol, palette } from '../theme';
 
 const history = createBrowserHistory();
 const trackingId = process.env.REACT_APP_TRACKING_ID;
@@ -57,7 +57,7 @@ const useStyles = makeStyles({
     textTransform: 'uppercase',
   },
   navActiveItem: {
-    color: 'rgb(27,163,251)',
+    color: primaryCol,
     borderRadius: 25,
   },
 });
@@ -177,7 +177,7 @@ export const NavbarDesktop: React.FC = () => {
             <Fade in={active} timeout={1000}>
               <div className={classes.circle}>
                 <Typography style={{ fontFamily: 'Raleway', fontSize: '25px' }}>
-                  L<b style={{ color: '#03a3ff' }}>F</b>
+                  L<b style={{ color: primaryCol }}>F</b>
                 </Typography>
               </div>
             </Fade>
@@ -186,7 +186,7 @@ export const NavbarDesktop: React.FC = () => {
               <div style={{}}>
                 <Typography style={{ fontFamily: 'Raleway', fontSize: '25px' }}>
                   <b style={{ color: theme.fontCol }}>LUKE_</b>
-                  <b style={{ color: '#03a3ff' }}>FOX</b>
+                  <b style={{ color: primaryCol }}>FOX</b>
                 </Typography>
               </div>
             </Fade>
@@ -196,9 +196,9 @@ export const NavbarDesktop: React.FC = () => {
             <RouterComponent />
             <IconButton style={{ marginLeft: '20px' }} onClick={toggleTheme}>
               {lightTheme ? (
-                <Brightness2 style={{ color: active ? 'white' : '#03a3ff' }} />
+                <Brightness2 style={{ color: active ? 'white' : primaryCol }} />
               ) : (
-                <WbSunny style={{ color: active ? 'white' : '#03a3ff' }} />
+                <WbSunny style={{ color: active ? 'white' : primaryCol }} />
               )}
             </IconButton>
           </Grid>
