@@ -35,8 +35,10 @@ const useStyles = makeStyles({
     textAlign: 'center',
   },
   expandButton: {
-    marginTop: '20px',
+    position: 'absolute',
+    bottom: 0,
     color: 'white',
+    marginBottom: '10px',
     zIndex: 2,
   },
 });

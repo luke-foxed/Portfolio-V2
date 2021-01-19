@@ -47,6 +47,7 @@ const useStyles = makeStyles({
   expandButton: {
     marginTop: '20px',
     zIndex: 2,
+    color: primaryCol,
   },
   roundImage: {
     height: '160px',
@@ -352,11 +353,7 @@ export const About: React.FC = () => {
         </Typography>
       </Grid>
 
-      <IconButton
-        className={classes.expandButton}
-        onClick={handleExpandClick}
-        style={{ color: primaryCol }}
-      >
+      <IconButton className={classes.expandButton} onClick={handleExpandClick}>
         <ExpandMore fontSize='large' />
       </IconButton>
     </div>

@@ -183,7 +183,7 @@ export const NavbarDesktop: React.FC = () => {
             </Fade>
 
             <Fade in={!active} timeout={1000}>
-              <div style={{}}>
+              <div>
                 <Typography style={{ fontFamily: 'Raleway', fontSize: '25px' }}>
                   <b style={{ color: theme.fontCol }}>LUKE_</b>
                   <b style={{ color: primaryCol }}>FOX</b>

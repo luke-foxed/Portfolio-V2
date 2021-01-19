@@ -22,6 +22,7 @@
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
     "github-api": "^3.3.0",
+    "hamburger-react": "^2.4.0",
     "hover.css": "^2.3.2",
     "pure-react-carousel": "^1.27.6",
     "react": "^16.14.0",

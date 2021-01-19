@@ -56,7 +56,7 @@ const useStyles = makeStyles({
 
   expandButton: {
     marginTop: '20px',
-    color: '#4a4a4a',
+    color: primaryCol,
     zIndex: 2,
   },
 });

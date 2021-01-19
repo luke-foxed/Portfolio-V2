@@ -131,6 +131,7 @@ const useStyles = makeStyles({
   expandButton: {
     marginTop: '20px',
     color: primaryCol,
+    zIndex: 2,
   },
 });
 export const Projects: React.FC = () => {
