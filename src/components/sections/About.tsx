@@ -60,7 +60,9 @@ const useStyles = makeStyles({
 });
 
 const stitherads = [
-  'Building technology to help advertisers scale full-funnel performance marketing campaigns on Facebook, Instagram, Pinterest and SnapChat. ',
+  'Creating software to help advertisers scale full-funnel performance marketing campaigns on Facebook, Instagram, Pinterest, SnapChat & TikTok',
+  'Working within the creative team, building a Photoshop-like and After Effects tools to allow users to create and publish image & video advertisements',
+  'Full-stack engineer, working with tech such as React, Ruby On Rails, Postgres, Heroku and AWS'
 ];
 
 const distilled = [
@@ -72,7 +74,7 @@ const distilled = [
 const reliaquest = [
   'Company specializing in security-as-a-service',
   'Providing analysis and investigation of security related data from a range of security devices and customer environments',
-  'Use of various SIEM, EDR and EMS tools such as Splunk, LogRhythm, CrowdStrike & Carbon Black ',
+  'Use of various SIEM, EDR and EMS tools such as Splunk, LogRhythm, CrowdStrike & Carbon Black',
 ];
 
 export const About: React.FC = () => {
@@ -313,7 +315,7 @@ export const About: React.FC = () => {
           }}
         >
           <i style={{ fontFamily: 'Raleway' }}>
-            StitcherAds, Software Engineer - January to Present 2021
+            StitcherAds, Software Engineer - January 2021 to Present
           </i>
 
           <Seperator color={theme.fontCol} />

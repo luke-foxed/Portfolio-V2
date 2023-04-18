@@ -232,7 +232,7 @@ export const Contact: React.FC = () => {
 
       <div className={classes.footer} style={{ backgroundColor: theme.footer }}>
         <p>Made with</p> &nbsp; <Favorite style={{ color: '#03a3ff' }} /> &nbsp;
-        <p>by Luke Fox, 2020</p>
+        <p>by Luke Fox, {new Date().getFullYear()}</p>
       </div>
     </div>
   );

@@ -63,9 +63,9 @@ const useStyles = makeStyles({
 
 const frontend = [
   'React',
-  'Redux',
-  'JavaScript',
-  'TypeScript',
+  'Redux & Recoil',
+  'JavaScript & TypeScript',
+  'NextJS',
   'HTML/CSS',
   'Material UI & Semantic UI',
 ];
@@ -74,10 +74,10 @@ const backend = [
   'Python',
   'Java & Kotlin',
   'Flask',
-  'Haskell',
+  'Ruby On Rails',
   'ExpressJS',
   'MongoDB',
-  'MySQL',
+  'MySQL & PostgreSQL',
 ];
 
 const tech = ['Docker', 'Tensorflow', 'Git', 'WebdriverIO', 'AWS', 'NodeJS'];
