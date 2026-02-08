@@ -1,41 +1,38 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Box } from '@mui/material';
 import { NavbarDesktop } from '../navbar/NavbarDesktop';
+import { NavbarMobile } from '../navbar/NabarMobile';
 import { Home } from '../sections/Home';
 import { About } from '../sections/About';
 import { Skills } from '../sections/Skills';
 import { Contact } from '../sections/Contact';
-import { Projects } from '../sections/Projects';
-import { NavbarMobile } from '../navbar/NabarMobile';
-import { isMobile } from 'react-device-detect';
-
-require('dotenv').config({ debug: true });
 
 const App: React.FC = () => {
-  const [width, setWidth] = useState(window.innerWidth);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
-      setWidth(window.innerWidth);
-    });
-  }, [width]);
-
-  const ResponsiveNav: FC = () => {
-    if (isMobile || width < 700) {
-      return <NavbarMobile />;
-    } else {
-      return <NavbarDesktop />;
-    }
-  };
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
-    <div className='App'>
-      <ResponsiveNav />
+    <Box
+      sx={{
+        minHeight: '100vh',
+        backgroundColor: 'background.default',
+        color: 'text.primary',
+        overflowX: 'hidden',
+      }}
+    >
+      {isMobile ? <NavbarMobile /> : <NavbarDesktop />}
       <Home />
       <About />
       <Skills />
-      <Projects />
       <Contact />
-    </div>
+    </Box>
   );
 };
 

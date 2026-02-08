@@ -1,283 +1,212 @@
-import React, { useContext } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import {
-  Grid,
-  Typography,
-  Paper,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  IconButton,
-} from '@material-ui/core';
-import { scroller } from 'react-scroll';
-import { ArrowForward, ExpandMore } from '@material-ui/icons';
-import { primaryCol, palette } from '../theme';
-import Seperator from '../layout/Seperator';
-import { ThemeContext } from '../../themeProvider';
+import React from 'react';
+import { Box, Container, Typography, Grid } from '@mui/material';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { SectionHeader } from '../common/SectionHeader';
+import { SkillPill } from '../common/SkillPill';
+import { fadeUp, staggerContainer, pillStagger, inViewConfig } from '../../lib/animations';
+import { useTheme } from '@mui/material/styles';
+import { Code, Storage, Cloud, DataObject, AutoAwesome } from '@mui/icons-material';
 
-const Fade = require('react-reveal/Fade');
+interface SkillCategory {
+  title: string;
+  icon: React.ReactNode;
+  skills: string[];
+}
 
-const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    minHeight: '100vh',
-    transition: 'background-color 0.5s ease-in-out',
-    '& h4': {
-      fontFamily: 'Raleway',
-      textTransform: 'uppercase',
-      marginTop: '60px',
-    },
-    '& h5': {
-      fontFamily: 'Raleway',
-      textTransform: 'uppercase',
-      padding: '10px',
-      textAlign: 'center',
-    },
+const skillCategories: SkillCategory[] = [
+  {
+    title: 'Frontend',
+    icon: <Code />,
+    skills: ['React', 'TypeScript', 'Next.js', 'React Remix', 'Redux', 'SASS/SCSS', 'Material UI', 'Mantine UI'],
   },
-  card: {
-    transition: 'all .2s ease-in-out',
-    width: '280px',
-    height: '480px',
-    borderRadius: '15px',
-    '&:hover': {
-      transform: 'scale(1.08)',
-    },
-    '& img': {
-      marginTop: '-40px',
-      backgroundColor: primaryCol,
-      borderRadius: 50,
-      width: '80px',
-      height: '80px',
-    },
+  {
+    title: 'Backend',
+    icon: <Storage />,
+    skills: ['Node.js', 'Ruby on Rails', 'Flask', 'ExpressJS', 'Prisma',],
   },
-
-  expandButton: {
-    marginTop: '20px',
-    color: primaryCol,
-    zIndex: 2,
+  {
+    title: 'DevOps & Tools',
+    icon: <Cloud />,
+    skills: ['Docker', 'AWS (& CDK)', 'Git', 'CI/CD', 'Linux', 'Heroku', 'Vercel', 'Firebase', 'Claude', 'Cursor'],
   },
-});
-
-const frontend = [
-  'React',
-  'Redux & Recoil',
-  'JavaScript & TypeScript',
-  'NextJS',
-  'HTML/CSS',
-  'Material UI & Semantic UI',
+  {
+    title: 'Databases',
+    icon: <DataObject />,
+    skills: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis', 'Firestore'],
+  },
 ];
 
-const backend = [
-  'Python',
-  'Java & Kotlin',
-  'Flask',
-  'Ruby On Rails',
-  'ExpressJS',
-  'MongoDB',
-  'MySQL & PostgreSQL',
-];
-
-const tech = ['Docker', 'Tensorflow', 'Git', 'WebdriverIO', 'AWS', 'NodeJS'];
-
-const security = [
-  'Splunk',
-  'QRadar',
-  'LogRhythm',
-  'Carbon Black',
-  'CrowdStrike',
-  'Kali Linux',
-];
-
-export const Skills: React.FC = () => {
-  const classes = useStyles({});
-  const { lightTheme } = useContext(ThemeContext);
-  const theme = palette(lightTheme);
-
-  const handleExpandClick = () => {
-    scroller.scrollTo('projects', {
-      duration: 1500,
-      delay: 100,
-      smooth: true,
-    });
-  };
+const SkillCategoryCard: React.FC<{ category: SkillCategory }> = ({ category }) => {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
 
   return (
-    <div
-      id='skills'
-      className={classes.root}
-      style={{ backgroundColor: theme.background2Col }}
+    <Box
+      component={motion.div}
+      variants={fadeUp}
+      sx={{
+        p: 3,
+        height: '100%',
+        backgroundColor: isDark ? 'rgba(255, 255, 255, 0.02)' : 'rgba(0, 0, 0, 0.02)',
+        borderRadius: 3,
+        border: '1px solid',
+        borderColor: 'divider',
+        position: 'relative',
+        overflow: 'hidden',
+        transition: 'all 0.3s ease',
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '2px',
+          background: 'linear-gradient(90deg, #3b82f6, #14b8a6)',
+          opacity: 0,
+          transition: 'opacity 0.3s ease',
+        },
+        '&:hover': {
+          transform: 'translateY(-2px)',
+          borderColor: isDark ? 'rgba(59, 130, 246, 0.4)' : 'rgba(37, 99, 235, 0.3)',
+          boxShadow: isDark
+            ? '0 8px 30px rgba(0, 0, 0, 0.3)'
+            : '0 8px 30px rgba(0, 0, 0, 0.06)',
+          backgroundColor: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.03)',
+          '&::after': {
+            opacity: 1,
+          },
+        },
+      }}
     >
-      <Typography variant='h4' style={{ color: theme.fontCol }}>
-        Skills
-      </Typography>
-
-      <Seperator color={primaryCol} />
-
-      <Typography
-        style={{
-          color: theme.fontCol,
-          padding: '20px',
-          width: '50%',
-          textAlign: 'center',
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 1.5,
+          mb: 3,
         }}
       >
-        Here are some of the languages, tech and tools I have picked up along
-        the way, be it through college, work or my own interest!
-      </Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 36,
+            height: 36,
+            borderRadius: 2,
+            background: isDark
+              ? 'linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(20, 184, 166, 0.15) 100%)'
+              : 'linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%)',
+            border: '1px solid',
+            borderColor: isDark ? 'rgba(59, 130, 246, 0.3)' : 'rgba(37, 99, 235, 0.2)',
+            color: isDark ? '#5eead4' : '#14b8a6',
+            '& svg': {
+              fontSize: '1.1rem',
+            },
+          }}
+        >
+          {category.icon}
+        </Box>
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: 600,
+            color: 'text.primary',
+          }}
+        >
+          {category.title}
+        </Typography>
+      </Box>
 
-      <Seperator color={theme.fontCol} />
-
-      <Grid
-        container
-        direction={'row'}
-        justify='center'
-        alignContent='center'
-        spacing={6}
-        style={{ marginTop: '30px', marginBottom: '10px', width: '100%' }}
+      <Box
+        component={motion.div}
+        variants={pillStagger}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 1,
+        }}
       >
-        <Grid item>
-          <Paper
-            elevation={3}
-            className={classes.card}
-            style={{ backgroundColor: theme.cardCol, color: theme.fontCol }}
-          >
-            <div style={{ width: '100%', textAlign: 'center' }}>
-              <img
-                alt='frontend'
-                src={require('../../assets/images/skills/frontend.png')}
-              />
-            </div>
-            <Typography variant='h5'>Frontend</Typography>
+        {category.skills.map((skill) => (
+          <SkillPill key={skill} name={skill} />
+        ))}
+      </Box>
+    </Box>
+  );
+};
 
-            <Seperator color={theme.fontCol} />
+export const Skills: React.FC = () => {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+  const [ref, inView] = useInView(inViewConfig);
 
-            <List>
-              {frontend.map((item, index) => (
-                <Fade top cascade duration={+index * 300}>
-                  <ListItem>
-                    <ListItemIcon>
-                      <ArrowForward
-                        fontSize='small'
-                        style={{ color: primaryCol }}
-                      />
-                    </ListItemIcon>
-                    <ListItemText primary={item} />
-                  </ListItem>
-                </Fade>
-              ))}
-            </List>
-          </Paper>
+  return (
+    <Box
+      id="skills"
+      component="section"
+      ref={ref}
+      sx={{
+        py: { xs: 10, md: 16 },
+        backgroundColor: 'background.default',
+        position: 'relative',
+        overflow: 'hidden',
+        scrollMarginTop: '80px',
+      }}
+    >
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: 0,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '100%',
+          height: '50%',
+          background: isDark
+            ? 'radial-gradient(ellipse at center bottom, rgba(20, 184, 166, 0.04) 0%, transparent 70%)'
+            : 'radial-gradient(ellipse at center bottom, rgba(20, 184, 166, 0.025) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }}
+      />
+
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+        <SectionHeader title="Skills" icon={<AutoAwesome />} />
+
+        <Typography
+          component={motion.p}
+          variants={fadeUp}
+          initial="initial"
+          animate={inView ? 'animate' : 'initial'}
+          variant="body1"
+          sx={{
+            color: 'text.secondary',
+            maxWidth: 600,
+            mb: 6,
+            fontSize: { xs: '1rem', md: '1.1rem' },
+            lineHeight: 1.7,
+          }}
+        >
+          Technologies and tools I work with to build modern, scalable applications.
+        </Typography>
+
+        <Grid
+          container
+          spacing={3}
+          component={motion.div}
+          variants={staggerContainer}
+          initial="initial"
+          animate={inView ? 'animate' : 'initial'}
+        >
+          {skillCategories.map((category) => (
+            <Grid item xs={12} sm={6} key={category.title}>
+              <SkillCategoryCard category={category} />
+            </Grid>
+          ))}
         </Grid>
-
-        <Grid item>
-          <Paper
-            elevation={3}
-            className={classes.card}
-            style={{ backgroundColor: theme.cardCol, color: theme.fontCol }}
-          >
-            <div style={{ width: '100%', textAlign: 'center' }}>
-              <img
-                alt='backend'
-                src={require('../../assets/images/skills/backend.png')}
-              />
-            </div>
-            <Typography variant='h5'>Backend</Typography>
-
-            <Seperator color={theme.fontCol} />
-
-            <List>
-              {backend.map((item, index) => (
-                <Fade top cascade duration={+index * 300}>
-                  <ListItem>
-                    <ListItemIcon>
-                      <ArrowForward
-                        fontSize='small'
-                        style={{ color: primaryCol }}
-                      />
-                    </ListItemIcon>
-                    <ListItemText primary={item} />
-                  </ListItem>
-                </Fade>
-              ))}
-            </List>
-          </Paper>
-        </Grid>
-
-        <Grid item>
-          <Paper
-            elevation={3}
-            className={classes.card}
-            style={{ backgroundColor: theme.cardCol, color: theme.fontCol }}
-          >
-            <div style={{ width: '100%', textAlign: 'center' }}>
-              <img
-                alt='tech'
-                src={require('../../assets/images/skills/tools.png')}
-              />
-            </div>
-            <Typography variant='h5'>Other Tech</Typography>
-
-            <Seperator color={theme.fontCol} />
-
-            <List>
-              {tech.map((item, index) => (
-                <Fade top cascade duration={+index * 300}>
-                  <ListItem>
-                    <ListItemIcon>
-                      <ArrowForward
-                        fontSize='small'
-                        style={{ color: primaryCol }}
-                      />
-                    </ListItemIcon>
-                    <ListItemText primary={item} />
-                  </ListItem>
-                </Fade>
-              ))}
-            </List>
-          </Paper>
-        </Grid>
-
-        <Grid item>
-          <Paper
-            elevation={3}
-            className={classes.card}
-            style={{ backgroundColor: theme.cardCol, color: theme.fontCol }}
-          >
-            <div style={{ width: '100%', textAlign: 'center' }}>
-              <img
-                alt='security'
-                src={require('../../assets/images/skills/security.png')}
-              />
-            </div>
-            <Typography variant='h5'>Security</Typography>
-
-            <Seperator color={theme.fontCol} />
-
-            <List>
-              {security.map((item, index) => (
-                <Fade top cascade duration={+index * 300}>
-                  <ListItem>
-                    <ListItemIcon>
-                      <ArrowForward
-                        fontSize='small'
-                        style={{ color: primaryCol }}
-                      />
-                    </ListItemIcon>
-                    <ListItemText primary={item} />
-                  </ListItem>
-                </Fade>
-              ))}
-            </List>
-          </Paper>
-        </Grid>
-      </Grid>
-
-      <IconButton className={classes.expandButton} onClick={handleExpandClick}>
-        <ExpandMore fontSize='large' />
-      </IconButton>
-    </div>
+      </Container>
+    </Box>
   );
 };

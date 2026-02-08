@@ -1,227 +1,205 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-scroll';
-import { makeStyles } from '@material-ui/core/styles';
-import { BrowserRouter } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-import { Squash } from 'hamburger-react';
-import {
-  List,
-  ListItem,
-  ListItemText,
-  Divider,
-  Typography,
-  IconButton,
-  AppBar,
-  Toolbar,
-  Grid,
-  Collapse,
-} from '@material-ui/core';
-import ReactGA from 'react-ga';
-import { ThemeContext } from '../../themeProvider';
-import { Brightness2, WbSunny } from '@material-ui/icons';
-import { palette, primaryCol } from '../theme';
+import React, { useState, useEffect } from 'react';
+import { Box, Typography, IconButton, Drawer, List, ListItem, ListItemText, Divider } from '@mui/material';
+import { motion } from 'framer-motion';
+import { Menu, Close, DarkMode, LightMode } from '@mui/icons-material';
+import { useThemeMode } from '../../themeProvider';
 
-const history = createBrowserHistory();
-const trackingId = process.env.REACT_APP_TRACKING_ID;
-ReactGA.initialize(trackingId as string);
-
-history.listen((location) => {
-  ReactGA.set({ page: location.pathname });
-  ReactGA.pageview(location.pathname);
-});
-
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-  },
-  navBar: {
-    transition: 'background-color 0.5s ease-in-out',
-  },
-  navItems: {
-    width: '100%',
-    textAlign: 'center',
-    textTransform: 'uppercase',
-    '& span': {
-      fontSize: '18px',
-    },
-  },
-  navActiveItem: {
-    color: primaryCol,
-    borderRadius: 25,
-  },
-});
+const navItems = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'contact', label: 'Contact' },
+];
 
 export const NavbarMobile: React.FC = () => {
-  const classes = useStyles({});
-  const [isOpen, setMenuOpen] = useState(false);
-  const [active, setActive] = useState(false);
-  const { lightTheme, toggleTheme } = useContext(ThemeContext);
-  const theme = palette(lightTheme);
+  const { toggleTheme, isDark } = useThemeMode();
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const handleState = (to: any) => {
-    if (to === 'home') {
-      setActive(true);
-      history.push('/');
-    } else {
-      setActive(false);
-      history.push(`/${to}`);
-    }
-    setMenuOpen(false);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
 
-  const handleMenu = () => {
-    setMenuOpen(!isOpen);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    setIsOpen(false);
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }, 300);
   };
 
   return (
-    <AppBar
-      elevation={active ? 0 : 5}
-      className={classes.navBar}
-      style={{
-        // not at all messy
-        backgroundColor:
-          active && !isOpen
-            ? 'transparent'
-            : active && isOpen
-            ? 'rgba(0,0,0,0.4)'
-            : lightTheme
-            ? '#e3e3e3'
-            : 'rgba(0,0,0,0.8)',
-        backdropFilter: active && isOpen ? 'blur(2px)' : '',
-      }}
-    >
-      <Toolbar style={{ margin: 0, padding: 0 }}>
-        <Grid container justify='center'>
-          <Grid container item xs={7} justify='flex-start' alignItems='center'>
-            <Typography style={{ fontFamily: 'Raleway', fontSize: '25px' }}>
-              <b style={{ color: active ? 'white' : theme.fontCol }}>LUKE_</b>
-              <b style={{ color: primaryCol }}>FOX</b>
-            </Typography>
-          </Grid>
+    <>
+      <Box
+        component="header"
+        sx={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          py: 1.5,
+          px: 2,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          backgroundColor: scrolled
+            ? isDark
+              ? 'rgba(10, 10, 10, 0.9)'
+              : 'rgba(250, 250, 250, 0.9)'
+            : 'transparent',
+          backdropFilter: scrolled ? 'blur(12px)' : 'none',
+          borderBottom: scrolled ? '1px solid' : 'none',
+          borderColor: 'divider',
+          transition: 'all 0.3s ease',
+        }}
+      >
+        <Typography
+          onClick={() => scrollToSection('home')}
+          sx={{
+            fontWeight: 700,
+            fontSize: '1.1rem',
+            letterSpacing: '-0.02em',
+            cursor: 'pointer',
+            color: 'text.primary',
+          }}
+        >
+          LUKE
+          <Box component="span" sx={{ color: 'primary.main', ml: 0.5 }}>
+            FOX
+          </Box>
+        </Typography>
 
-          <Grid container item xs={3} justify='flex-end' alignItems='center'>
-            <Squash color={primaryCol} toggle={handleMenu} toggled={isOpen} />
-          </Grid>
+        <IconButton
+          onClick={() => setIsOpen(true)}
+          sx={{
+            color: 'text.primary',
+            '&:hover': {
+              color: 'primary.main',
+            },
+          }}
+        >
+          <Menu />
+        </IconButton>
+      </Box>
 
-          <Grid
-            container
-            item
-            xs={12}
-            justify='center'
-            style={{
-              width: '100%',
-
-              backgroundColor: 'transparent',
+      <Drawer
+        anchor="right"
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        PaperProps={{
+          sx: {
+            width: '100%',
+            maxWidth: 320,
+            backgroundColor: 'background.default',
+            backgroundImage: 'none',
+          },
+        }}
+      >
+        <Box
+          sx={{
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            p: 3,
+          }}
+        >
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              mb: 4,
             }}
           >
-            <Collapse in={isOpen}>
-              <BrowserRouter>
-                <Divider />
-                <List
-                  className={classes.navItems}
-                  component='nav'
-                  style={{ color: active ? 'white' : theme.fontCol }}
-                >
-                  <Link
-                    activeClass={classes.navActiveItem}
-                    onSetActive={handleState}
-                    to='home'
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                  >
-                    <ListItem
-                      button
-                      style={{ borderRadius: 25, textAlign: 'center' }}
-                      onClick={handleState}
-                    >
-                      <ListItemText primary='Home' />
-                    </ListItem>
-                  </Link>
+            <Typography
+              sx={{
+                fontWeight: 700,
+                fontSize: '1.1rem',
+                color: 'text.primary',
+              }}
+            >
+              Menu
+            </Typography>
+            <IconButton
+              onClick={() => setIsOpen(false)}
+              sx={{
+                color: 'text.secondary',
+                '&:hover': {
+                  color: 'primary.main',
+                },
+              }}
+            >
+              <Close />
+            </IconButton>
+          </Box>
 
-                  <Link
-                    activeClass={classes.navActiveItem}
-                    onSetActive={handleState}
-                    to='about'
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                  >
-                    <ListItem
-                      button
-                      style={{ borderRadius: 25, textAlign: 'center' }}
-                    >
-                      <ListItemText primary='About' />
-                    </ListItem>
-                  </Link>
-                  <Link
-                    activeClass={classes.navActiveItem}
-                    onSetActive={handleState}
-                    to='skills'
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                  >
-                    <ListItem
-                      button
-                      style={{ borderRadius: 25, textAlign: 'center' }}
-                    >
-                      <ListItemText primary='Skills' />
-                    </ListItem>
-                  </Link>
-                  <Link
-                    activeClass={classes.navActiveItem}
-                    onSetActive={handleState}
-                    to='projects'
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                  >
-                    <ListItem
-                      button
-                      style={{ borderRadius: 25, textAlign: 'center' }}
-                    >
-                      <ListItemText primary='Projects' />
-                    </ListItem>
-                  </Link>
-                  <Link
-                    activeClass={classes.navActiveItem}
-                    onSetActive={handleState}
-                    to='contact'
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                  >
-                    <ListItem
-                      button
-                      style={{ borderRadius: 25, textAlign: 'center' }}
-                    >
-                      <ListItemText primary='Contact' />
-                    </ListItem>
-                  </Link>
+          <Divider sx={{ mb: 2 }} />
 
-                  <ListItem button>
-                    <IconButton
-                      style={{ marginLeft: '20px' }}
-                      onClick={toggleTheme}
-                    >
-                      {lightTheme ? (
-                        <Brightness2
-                          style={{ color: active ? 'white' : primaryCol }}
-                        />
-                      ) : (
-                        <WbSunny
-                          style={{ color: active ? 'white' : primaryCol }}
-                        />
-                      )}
-                    </IconButton>
-                  </ListItem>
-                </List>
-              </BrowserRouter>
-            </Collapse>
-          </Grid>
-        </Grid>
-      </Toolbar>
-    </AppBar>
+          <List sx={{ flexGrow: 1 }}>
+            {navItems.map((item, index) => (
+              <ListItem
+                key={item.id}
+                component={motion.li}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.05 }}
+                onClick={() => scrollToSection(item.id)}
+                sx={{
+                  py: 2,
+                  cursor: 'pointer',
+                  borderRadius: 2,
+                  '&:hover': {
+                    backgroundColor: isDark
+                      ? 'rgba(255, 255, 255, 0.05)'
+                      : 'rgba(0, 0, 0, 0.04)',
+                  },
+                }}
+              >
+                <ListItemText
+                  primary={item.label}
+                  primaryTypographyProps={{
+                    fontSize: '1.25rem',
+                    fontWeight: 500,
+                    color: 'text.primary',
+                  }}
+                />
+              </ListItem>
+            ))}
+          </List>
+
+          <Divider sx={{ my: 2 }} />
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Typography
+              variant="body2"
+              sx={{ color: 'text.secondary' }}
+            >
+              Theme
+            </Typography>
+            <IconButton
+              onClick={toggleTheme}
+              sx={{
+                color: 'text.secondary',
+                '&:hover': {
+                  color: 'primary.main',
+                },
+              }}
+            >
+              {isDark ? <LightMode /> : <DarkMode />}
+            </IconButton>
+          </Box>
+        </Box>
+      </Drawer>
+    </>
   );
 };
