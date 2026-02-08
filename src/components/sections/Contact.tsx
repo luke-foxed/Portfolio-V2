@@ -1,239 +1,249 @@
-import React, { useContext } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography, Button } from '@material-ui/core';
-import { scroller } from 'react-scroll';
-import cover from '../../assets/images/cover.png';
-import { Description, ExpandLess, Favorite } from '@material-ui/icons';
-import { ThemeContext } from '../../themeProvider';
-import { primaryCol, palette } from '../theme';
-import Seperator from '../layout/Seperator';
+import React, { useState } from 'react';
+import { Box, Container, Typography, Button, IconButton, Stack, Snackbar } from '@mui/material';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { GitHub, LinkedIn, Email, ContentCopy, Check, DarkMode, LightMode, Handshake } from '@mui/icons-material';
+import { SectionHeader } from '../common/SectionHeader';
+import { fadeUp, staggerContainer, inViewConfig } from '../../lib/animations';
+import { useTheme } from '@mui/material/styles';
+import { useThemeMode } from '../../themeProvider';
 
-const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    minHeight: '100vh',
-    transition: 'background-color 0.5s ease-in-out',
-    '& h4': {
-      fontFamily: 'Raleway',
-      textTransform: 'uppercase',
-      marginTop: '60px',
-    },
-    '& h5': {
-      fontFamily: 'Raleway',
-      textTransform: 'uppercase',
-      padding: '10px',
-    },
+const EMAIL = 'lukefoxportfolio@gmail.com';
+
+const socialLinks = [
+  {
+    name: 'GitHub',
+    icon: <GitHub />,
+    url: 'https://github.com/luke_foxed',
   },
-  divider: {
-    width: '40px',
-    border: 0,
+  {
+    name: 'LinkedIn',
+    icon: <LinkedIn />,
+    url: 'https://www.linkedin.com/in/luke-fox-aa103a148/',
   },
-  contactContainer: {
-    width: '100%',
-    backgroundImage: 'url(' + cover + ')',
-    backgroundPosition: 'center center',
-    height: '500px',
-    boxShadow:
-      'inset 0px 11px 8px -5px rgba(0,0,0,0.6),inset 0px -11px 8px -5px rgba(0,0,0,0.6)',
-    '& img': {
-      transition: 'all .2s ease-in-out',
-      backgroundColor: 'rgba(0, 0, 0, 0.6)',
-      margin: '20px',
-      borderRadius: 200,
-      '&:hover': {
-        backgroundColor: primaryCol,
-      },
-    },
+  {
+    name: 'Email',
+    icon: <Email />,
+    url: `mailto:${EMAIL}`,
   },
-  contactButton: {
-    transition: 'all .2s ease-in-out',
-    backgroundColor: 'transparent',
-    margin: '20px',
-    '&:hover': {
-      backgroundColor: primaryCol,
-      color: 'white',
-    },
-  },
-  footer: {
-    height: '50px',
-    backgroundColor: '#757575',
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: '#dbdbdb',
-    transition: 'background-color 0.5s ease-in-out',
-  },
-});
+];
+
 export const Contact: React.FC = () => {
-  const classes = useStyles({});
-  const { lightTheme } = useContext(ThemeContext);
-  const theme = palette(lightTheme);
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+  const { toggleTheme } = useThemeMode();
+  const [ref, inView] = useInView(inViewConfig);
+  const [copied, setCopied] = useState(false);
 
-  const handleTopClick = () => {
-    scroller.scrollTo('home', {
-      duration: 1000,
-      delay: 100,
-      smooth: true,
-    });
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+    } catch (err) {
+      console.error('Failed to copy email');
+    }
   };
 
   return (
-    <div
-      id='contact'
-      className={classes.root}
-      style={{ backgroundColor: theme.background1Col }}
+    <Box
+      id="contact"
+      component="section"
+      ref={ref}
+      sx={{
+        py: { xs: 8, md: 12 },
+        backgroundColor: 'background.paper',
+        position: 'relative',
+        overflow: 'hidden',
+        scrollMarginTop: '80px',
+      }}
     >
-      <Grid
-        container
-        direction='column'
-        xs={12}
-        alignItems='center'
-        style={{ width: '100%' }}
-      >
-        <Typography variant='h4' style={{ color: theme.fontCol }}>
-          Contact
-        </Typography>
-
-        <Seperator color={primaryCol} />
-      </Grid>
-
-      <Typography
-        style={{
-          color: theme.fontCol,
-          padding: '20px',
-          width: '50%',
-          textAlign: 'center',
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '100%',
+          height: '100%',
+          background: 'radial-gradient(circle at center, rgba(59, 130, 246, 0.03) 0%, transparent 60%)',
+          pointerEvents: 'none',
         }}
-      >
-        Want to see more or get in touch? Feel free to check out any of the
-        below sites!
-      </Typography>
+      />
 
-      <Grid
-        container
-        direction={'row'}
-        justify='center'
-        xs={12}
-        style={{ padding: '120px' }}
-        className={classes.contactContainer}
-      >
-        <a
-          href='https://www.linkedin.com/in/luke-fox-aa103a148/'
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          <img
-            width={200}
-            height={200}
-            src={require('../../assets/images/contact/linkedin.png')}
-            alt={'linkedin'}
-          />
-        </a>
-        <a
-          href='https://github.com/Foxyf76'
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          <img
-            width={200}
-            height={200}
-            src={require('../../assets/images/contact/github.png')}
-            alt={'github'}
-          />
-        </a>
-
-        <a
-          href='https://twitter.com/luke_foxed'
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          <img
-            width={200}
-            height={200}
-            src={require('../../assets/images/contact/twitter.png')}
-            alt={'twitter'}
-          />
-        </a>
-
-        <a
-          href='https://mail.google.com/mail/u/0/?view=cm&fs=1&to=lukefoxportfolio@gmail.com&tf=1'
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          <img
-            width={200}
-            height={200}
-            src={require('../../assets/images/contact/gmail.png')}
-            alt={'gmail'}
-          />
-        </a>
-      </Grid>
-
-      <Seperator color={theme.fontCol} />
-
-      <div
-        style={{
-          display: 'flex',
-          flex: '1 0 auto',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Typography
-          variant='h5'
-          style={{ display: 'flex', color: theme.fontCol, flex: '1 0 auto' }}
-        >
-          <Description
-            fontSize='large'
-            style={{
-              color: primaryCol,
-              paddingRight: '10px',
-            }}
-          />
-          Request A CV
-        </Typography>
-        <Typography
-          style={{
-            color: theme.fontCol,
-            padding: '20px',
-            width: '55%',
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+        <Box
+          component={motion.div}
+          variants={staggerContainer}
+          initial="initial"
+          animate={inView ? 'animate' : 'initial'}
+          sx={{
             textAlign: 'center',
+            maxWidth: 600,
+            mx: 'auto',
           }}
         >
-          If you'd like a CV, please get in contact with via LinkedIn or Gmail
-          and I will send one upon request!
-        </Typography>
+          <SectionHeader title="Let's Work Together" icon={<Handshake />} />
 
-        <Button
-          variant='outlined'
-          href='mailto:lukefoxportfolio@gmail.com'
-          rel='noopener noreferrer'
-          target='_blank'
-          style={{ color: theme.fontCol }}
-          className={classes.contactButton}
-        >
-          Send an Email
-        </Button>
+          <Typography
+            component={motion.p}
+            variants={fadeUp}
+            variant="body1"
+            sx={{
+              color: 'text.secondary',
+              fontSize: { xs: '1rem', md: '1.15rem' },
+              lineHeight: 1.8,
+              mb: 5,
+            }}
+          >
+            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+          </Typography>
 
-        <Button
-          onClick={handleTopClick}
-          style={{ margin: '20px', color: primaryCol }}
-          startIcon={<ExpandLess fontSize='large' />}
-        >
-          Back To Top
-        </Button>
-        <br />
-        <br />
-      </div>
+          <Box
+            component={motion.div}
+            variants={fadeUp}
+            sx={{ mb: 5 }}
+          >
+            <Typography
+              variant="h5"
+              sx={{
+                fontFamily: '"JetBrains Mono", monospace',
+                fontWeight: 500,
+                background: isDark
+                  ? 'linear-gradient(135deg, #60a5fa 0%, #5eead4 100%)'
+                  : 'linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                mb: 3,
+              }}
+            >
+              {EMAIL}
+            </Typography>
+            <Button
+              variant="outlined"
+              startIcon={copied ? <Check /> : <ContentCopy />}
+              onClick={handleCopyEmail}
+              sx={{
+                fontSize: '0.875rem',
+                fontWeight: 600,
+                letterSpacing: '0.05em',
+                textTransform: 'uppercase',
+                borderColor: isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)',
+                color: copied ? 'success.main' : 'text.primary',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  borderColor: 'primary.main',
+                  backgroundColor: isDark ? 'rgba(59, 130, 246, 0.08)' : 'rgba(37, 99, 235, 0.08)',
+                  transform: 'translateY(-1px)',
+                  boxShadow: '0 4px 12px rgba(59, 130, 246, 0.15)',
+                },
+              }}
+            >
+              {copied ? 'Copied!' : 'Copy Email'}
+            </Button>
+          </Box>
 
-      <div className={classes.footer} style={{ backgroundColor: theme.footer }}>
-        <p>Made with</p> &nbsp; <Favorite style={{ color: '#03a3ff' }} /> &nbsp;
-        <p>by Luke Fox, {new Date().getFullYear()}</p>
-      </div>
-    </div>
+          <Stack
+            component={motion.div}
+            variants={fadeUp}
+            direction="row"
+            spacing={2}
+            justifyContent="center"
+          >
+            {socialLinks.map((link) => (
+              <IconButton
+                key={link.name}
+                component="a"
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.name}
+                sx={{
+                  color: 'text.secondary',
+                  backgroundColor: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  p: 1.5,
+                  transition: 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)',
+                  '&:hover': {
+                    color: '#fff',
+                    borderColor: 'transparent',
+                    background: 'linear-gradient(135deg, #3b82f6, #14b8a6)',
+                    transform: 'translateY(-3px)',
+                    boxShadow: '0 8px 20px rgba(59, 130, 246, 0.25)',
+                  },
+                }}
+              >
+                {link.icon}
+              </IconButton>
+            ))}
+          </Stack>
+        </Box>
+      </Container>
+
+      <Box
+        component="footer"
+        sx={{
+          pt: 8,
+          pb: 3,
+          mt: 'auto',
+        }}
+      >
+        <Container maxWidth="lg">
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 2,
+              pt: 3,
+              borderTop: '1px solid',
+              borderColor: 'divider',
+            }}
+          >
+            <Typography
+              variant="body2"
+              sx={{
+                color: 'text.secondary',
+              }}
+            >
+              {new Date().getFullYear()} Luke Fox.
+            </Typography>
+
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Typography
+                variant="caption"
+                sx={{
+                  color: 'text.secondary',
+                  mr: 1,
+                }}
+              >
+                Theme
+              </Typography>
+              <IconButton
+                onClick={toggleTheme}
+                size="small"
+                sx={{
+                  color: 'text.secondary',
+                  '&:hover': {
+                    color: 'primary.main',
+                  },
+                }}
+              >
+                {isDark ? <LightMode fontSize="small" /> : <DarkMode fontSize="small" />}
+              </IconButton>
+            </Stack>
+          </Box>
+        </Container>
+      </Box>
+
+      <Snackbar
+        open={copied}
+        autoHideDuration={2000}
+        onClose={() => setCopied(false)}
+        message="Email copied to clipboard"
+      />
+    </Box>
   );
 };
