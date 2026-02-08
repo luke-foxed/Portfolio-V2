@@ -174,7 +174,7 @@ export const Home: React.FC = () => {
           animate="animate"
           sx={{
             textAlign: { xs: 'center', md: 'left' },
-            py: { xs: 8, md: 0 },
+            py: { xs: 4, md: 0 },
           }}
         >
           <Box
@@ -379,19 +379,19 @@ export const Home: React.FC = () => {
         onClick={scrollToAbout}
         sx={{
           position: 'absolute',
-          bottom: { xs: 24, md: 40 },
+          bottom: { xs: 12, md: 40 },
           left: 0,
           right: 0,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: 1,
+          gap: 0.5,
           zIndex: 1,
           cursor: 'pointer',
-          py: 2,
+          py: { xs: 1.5, md: 2 },
           px: 3,
-          minHeight: 56,
+          minHeight: { xs: 44, md: 56 },
         }}
       >
         <Typography
