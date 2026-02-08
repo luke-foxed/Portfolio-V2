@@ -47,15 +47,23 @@ export const NavbarMobile: React.FC = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
+          transform: scrolled ? 'translateY(0)' : 'translateY(-100%)',
           backgroundColor: scrolled
             ? isDark
-              ? 'rgba(10, 10, 10, 0.9)'
-              : 'rgba(250, 250, 250, 0.9)'
+              ? 'rgba(10, 10, 10, 0.75)'
+              : 'rgba(250, 250, 250, 0.75)'
             : 'transparent',
-          backdropFilter: scrolled ? 'blur(12px)' : 'none',
+          backdropFilter: scrolled ? 'blur(20px)' : 'none',
           borderBottom: scrolled ? '1px solid' : 'none',
-          borderColor: 'divider',
-          transition: 'all 0.3s ease',
+          borderColor: scrolled
+            ? isDark
+              ? 'rgba(255, 255, 255, 0.06)'
+              : 'rgba(0, 0, 0, 0.06)'
+            : 'transparent',
+          boxShadow: scrolled && isDark
+            ? '0 4px 30px rgba(0, 0, 0, 0.3)'
+            : scrolled ? '0 4px 30px rgba(0, 0, 0, 0.05)' : 'none',
+          transition: 'transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease',
         }}
       >
         <Typography
@@ -66,10 +74,23 @@ export const NavbarMobile: React.FC = () => {
             letterSpacing: '-0.02em',
             cursor: 'pointer',
             color: 'text.primary',
+            '&:hover': {
+              color: 'primary.main',
+            },
+            transition: 'color 0.2s ease',
           }}
         >
           LUKE
-          <Box component="span" sx={{ color: 'primary.main', ml: 0.5 }}>
+          <Box
+            component="span"
+            sx={{
+              ml: 0.5,
+              background: 'linear-gradient(135deg, #3b82f6, #14b8a6)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
             FOX
           </Box>
         </Typography>

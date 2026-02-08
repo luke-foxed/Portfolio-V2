@@ -55,6 +55,31 @@ body {
   50% { opacity: 1; }
 }
 
+/* Hero text glow: shape morph (smooth) */
+@keyframes hero-glow-shape {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.05, 0.96); }
+  50% { transform: scale(0.96, 1.05); }
+  75% { transform: scale(1.03, 0.98); }
+}
+
+/* Hero text glow: smooth blue ↔ teal crossfade */
+@keyframes hero-glow-blue-fade {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes hero-glow-teal-fade {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Hero glow: overall pulse (disappear / reappear) */
+@keyframes hero-glow-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
 @keyframes orb-breathe {
   0%, 100% { transform: scale(1); opacity: 0.7; }
   50% { transform: scale(1.03); opacity: 1; }
@@ -63,6 +88,30 @@ body {
 @keyframes orb-breathe-alt {
   0%, 100% { transform: scale(1); opacity: 0.6; }
   50% { transform: scale(1.04); opacity: 0.9; }
+}
+
+/* Abstract / random-feeling glow motions */
+@keyframes orb-float {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  33% { transform: translate(15px, -20px) scale(1.05); opacity: 0.75; }
+  66% { transform: translate(-10px, 10px) scale(0.98); opacity: 0.6; }
+}
+
+@keyframes orb-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.45; }
+  25% { transform: translate(-25px, 15px) scale(1.08); opacity: 0.7; }
+  50% { transform: translate(20px, -10px) scale(0.95); opacity: 0.5; }
+  75% { transform: translate(-5px, -25px) scale(1.02); opacity: 0.65; }
+}
+
+@keyframes orb-sway {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
+  50% { transform: translate(30px, 20px) scale(1.1); opacity: 0.8; }
+}
+
+@keyframes orb-pulse-slow {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.15); opacity: 0.65; }
 }
 
 a {

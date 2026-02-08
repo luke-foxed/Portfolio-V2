@@ -6,6 +6,8 @@ import { rotateIn } from '../../lib/animations';
 
 interface SectionHeaderProps {
   title: string;
+  /** Shorter title for small screens (e.g. to fit on one line) */
+  shortTitle?: string;
   icon?: React.ReactNode;
 }
 
@@ -31,7 +33,7 @@ const titleVariants = {
 };
 
 
-export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, icon }) => {
+export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, shortTitle, icon }) => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
 
@@ -77,7 +79,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, icon }) => 
             </Box>
           </motion.div>
         )}
-        <motion.div variants={titleVariants}>
+        <motion.div variants={titleVariants} style={{ display: 'flex', alignItems: 'center' }}>
           <Typography
             variant="h3"
             sx={{
@@ -91,10 +93,31 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, icon }) => 
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
+              display: { xs: shortTitle ? 'none' : 'block', sm: 'block' },
             }}
           >
             {title.toUpperCase()}
           </Typography>
+          {shortTitle && (
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: 800,
+                fontSize: { xs: '2rem', sm: '2.25rem', md: '2.75rem' },
+                color: 'text.primary',
+                letterSpacing: '-0.02em',
+                background: isDark
+                  ? 'linear-gradient(135deg, #ffffff 0%, #94a3b8 100%)'
+                  : 'linear-gradient(135deg, #0a0a0a 0%, #475569 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                display: { xs: 'block', sm: 'none' },
+              }}
+            >
+              {shortTitle.toUpperCase()}
+            </Typography>
+          )}
         </motion.div>
       </motion.div>
 
