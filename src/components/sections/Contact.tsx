@@ -82,8 +82,9 @@ export const Contact: React.FC = () => {
             mx: 'auto',
           }}
         >
-          <SectionHeader title="Let's Work Together" icon={<Handshake />} />
-
+          <Box sx={{ display: 'flex', justifyContent: 'center', '& > div': { mb: 3 } }}>
+            <SectionHeader title="Contact Me" shortTitle="Contact Me" icon={<Handshake />} />
+          </Box>
           <Typography
             component={motion.p}
             variants={fadeUp}
@@ -108,6 +109,9 @@ export const Contact: React.FC = () => {
               sx={{
                 fontFamily: '"JetBrains Mono", monospace',
                 fontWeight: 500,
+                fontSize: { xs: '1rem', sm: '1.1rem', md: '1.35rem' },
+                wordBreak: 'break-all',
+                textAlign: 'center',
                 background: isDark
                   ? 'linear-gradient(135deg, #60a5fa 0%, #5eead4 100%)'
                   : 'linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)',

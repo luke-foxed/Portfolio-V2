@@ -44,35 +44,124 @@ export const Home: React.FC = () => {
         }}
       />
 
+      {/* Abstract scattered glows – varied positions, sizes, timings */}
       <Box
         sx={{
           position: 'absolute',
-          top: '-30%',
-          left: '-20%',
-          width: '120%',
-          height: '100%',
+          top: '-20%',
+          left: '-10%',
+          width: '70%',
+          height: '70%',
           background: isDark
-            ? 'radial-gradient(ellipse at 30% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 60%)'
-            : 'radial-gradient(ellipse at 30% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 60%)',
-          filter: 'blur(80px)',
-          animation: 'orb-breathe 10s ease-in-out infinite',
-          willChange: 'transform, opacity',
+            ? 'radial-gradient(ellipse at 30% 30%, rgba(59, 130, 246, 0.12) 0%, transparent 65%)'
+            : 'radial-gradient(ellipse at 30% 30%, rgba(59, 130, 246, 0.14) 0%, transparent 65%)',
+          filter: 'blur(70px)',
+          animation: 'orb-breathe 11s ease-in-out infinite',
           pointerEvents: 'none',
         }}
       />
       <Box
         sx={{
           position: 'absolute',
-          top: '-20%',
-          right: '-25%',
-          width: '110%',
-          height: '90%',
+          top: '-15%',
+          right: '-15%',
+          width: '60%',
+          height: '75%',
           background: isDark
-            ? 'radial-gradient(ellipse at 70% 30%, rgba(20, 184, 166, 0.06) 0%, transparent 55%)'
-            : 'radial-gradient(ellipse at 70% 30%, rgba(20, 184, 166, 0.08) 0%, transparent 55%)',
+            ? 'radial-gradient(ellipse at 70% 25%, rgba(20, 184, 166, 0.1) 0%, transparent 60%)'
+            : 'radial-gradient(ellipse at 70% 25%, rgba(20, 184, 166, 0.12) 0%, transparent 60%)',
+          filter: 'blur(75px)',
+          animation: 'orb-breathe-alt 14s ease-in-out 2.5s infinite',
+          pointerEvents: 'none',
+        }}
+      />
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: '5%',
+          left: '10%',
+          width: '45%',
+          height: '50%',
+          background: isDark
+            ? 'radial-gradient(circle at center, rgba(96, 165, 250, 0.08) 0%, transparent 70%)'
+            : 'radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+          animation: 'orb-float 13s ease-in-out 1s infinite',
+          pointerEvents: 'none',
+        }}
+      />
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: '15%',
+          right: '5%',
+          width: '50%',
+          height: '45%',
+          background: isDark
+            ? 'radial-gradient(circle at center, rgba(94, 234, 212, 0.07) 0%, transparent 65%)'
+            : 'radial-gradient(circle at center, rgba(20, 184, 166, 0.09) 0%, transparent 65%)',
+          filter: 'blur(65px)',
+          animation: 'orb-drift 16s ease-in-out 4s infinite',
+          pointerEvents: 'none',
+        }}
+      />
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '40%',
+          left: '50%',
+          width: '55%',
+          height: '40%',
+          background: isDark
+            ? 'radial-gradient(ellipse at center, rgba(129, 140, 248, 0.06) 0%, transparent 60%)'
+            : 'radial-gradient(ellipse at center, rgba(99, 102, 241, 0.08) 0%, transparent 60%)',
           filter: 'blur(80px)',
-          animation: 'orb-breathe-alt 12s ease-in-out 2s infinite',
-          willChange: 'transform, opacity',
+          animation: 'orb-sway 18s ease-in-out 0.5s infinite',
+          pointerEvents: 'none',
+        }}
+      />
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '20%',
+          right: '25%',
+          width: '35%',
+          height: '45%',
+          background: isDark
+            ? 'radial-gradient(circle at center, rgba(59, 130, 246, 0.06) 0%, transparent 55%)'
+            : 'radial-gradient(circle at center, rgba(37, 99, 235, 0.08) 0%, transparent 55%)',
+          filter: 'blur(55px)',
+          animation: 'orb-pulse-slow 9s ease-in-out 3s infinite',
+          pointerEvents: 'none',
+        }}
+      />
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: '-10%',
+          left: '35%',
+          width: '55%',
+          height: '55%',
+          background: isDark
+            ? 'radial-gradient(ellipse at 50% 50%, rgba(20, 184, 166, 0.05) 0%, transparent 58%)'
+            : 'radial-gradient(ellipse at 50% 50%, rgba(20, 184, 166, 0.07) 0%, transparent 58%)',
+          filter: 'blur(70px)',
+          animation: 'orb-float 15s ease-in-out 6s infinite reverse',
+          pointerEvents: 'none',
+        }}
+      />
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '60%',
+          right: '35%',
+          width: '40%',
+          height: '50%',
+          background: isDark
+            ? 'radial-gradient(circle at center, rgba(96, 165, 250, 0.05) 0%, transparent 62%)'
+            : 'radial-gradient(circle at center, rgba(59, 130, 246, 0.07) 0%, transparent 62%)',
+          filter: 'blur(60px)',
+          animation: 'orb-drift 12s ease-in-out 2s infinite',
           pointerEvents: 'none',
         }}
       />
@@ -103,20 +192,41 @@ export const Home: React.FC = () => {
               sx={{
                 position: 'absolute',
                 top: '50%',
-                left: '-30%',
-                right: '-30%',
-                transform: 'translateY(-50%)',
-                height: '200%',
-                background: isDark
-                  ? 'radial-gradient(ellipse at center, rgba(96,165,250,0.13) 0%, rgba(94,234,212,0.1) 30%, transparent 70%)'
-                  : 'radial-gradient(ellipse at center, rgba(37,99,235,0.08) 0%, rgba(20,184,166,0.06) 30%, transparent 70%)',
-                backgroundSize: '300% 100%',
-                animation: 'hero-shimmer 12s linear infinite, glow-pulse 4s ease-in-out infinite',
-                filter: 'blur(50px)',
-                willChange: 'background-position, opacity',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: 'min(85vw, 480px)',
+                height: 'min(85vw, 480px)',
+                animation: 'hero-glow-pulse 6s ease-in-out infinite',
                 pointerEvents: 'none',
               }}
-            />
+            >
+              <Box
+                sx={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: '50%',
+                  background: isDark
+                    ? 'radial-gradient(circle at center, rgba(96,165,250,0.32) 0%, rgba(94,234,212,0.12) 38%, transparent 60%)'
+                    : 'radial-gradient(circle at center, rgba(37,99,235,0.24) 0%, rgba(20,184,166,0.1) 38%, transparent 60%)',
+                  animation: 'hero-glow-shape 6s ease-in-out infinite, hero-glow-blue-fade 6s ease-in-out infinite',
+                  filter: 'blur(40px)',
+                  willChange: 'transform, opacity',
+                }}
+              />
+              <Box
+                sx={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: '50%',
+                  background: isDark
+                    ? 'radial-gradient(circle at center, rgba(94,234,212,0.28) 0%, rgba(96,165,250,0.1) 38%, transparent 60%)'
+                    : 'radial-gradient(circle at center, rgba(20,184,166,0.22) 0%, rgba(37,99,235,0.08) 38%, transparent 60%)',
+                  animation: 'hero-glow-shape 6s ease-in-out infinite, hero-glow-teal-fade 6s ease-in-out infinite',
+                  filter: 'blur(40px)',
+                  willChange: 'transform, opacity',
+                }}
+              />
+            </Box>
             <Typography
               component="h1"
               sx={{
@@ -135,6 +245,9 @@ export const Home: React.FC = () => {
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
                 WebkitTextStroke: isDark ? '1px rgba(255, 255, 255, 0.06)' : '1px rgba(15, 23, 42, 0.05)',
+                filter: isDark
+                  ? 'drop-shadow(0 0 20px rgba(96, 165, 250, 0.35)) drop-shadow(0 0 40px rgba(94, 234, 212, 0.2))'
+                  : 'drop-shadow(0 0 18px rgba(59, 130, 246, 0.4)) drop-shadow(0 0 36px rgba(20, 184, 166, 0.25))',
               }}
             >
               LUKE FOX
@@ -266,15 +379,19 @@ export const Home: React.FC = () => {
         onClick={scrollToAbout}
         sx={{
           position: 'absolute',
-          bottom: 40,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          cursor: 'pointer',
+          bottom: { xs: 24, md: 40 },
+          left: 0,
+          right: 0,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          justifyContent: 'center',
           gap: 1,
           zIndex: 1,
+          cursor: 'pointer',
+          py: 2,
+          px: 3,
+          minHeight: 56,
         }}
       >
         <Typography
@@ -284,9 +401,22 @@ export const Home: React.FC = () => {
             fontSize: '0.75rem',
             letterSpacing: 2,
             textTransform: 'uppercase',
+            display: { xs: 'none', md: 'block' },
           }}
         >
           Scroll
+        </Typography>
+        <Typography
+          variant="caption"
+          sx={{
+            color: 'text.secondary',
+            fontSize: '0.75rem',
+            letterSpacing: 2,
+            textTransform: 'uppercase',
+            display: { xs: 'block', md: 'none' },
+          }}
+        >
+          Tap
         </Typography>
         <KeyboardArrowDown
           sx={{
